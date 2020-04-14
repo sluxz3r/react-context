@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 // IMPORT UTILS FOR GET TOKEN OR SET TOKEN FROM PINDAD UTILS
 import {
   Contact,
@@ -20,6 +15,7 @@ import {
   UserManual,
 } from "./App/Container/Views/Public/index";
 import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
+import history from "./App/Misc/BrowserHistory";
 const PublicRoute = ({ component: Component, ...rest }) => {
   const login = null;
   return (
@@ -44,32 +40,51 @@ const Routes = () => {
   return (
     <React.Fragment>
       <PublicHeader />
-      <div className="flex flex-row">
-        <PublicSidebar />
-        <Router>
-          <Switch>
-            <PublicRoute path="/contact" component={Contact} />
-            <PublicRoute path="/forgot" component={Forgot} />
-            <PublicRoute path="/" component={Home} />
-            <PublicRoute path="/integrity_fact" component={IntegrityFact} />
-            <PublicRoute path="/procerument" component={Procurement} />
-            <PublicRoute
-              path="/qualification_requirement"
-              component={QualificationReq}
-            />
-            <PublicRoute path="/registration" component={Registration} />
-            <PublicRoute
-              path="/registration_procedure"
-              component={RegistrationProcedure}
-            />
-            <PublicRoute
-              path="/tender_requirement"
-              component={TenderRequirement}
-            />
-            <PublicRoute path="/term_condition" component={TermCondition} />
-            <PublicRoute path="/user_manual" component={UserManual} />
-          </Switch>
-        </Router>
+      <div className="flex flex-1 pt-14 overflow-y-auto">
+        <div className="w-1/5">
+          <PublicSidebar />
+        </div>
+        <div className="w-4/5">
+          <Router history={history}>
+            <Switch>
+              <PublicRoute exact path="/contact" component={Contact} />
+              <PublicRoute exact path="/forgot" component={Forgot} />
+              <PublicRoute exact path="/" component={Home} />
+              <PublicRoute
+                exact
+                path="/integrity_fact"
+                component={IntegrityFact}
+              />
+              <PublicRoute exact path="/procerument" component={Procurement} />
+              <PublicRoute
+                exact
+                path="/qualification_requirement"
+                component={QualificationReq}
+              />
+              <PublicRoute
+                exact
+                path="/registration"
+                component={Registration}
+              />
+              <PublicRoute
+                exact
+                path="/registration_procedure"
+                component={RegistrationProcedure}
+              />
+              <PublicRoute
+                exact
+                path="/tender_requirement"
+                component={TenderRequirement}
+              />
+              <PublicRoute
+                exact
+                path="/term_condition"
+                component={TermCondition}
+              />
+              <PublicRoute exact path="/user_manual" component={UserManual} />
+            </Switch>
+          </Router>
+        </div>
       </div>
     </React.Fragment>
   );

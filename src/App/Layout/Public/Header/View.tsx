@@ -1,7 +1,14 @@
 import React from "react";
+import history from '../../../../App/Misc/BrowserHistory';
 export const PublicHeader = () => {
+    const _handleHomeMenu = () => {
+        history.push('/')
+    }
+    const _handleRegistration = () => {
+        history.push("/registration");
+      };
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-bluepindad-100 border-b-6 border-yellowpindad-100 py-0 px-6 fixed w-full z-10 top-0">
+    <nav className="flex items-center justify-between flex-wrap bg-bluepindad-100 border-b-6 border-yellowpindad-100 py-0 px-6 fixed w-full z-10 top-0 left-0 right-0 overflow-hidden">
       <div
         className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block text-sm lg:pt-0 cursor-pointer"
         id="nav-content"
@@ -13,12 +20,12 @@ export const PublicHeader = () => {
             </span>
           </li>
           <li>
-            <span className="inline-block p-4 text-white font-bold hover:bg-bluepindad-200">
+            <span onClick={() => _handleHomeMenu()} className="inline-block p-4 text-white font-bold hover:bg-bluepindad-200">
               e-Procurement
             </span>
           </li>
           <li>
-            <span className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
+            <span onClick={() => _handleHomeMenu()} className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
               Beranda
             </span>
           </li>
@@ -50,13 +57,13 @@ export const PublicHeader = () => {
             </span>
           </li>
           <li>
-            <span className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
+            <span onClick={() => _handleRegistration()} className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
               Registrasi
             </span>
           </li>
           <li>
-            <span className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
-              Login
+            <span className="inline-block px-4 text-white text-xs">
+              <button className="bg-blue-600 py-1 px-4 hover:bg-blue-700">Login</button>
             </span>
           </li>
         </ul>

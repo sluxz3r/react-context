@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { MainApp } from '../../../Components/index';
 
 export const Forgot = () => {
-    return (
-        <div>
-            Forgot
-        </div>
-    )
-}
+  return (
+   <MainApp title="RESET PASSWORD">
+       Main Reset Password
+   </MainApp>
+  );
+};
