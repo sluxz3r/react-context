@@ -17,7 +17,6 @@ const RegistrationComponent = () => {
     _handleSubmitRegister,
     register,
     setVendor_type,
-    optionsvendor_type,
     national,
     Indonesia,
     Yogyakarta,
@@ -73,27 +72,28 @@ const RegistrationComponent = () => {
                   <label className="w-full">Perusahaan Tipe</label>
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                  <Select
+                  <select
                     name="vendor_type"
-                    isClearable
                     ref={register({
                       required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
                     })}
-                    onChange={(val) =>
-                      val ? setVendor_type(val.value) : setVendor_type("")
-                    }
-                    options={optionsvendor_type}
-                    placeholder="Cari..."
-                    styles={customStyles}
-                  />
+                    onChange={(val) => setVendor_type(val.target.value)}
+                    className="w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 rounded"
+                  >
+                    <option value="" hidden></option>
+                    <option value="Asosiasi Profesi">Asosiasi Profesi</option>
+                    <option value="Company">Company</option>
+                    <option value="CV">CV</option>
+                    <option value="KOPERASI">KOPERASI</option>
+                    <option value="LEMBAGA">LEMBAGA</option>
+                    <option value="PD">PD</option>
+                    <option value="Perusahaan Daerah">Perusahaan Daerah</option>
+                    <option value="PRIBADI">PRIBADI</option>
+                    <option value="PT">PT</option>
+                    <option value="PT. (Persero)">PT. (Persero)</option>
+                    <option value="UD">UD</option>
+                    <option value="Yayasan">Yayasan</option>
+                  </select>
                   <ErrorMessage errors={errors} name="vendor_type">
                     {({ messages }) => {
                       return (

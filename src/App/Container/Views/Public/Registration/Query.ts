@@ -1,44 +1,5 @@
 import gql from "graphql-tag";
 
-export const REGISTER_NEW_VENDOR2 = gql`
-  mutation {
-    registerNewVendor(
-      data: {
-        name: "PT Pindad Jaya"
-        owner: "sukasih"
-        business_type: "PENDIDIKAN"
-        register_date: "2020-03-26 15:14:00"
-        vendor_type: "PERSONAL"
-        contacts: [
-          {
-            company_name: "pindad jaya"
-            address: "jalan damai no 7 "
-            country: "indonesia"
-            province: "yogyakarta"
-            district: "depok"
-            city: "kota yogyakarta"
-            postal_code: 58881
-            phone_number: "081914005050"
-            fax_number: ""
-            website: "www.pindadjaya.com"
-            e_mail: "test@pindadjaya.com"
-          }
-        ]
-        tax_document: [
-          { tax_document_type: "NPWP", tax_document_number: "1234567890" }
-        ]
-        person_in_charge: [
-          {
-            pic_name: "PIC_test"
-            e_mail: "test@mail.com"
-            phone_number: "081914005052"
-          }
-        ]
-      }
-    )
-  }
-`;
-
 export const REGISTER_NEW_VENDOR = gql`
   mutation(
     $name: String

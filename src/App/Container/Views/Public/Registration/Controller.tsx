@@ -19,7 +19,6 @@ interface InitialState {
   _onSubmit: Function;
   customStyles: object;
   listClassification: Array<object>;
-  optionsvendor_type: Array<object>;
   national: Array<object>;
   Indonesia: Array<object>;
   Yogyakarta: Array<object>;
@@ -104,7 +103,6 @@ const initialState = {
   _onSubmit: () => {},
   customStyles: {},
   listClassification: [],
-  optionsvendor_type: [],
   national: [],
   Indonesia: [],
   Yogyakarta: [],
@@ -227,22 +225,7 @@ export const RegistrationController = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   const listClassification = [{ value: "PENDIDIKAN", label: "PENDIDIKAN" }];
-  const optionsvendor_type = [
-    {
-      label: "10 dari 255 (harap ketik untuk memfilter)",
-      isDisabled: true,
-    },
-    { value: "Asosiasi Profesi", label: "Asosiasi Profesi" },
-    { value: "Company", label: "Company" },
-    { value: "CV", label: "CV" },
-    { value: "Koperasi", label: "Koperasi" },
-    { value: "Lembaga", label: "Lembaga" },
-    { value: "PD", label: "Perusahaan Daerah" },
-    { value: "Pribadi", label: "Pribadi" },
-    { value: "PT", label: "PT" },
-    { value: "PT. (Persero)", label: "PT. (Persero)" },
-    { value: "Yayasan", label: "Yayasan" },
-  ];
+
   const national = [{ value: "Indonesia", label: "Indonesia" }];
   const Indonesia = [{ value: "Yogyakarta", label: "Yogyakarta" }];
   const Yogyakarta = [{ value: "Sleman", label: "Sleman" }];
@@ -318,6 +301,7 @@ export const RegistrationController = ({ children }) => {
     errTax_document_type !== "";
 
   const type = tax_document_type && "NPWP";
+
   const [
     submitRegister,
     { loading: loadingRegister },
@@ -367,7 +351,6 @@ export const RegistrationController = ({ children }) => {
         _onSubmit,
         customStyles,
         listClassification,
-        optionsvendor_type,
         national,
         Indonesia,
         Yogyakarta,
