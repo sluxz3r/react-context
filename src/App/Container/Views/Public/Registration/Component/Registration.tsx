@@ -6,7 +6,7 @@ import InputMask from "react-input-mask";
 import ReCAPTCHA from "react-google-recaptcha";
 import TermsAndConditions from "./Terms&Conditions";
 import { Modal } from "../../../../Components";
-import "../../../../Assets/Css/main.css";
+import "../../../../Assets/Css/App.css";
 
 const RegistrationComponent = () => {
   const {
@@ -485,6 +485,10 @@ const RegistrationComponent = () => {
                         value: 30,
                         message: "This input is more than 30 characters",
                       },
+                      pattern: {
+                        value: /^\d+$/,
+                        message: "This input is number 0-9",
+                      },
                     })}
                     onChange={(val) => setPostal_code(val.target.value)}
                     className={`w-full bg-white border ${
@@ -530,7 +534,10 @@ const RegistrationComponent = () => {
                           value: 30,
                           message: "This input is more than 30 characters",
                         },
-                        pattern: /^\+{1}[62]{2}[0-9]{1,20}$/i,
+                        pattern: {
+                          value: /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/g,
+                          message: "This input is number 0-9",
+                        },
                       })}
                       onChange={(val) => setPhone_number(val.target.value)}
                       className={`w-full bg-white border ${
@@ -609,6 +616,10 @@ const RegistrationComponent = () => {
                           value: 30,
                           message: "This input is more than 30 characters",
                         },
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "This input is number 0-9",
+                        },
                       })}
                       onChange={(val) => setFax_number(val.target.value)}
                       className={`w-full bg-white border ${
@@ -644,6 +655,10 @@ const RegistrationComponent = () => {
                         maxLength: {
                           value: 30,
                           message: "This input is more than 30 characters",
+                        },
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "This input is number 0-9",
                         },
                       })}
                       onChange={(val) => setFax_numberExt(val.target.value)}
@@ -735,7 +750,7 @@ const RegistrationComponent = () => {
                     className={`w-full bg-white border ${
                       !errors ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
-                    placeholder="exmple.com"
+                    placeholder="example.com"
                   />
                   <ErrorMessage errors={errors} name="website">
                     {({ messages }) => {
@@ -802,6 +817,7 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <input
+                    type="text"
                     name="picMobileNumber"
                     ref={register({
                       required: "This is required",
@@ -813,12 +829,15 @@ const RegistrationComponent = () => {
                         value: 30,
                         message: "This input is more than 30 characters",
                       },
-                      pattern: /^\+{1}[62]{2}[0-9]{1,20}$/i,
+                      pattern: {
+                        value: /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/g,
+                        message: "This input is number 0-9",
+                      },
                     })}
                     onChange={(val) => setPicMobileNumber(val.target.value)}
                     className={`w-full bg-white border ${
                       !errors ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                     placeholder="+62xx-xxxxxxxxxxxx"
                   />
                   <ErrorMessage errors={errors} name="picMobileNumber">
@@ -904,7 +923,10 @@ const RegistrationComponent = () => {
                         value: 30,
                         message: "This input is more than 30 characters",
                       },
-                      pattern: /[0-9]{1,20}/,
+                      pattern: {
+                        value: /^\d+$/,
+                        message: "This input is number 0-9",
+                      },
                     })}
                     onChange={(val) =>
                       setTenderReferenceNumber(val.target.value)
@@ -958,6 +980,10 @@ const RegistrationComponent = () => {
                       maxLength: {
                         value: 30,
                         message: "This input is more than 30 characters",
+                      },
+                      pattern: {
+                        value: /^\d+$/,
+                        message: "This input is number 0-9",
                       },
                     })}
                     onChange={(val) => setPkpNumber(val.target.value)}

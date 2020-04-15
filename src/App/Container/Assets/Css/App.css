@@ -1,0 +1,5 @@
+input[type="number"].no-arrow::-webkit-inner-spin-button,
+input[type="number"].no-arrow::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
