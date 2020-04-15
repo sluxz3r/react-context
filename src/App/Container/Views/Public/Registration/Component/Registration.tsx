@@ -58,7 +58,11 @@ const RegistrationComponent = () => {
     setCheckbox,
     open,
     setOpen,
+    recaptcha,
+    _onSubmit,
   } = useContext(RegistrationContext);
+
+  console.log("Recaptcha ===", recaptcha);
 
   return (
     <div className="block text-xs static overflow-y-auto">
@@ -1203,16 +1207,18 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4">
-                  <button
-                    type="submit"
+                  <div
                     className={`${
-                      isBtnDissabled ? "bg-gray-600" : "bg-blue-700"
+                      isBtnDissabled
+                        ? "bg-gray-600"
+                        : "cursor-pointer bg-blue-700"
                     } text-white rounded text-sm pr-4`}
-                    // onClick={
-                    //   checkbox === false ? () => setOpen(true) : undefined
-                    // }
-                    // onMouseEnter={handleSubmit(_onSubmit)}
-                    // disabled={isBtnDissabled}
+                    onClick={
+                      checkbox === false
+                        ? () => setOpen(true)
+                        : handleSubmit(_handleSubmitRegister)
+                    }
+                    onMouseEnter={handleSubmit(_onSubmit)}
                     title="Harap lengkapi form dan checklist!"
                   >
                     <CheckboxRegister
@@ -1221,7 +1227,7 @@ const RegistrationComponent = () => {
                       checked={checkbox}
                     />
                     Syarat & Ketentuan
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
