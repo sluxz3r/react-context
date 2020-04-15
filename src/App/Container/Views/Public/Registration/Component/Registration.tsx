@@ -60,6 +60,7 @@ const RegistrationComponent = () => {
     open,
     setOpen,
   } = useContext(RegistrationContext);
+  console.log("CEK", isBtnDissabled);
 
   return (
     <div className="block text-xs static overflow-y-auto">
@@ -1178,6 +1179,7 @@ const RegistrationComponent = () => {
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4">
                   <button
+                    type="submit"
                     className={`${
                       isBtnDissabled ? "bg-gray-600" : "bg-blue-700"
                     } text-white rounded text-sm pr-4`}
@@ -1187,7 +1189,7 @@ const RegistrationComponent = () => {
                         : handleSubmit(_onSubmit)
                     }
                     onMouseEnter={handleSubmit(_onSubmit)}
-                    disabled={isBtnDissabled}
+                    // disabled={isBtnDissabled}
                     title="Harap lengkapi form dan checklist!"
                   >
                     <CheckboxRegister
@@ -1230,7 +1232,6 @@ const RegistrationComponent = () => {
           }
           content={<TermsAndConditions />}
           openModal={open}
-          //   onClose={setOpen(false)}
         />
       </form>
     </div>
