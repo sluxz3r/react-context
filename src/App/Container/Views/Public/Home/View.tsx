@@ -1,6 +1,6 @@
 import React from "react";
 import { MainApp } from "../../../Components/index";
-import {Assets} from '../../../Assets/index'
+import { Assets } from "../../../Assets/index";
 export const Home = () => {
   return (
     <MainApp title="BERANDA">
@@ -70,7 +70,7 @@ export const Home = () => {
         </a>
       </p>
       <div className="w-full flex justify-center">
-        <img src={Assets.beranda} alt="logo"/>
+        <img src={Assets.beranda} alt="logo" />
       </div>
     </MainApp>
   );

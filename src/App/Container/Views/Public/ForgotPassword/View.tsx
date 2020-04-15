@@ -4,7 +4,13 @@ import { useForm } from "react-hook-form";
 import { ForgotController, ForgotContext } from "./Controller";
 
 const ForgotInput = () => {
-  const { _handleSubmitForgot, error,data, showSuccess,showError } = useContext(ForgotContext);
+  const {
+    _handleSubmitForgot,
+    error,
+    data,
+    showSuccess,
+    showError,
+  } = useContext(ForgotContext);
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
   });
@@ -14,11 +20,11 @@ const ForgotInput = () => {
       <div className="text-xs text-blue-600 mb-2">
         Tolong masukan username yang digunakan untuk account Anda
       </div>
-      {showError && (
-        <p className="text-red-600 text-xs italic mb-2">{error}</p>
-      )}
-        {showSuccess && (
-        <p className="text-green-600 text-xs italic mb-2">{data.RequestForgotPassword}</p>
+      {showError && <p className="text-red-600 text-xs italic mb-2">{error}</p>}
+      {showSuccess && (
+        <p className="text-green-600 text-xs italic mb-2">
+          {data.RequestForgotPassword}
+        </p>
       )}
       <form onSubmit={handleSubmit((data) => _handleSubmitForgot(data))}>
         <input
