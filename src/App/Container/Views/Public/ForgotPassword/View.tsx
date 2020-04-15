@@ -9,7 +9,7 @@ const ForgotInput = () => {
     mode: "onChange",
   });
   return (
-    <div className="w-2/5">
+    <div className="lg:w-2/5">
       <div className="text-2xl mb-8"> Reset Password</div>
       <div className="text-xs text-blue-600 mb-2">
         Tolong masukan username yang digunakan untuk account Anda
@@ -48,7 +48,7 @@ const ForgotInput = () => {
 
 const ForgotRules = () => {
   return (
-    <div className="w-3/5 pl-6">
+    <div className="lg:w-3/5 lg:pl-6">
       <div className="mb-2">
         Aturan Password User ID EProcurement PT. PINDAD (Persero) adalah sebagai
         berikut :
@@ -88,7 +88,7 @@ export const Forgot = () => {
   return (
     <ForgotController>
       <MainApp title="RESET PASSWORD">
-        <div className="flex">
+        <div className="lg:flex">
           <ForgotInput />
           <ForgotRules />
         </div>

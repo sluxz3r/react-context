@@ -40,11 +40,11 @@ const Routes = () => {
   return (
     <React.Fragment>
       <PublicHeader />
-      <div className="flex flex-1 pt-14 overflow-y-auto">
-        <div className="w-1/5">
+      <div className="lg:flex lg:flex-1 lg:pt-14 lg:overflow-y-auto">
+        <div className="lg:w-1/5 xs:w-full">
           <PublicSidebar />
         </div>
-        <div className="w-4/5">
+        <div className="lg:w-4/5 xs:w-full">
           <Router history={history}>
             <Switch>
               <PublicRoute exact path="/contact" component={Contact} />
