@@ -918,7 +918,6 @@ const RegistrationComponent = () => {
                     type="number"
                     name="tenderReferenceNumber"
                     ref={register({
-                      required: "This is required",
                       minLength: {
                         value: 4,
                         message: "This input is less than 4 characters",
@@ -1214,7 +1213,9 @@ const RegistrationComponent = () => {
                         : "cursor-pointer bg-blue-700"
                     } text-white rounded text-sm pr-4`}
                     onClick={
-                      checkbox === false
+                      isBtnDissabled
+                        ? undefined
+                        : checkbox === false
                         ? () => setOpen(true)
                         : handleSubmit(_handleSubmitRegister)
                     }

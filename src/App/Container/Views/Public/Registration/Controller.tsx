@@ -295,7 +295,6 @@ export const RegistrationController = ({ children }) => {
     pic_name === "" ||
     picMobileNumber === "" ||
     picEmail === "" ||
-    tenderReferenceNumber === "" ||
     tax_document_number === "" ||
     tax_document_type === null ||
     errTax_document_type !== "";
