@@ -11,7 +11,7 @@ export const MainApp = ({ title, children }) => {
         </thead>
         <tbody className="w-full bg-white">
           <tr>
-            <td className="text-left py-6 px-6">{children}</td>
+            <td className="text-left py-3 px-6">{children}</td>
           </tr>
         </tbody>
       </table>
