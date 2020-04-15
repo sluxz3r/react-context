@@ -60,18 +60,9 @@ const RegistrationComponent = () => {
     open,
     setOpen,
   } = useContext(RegistrationContext);
-  //   const [open, setOpen] = useState(false);
 
   return (
     <div className="block text-xs static overflow-y-auto">
-      <button
-        className={`bg-blue-700 text-white rounded text-sm pr-4`}
-        onClick={() => setOpen(true)}
-        title="Harap lengkapi form dan checklist!"
-      >
-        <CheckboxRegister size="small" disabled checked={checkbox && false} />
-        Syarat & Ketentuan
-      </button>
       <form onSubmit={handleSubmit(_onSubmit)}>
         <div className="flex flex-row md:flex-col lg:flex-col">
           <div className="flex flex-row py-4">
@@ -1190,19 +1181,19 @@ const RegistrationComponent = () => {
                     className={`${
                       isBtnDissabled ? "bg-gray-600" : "bg-blue-700"
                     } text-white rounded text-sm pr-4`}
-                    // onClick={
-                    //   checkbox === false
-                    //      ? () => setOpen(true)
-                    //     : handleSubmit(_onSubmit)
-                    // }
-                    // onMouseEnter={handleSubmit(_onSubmit)}
-                    // disabled={isBtnDissabled}
+                    onClick={
+                      checkbox === false
+                        ? () => setOpen(true)
+                        : handleSubmit(_onSubmit)
+                    }
+                    onMouseEnter={handleSubmit(_onSubmit)}
+                    disabled={isBtnDissabled}
                     title="Harap lengkapi form dan checklist!"
                   >
                     <CheckboxRegister
                       size="small"
                       disabled
-                      checked={checkbox && false}
+                      checked={checkbox}
                     />
                     Syarat & Ketentuan
                   </button>
