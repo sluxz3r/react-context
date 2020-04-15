@@ -12,8 +12,13 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.4",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-upload-client": "^13.0.0",
+    "graphql": "^15.0.0",
     "history": "^4.10.1",
     "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
@@ -24,10 +29,9 @@
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:css": "postcss src/App/Container/Assets/Css/tailwind.css -o src/App/Container/Assets/Css/main.css", 
+    "build:css": "postcss src/App/Container/Assets/Css/tailwind.css -o src/App/Container/Assets/Css/main.css",
     "watch:css": "postcss src/App/Container/Assets/Css/tailwind.css -o src/App/Container/Assets/Css/main.css"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },
