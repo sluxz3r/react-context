@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { RegistrationContext } from "../Controller";
 import { ErrorMessage } from "react-hook-form";
 import Select from "react-select";
@@ -14,7 +14,7 @@ const RegistrationComponent = () => {
     customStyles,
     errors,
     handleSubmit,
-    _onSubmit,
+    _handleSubmitRegister,
     register,
     setVendor_type,
     optionsvendor_type,
@@ -60,11 +60,10 @@ const RegistrationComponent = () => {
     open,
     setOpen,
   } = useContext(RegistrationContext);
-  console.log("CEK", isBtnDissabled);
 
   return (
     <div className="block text-xs static overflow-y-auto">
-      <form onSubmit={handleSubmit(_onSubmit)}>
+      <form onSubmit={handleSubmit(_handleSubmitRegister)}>
         <div className="flex flex-row md:flex-col lg:flex-col">
           <div className="flex flex-row py-4">
             {/* Left */}
@@ -1183,12 +1182,10 @@ const RegistrationComponent = () => {
                     className={`${
                       isBtnDissabled ? "bg-gray-600" : "bg-blue-700"
                     } text-white rounded text-sm pr-4`}
-                    onClick={
-                      checkbox === false
-                        ? () => setOpen(true)
-                        : handleSubmit(_onSubmit)
-                    }
-                    onMouseEnter={handleSubmit(_onSubmit)}
+                    // onClick={
+                    //   checkbox === false ? () => setOpen(true) : undefined
+                    // }
+                    // onMouseEnter={handleSubmit(_onSubmit)}
                     // disabled={isBtnDissabled}
                     title="Harap lengkapi form dan checklist!"
                   >

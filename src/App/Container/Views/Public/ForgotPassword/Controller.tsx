@@ -17,7 +17,7 @@ const initialState = {
   data: {},
   error: "",
   showError: false,
-  showSuccess: false
+  showSuccess: false,
 };
 
 export const ForgotContext = React.createContext<InitialState>(initialState);
@@ -62,7 +62,7 @@ export const ForgotController = ({ children }) => {
         data,
         error,
         showError,
-        showSuccess
+        showSuccess,
       }}
     >
       {children}

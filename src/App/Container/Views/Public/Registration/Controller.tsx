@@ -2,8 +2,16 @@ import React, { createContext, useState, createRef } from "react";
 import { useForm } from "react-hook-form";
 import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
+import { useMutation } from "react-apollo";
+import { REGISTER_NEW_VENDOR } from "./Query";
 
 interface InitialState {
+  _handleSubmitRegister: Function;
+  loadingRegister: boolean;
+  data: any;
+  error: string;
+  showError: boolean;
+  showSuccess: boolean;
   CheckboxRegister: any;
   handleSubmit: Function;
   register: Function;
@@ -83,6 +91,12 @@ interface InitialState {
 }
 
 const initialState = {
+  _handleSubmitRegister: () => {},
+  loadingRegister: false,
+  data: {},
+  error: "",
+  showError: false,
+  showSuccess: false,
   CheckboxRegister: null,
   handleSubmit: () => {},
   register: () => {},
@@ -169,6 +183,10 @@ export const {
 } = RegistrationContext;
 
 export const RegistrationController = ({ children }) => {
+  const [data, setData] = useState<Object>({});
+  const [error, setError] = useState<string>("");
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [showError, setShowError] = useState<boolean>(false);
   const { register, handleSubmit, errors } = useForm({
     validateCriteriaMode: "all",
     mode: "onChange",
@@ -224,7 +242,6 @@ export const RegistrationController = ({ children }) => {
     { value: "PT", label: "PT" },
     { value: "PT. (Persero)", label: "PT. (Persero)" },
     { value: "Yayasan", label: "Yayasan" },
-    { value: "Indonesia", label: "Indonesia" },
   ];
   const national = [{ value: "Indonesia", label: "Indonesia" }];
   const Indonesia = [{ value: "Yogyakarta", label: "Yogyakarta" }];
@@ -300,9 +317,49 @@ export const RegistrationController = ({ children }) => {
     tax_document_type === null ||
     errTax_document_type !== "";
 
+  const type = tax_document_type && "NPWP";
+  const [
+    submitRegister,
+    { loading: loadingRegister },
+  ] = useMutation(REGISTER_NEW_VENDOR, { errorPolicy: "all" });
+
+  const _handleSubmitRegister = async () => {
+    submitRegister({
+      variables: {
+        vendor_type,
+        name,
+        owner,
+        business_type,
+        register_date: Date.now(),
+        company_name: name,
+        address,
+        country,
+        province,
+        city,
+        district,
+        postal_code: parseInt(postal_code),
+        phone_number,
+        fax_number,
+        website,
+        e_mail,
+        tax_document_type: type,
+        tax_document_number,
+        pic_name,
+        picEmail,
+        picMobileNumber,
+      },
+    });
+  };
+
   return (
     <RegistrationProvider
       value={{
+        _handleSubmitRegister,
+        loadingRegister,
+        data,
+        error,
+        showError,
+        showSuccess,
         CheckboxRegister,
         handleSubmit,
         register,
