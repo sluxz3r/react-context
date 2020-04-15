@@ -7,6 +7,10 @@ export const PublicHeader = () => {
     const _handleRegistration = () => {
         history.push("/registration");
       };
+
+      const _handleContact = () => {
+        history.push("/contact")
+      }
   return (
     <nav className="flex items-center justify-between flex-wrap bg-bluepindad-100 border-b-6 border-yellowpindad-100 py-0 px-6 fixed w-full z-10 top-0 left-0 right-0 overflow-hidden">
       <div
@@ -45,7 +49,7 @@ export const PublicHeader = () => {
             </span>
           </li>
           <li>
-            <span className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
+            <span onClick={() => _handleContact()} className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
               Kontak
             </span>
           </li>
