@@ -1260,7 +1260,9 @@ const RegistrationComponent = () => {
                         ? () => setOpen(true)
                         : handleSubmit(_handleSubmitRegister)
                     }
-                    onMouseEnter={handleSubmit(_onSubmit)}
+                    onMouseEnter={
+                      isBtnDissabled ? handleSubmit(_onSubmit) : undefined
+                    }
                     title="Harap lengkapi form dan checklist!"
                   >
                     {loadingRegister === false ? (
