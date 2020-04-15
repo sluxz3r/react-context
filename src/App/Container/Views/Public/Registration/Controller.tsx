@@ -1,7 +1,10 @@
 import React, { createContext, useState, createRef } from "react";
 import { useForm } from "react-hook-form";
+import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
+import { grey } from "@material-ui/core/colors";
 
 interface InitialState {
+  CheckboxRegister: any;
   handleSubmit: Function;
   register: Function;
   errors: object;
@@ -77,11 +80,10 @@ interface InitialState {
   setCheckbox: Function;
   open: boolean;
   setOpen: Function;
-  contoh: string;
 }
 
 const initialState = {
-  contoh: "",
+  CheckboxRegister: null,
   handleSubmit: () => {},
   register: () => {},
   errors: {},
@@ -237,6 +239,16 @@ export const RegistrationController = ({ children }) => {
   };
   const _onSubmit = () => console.log("Validate");
 
+  const CheckboxRegister = withStyles({
+    root: {
+      color: grey[300],
+      "&$checked": {
+        color: grey[200],
+      },
+    },
+    checked: {},
+  })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
+
   const handleFilePkp = (val) => {
     if (val.target.files[0].size > 2097152) {
       setErrPkpAttachment("Error");
@@ -287,12 +299,11 @@ export const RegistrationController = ({ children }) => {
     tax_document_number === "" ||
     tax_document_type === null ||
     errTax_document_type !== "";
-  const contoh = "Cek disini.......";
 
   return (
     <RegistrationProvider
       value={{
-        contoh,
+        CheckboxRegister,
         handleSubmit,
         register,
         errors,
