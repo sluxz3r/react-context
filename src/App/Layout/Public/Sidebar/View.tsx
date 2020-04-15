@@ -65,12 +65,12 @@ export const PublicSidebar = () => {
       <table className="w-full h-full">
         <thead className="w-full border-b-2 border-r-2 bg-gray-200">
           <tr>
-            <td className="text-left p-2 text-gray-600 text-sm font-semibold">
+            <td className="text-left py-2 pl-5 text-gray-600 text-sm font-semibold">
               LOGIN
             </td>
           </tr>
         </thead>
-        <tbody className="w-full h-full border-r-2">
+        <tbody className="w-full h-full border-r-2 bg-white">
           <tr>
             <td className="text-left p-2 h-full">
               <Login />
