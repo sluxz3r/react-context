@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { RegistrationContext } from "../Controller";
 import { ErrorMessage } from "react-hook-form";
 import Select from "react-select";
@@ -60,9 +60,18 @@ const RegistrationComponent = () => {
     open,
     setOpen,
   } = useContext(RegistrationContext);
+  //   const [open, setOpen] = useState(false);
 
   return (
     <div className="block text-xs static overflow-y-auto">
+      <button
+        className={`bg-blue-700 text-white rounded text-sm pr-4`}
+        onClick={() => setOpen(true)}
+        title="Harap lengkapi form dan checklist!"
+      >
+        <CheckboxRegister size="small" disabled checked={checkbox && false} />
+        Syarat & Ketentuan
+      </button>
       <form onSubmit={handleSubmit(_onSubmit)}>
         <div className="flex flex-row md:flex-col lg:flex-col">
           <div className="flex flex-row py-4">
@@ -1178,17 +1187,16 @@ const RegistrationComponent = () => {
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4">
                   <button
-                    type="submit"
                     className={`${
                       isBtnDissabled ? "bg-gray-600" : "bg-blue-700"
                     } text-white rounded text-sm pr-4`}
-                    onClick={
-                      checkbox === false
-                        ? setOpen(true)
-                        : handleSubmit(_onSubmit)
-                    }
-                    onMouseEnter={handleSubmit(_onSubmit)}
-                    disabled={isBtnDissabled}
+                    // onClick={
+                    //   checkbox === false
+                    //      ? () => setOpen(true)
+                    //     : handleSubmit(_onSubmit)
+                    // }
+                    // onMouseEnter={handleSubmit(_onSubmit)}
+                    // disabled={isBtnDissabled}
                     title="Harap lengkapi form dan checklist!"
                   >
                     <CheckboxRegister
@@ -1223,7 +1231,7 @@ const RegistrationComponent = () => {
               className="bg-white hover:bg-gray-400 hover:border-gray-500 border border-gray-400 text-gray-900 px-4 py-1 text-sm m-2 rounded"
               onClick={() => {
                 setCheckbox(false);
-                setOpen(false)();
+                setOpen(false);
               }}
             >
               Batalkan
@@ -1231,7 +1239,7 @@ const RegistrationComponent = () => {
           }
           content={<TermsAndConditions />}
           openModal={open}
-          onClose={setOpen(false)}
+          //   onClose={setOpen(false)}
         />
       </form>
     </div>
