@@ -1,6 +1,6 @@
 import React from "react";
 import { MainApp } from "../../../Components/index";
-
+import {Assets} from '../../../Assets/index'
 export const Home = () => {
   return (
     <MainApp title="BERANDA">
@@ -62,10 +62,16 @@ export const Home = () => {
         </a>
         .
       </p>
-      <p className="text-xs">Silahkan membaca persyaratannya  <a className="text-blue-700" href="https://eproc.pindad.com/">
+      <p className="text-xs mb-5">
+        Silahkan membaca persyaratannya{" "}
+        <a className="text-blue-700" href="https://eproc.pindad.com/">
           {" "}
           (Klik Disini)
-        </a></p>
+        </a>
+      </p>
+      <div className="w-full flex justify-center">
+        <img src={Assets.beranda} alt="logo"/>
+      </div>
     </MainApp>
   );
 };
