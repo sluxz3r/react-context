@@ -7,12 +7,17 @@ import ReCAPTCHA from "react-google-recaptcha";
 import TermsAndConditions from "./Terms&Conditions";
 import { Modal } from "../../../../Components";
 import "../../../../Assets/Css/App.css";
+import { CircularProgress } from "@material-ui/core";
 
 const RegistrationComponent = () => {
   const {
     CheckboxRegister,
     customStyles,
     errors,
+    loadingRegister,
+    messageSuccess,
+    alert,
+    setAlert,
     handleSubmit,
     _handleSubmitRegister,
     register,
@@ -58,14 +63,44 @@ const RegistrationComponent = () => {
     setCheckbox,
     open,
     setOpen,
-    recaptcha,
     _onSubmit,
   } = useContext(RegistrationContext);
 
-  console.log("Recaptcha ===", recaptcha);
-
   return (
     <div className="block text-xs static overflow-y-auto">
+      <div
+        className={`${
+          (alert === false || loadingRegister === true) && "hidden"
+        } text-sm border-l-8 border-green-500 bg-green-100 border text-green-700 pl-8 pr-4 py-2 rounded relative items-center`}
+        role="alert"
+      >
+        <span className="absolute top-0 bottom-0 left-0 py-2 pl-1">
+          <svg
+            className="fill-current h-5 w-5 text-green-500"
+            role="button"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+            ></path>
+          </svg>
+        </span>
+        <span>{messageSuccess}</span>
+        <span className="absolute top-0 bottom-0 right-0 py-2 pr-1">
+          <svg
+            className="fill-current h-5 w-5 text-green-500"
+            role="button"
+            onClick={() => setAlert(false)}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <title>Close</title>
+            <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+          </svg>
+        </span>
+      </div>
       <form onSubmit={handleSubmit(_handleSubmitRegister)}>
         <div className="flex flex-row md:flex-col lg:flex-col">
           <div className="flex flex-row py-4">
@@ -1176,9 +1211,15 @@ const RegistrationComponent = () => {
                     name="recaptcha"
                     ref={recaptchaRef}
                     sitekey="6LeCieEUAAAAAGsekrptO7GxjXpCEHLoHV8UVmuo"
-                    onErrored={() => setRecaptcha(false)}
+                    onErrored={() => {
+                      setCheckbox(false);
+                      setRecaptcha(false);
+                    }}
                     onChange={() => setRecaptcha(true)}
-                    onExpired={() => setRecaptcha(false)}
+                    onExpired={() => {
+                      setCheckbox(false);
+                      setRecaptcha(false);
+                    }}
                   />
                   <ErrorMessage errors={errors} name="recaptcha">
                     {({ messages }) => {
@@ -1205,7 +1246,7 @@ const RegistrationComponent = () => {
             <div className="block w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
-                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4">
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
                   <div
                     className={`${
                       isBtnDissabled
@@ -1222,12 +1263,20 @@ const RegistrationComponent = () => {
                     onMouseEnter={handleSubmit(_onSubmit)}
                     title="Harap lengkapi form dan checklist!"
                   >
-                    <CheckboxRegister
-                      size="small"
-                      disabled
-                      checked={checkbox}
-                    />
-                    Syarat & Ketentuan
+                    {loadingRegister === false ? (
+                      <span>
+                        <CheckboxRegister
+                          size="small"
+                          disabled
+                          checked={checkbox}
+                        />
+                        Syarat & Ketentuan
+                      </span>
+                    ) : (
+                      <div className="w-32 text-center py-1">
+                        <CircularProgress color="inherit" size={20} />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

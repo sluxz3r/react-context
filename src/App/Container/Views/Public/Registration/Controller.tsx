@@ -12,6 +12,9 @@ interface InitialState {
   error: string;
   showError: boolean;
   showSuccess: boolean;
+  messageSuccess: string;
+  alert: Boolean;
+  setAlert: Function;
   CheckboxRegister: any;
   handleSubmit: Function;
   register: Function;
@@ -96,6 +99,9 @@ const initialState = {
   error: "",
   showError: false,
   showSuccess: false,
+  messageSuccess: "",
+  alert: false,
+  setAlert: () => {},
   CheckboxRegister: null,
   handleSubmit: () => {},
   register: () => {},
@@ -184,7 +190,9 @@ export const RegistrationController = ({ children }) => {
   const [data, setData] = useState<Object>({});
   const [error, setError] = useState<string>("");
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [messageSuccess, setMessageSuccess] = useState<string>("");
   const [showError, setShowError] = useState<boolean>(false);
+  const [alert, setAlert] = useState(false);
   const { register, handleSubmit, errors } = useForm({
     validateCriteriaMode: "all",
     mode: "onChange",
@@ -307,33 +315,44 @@ export const RegistrationController = ({ children }) => {
   ] = useMutation(REGISTER_NEW_VENDOR, { errorPolicy: "all" });
 
   const _handleSubmitRegister = async () => {
-    submitRegister({
-      variables: {
-        vendor_type,
-        name,
-        owner,
-        business_type,
-        register_date: Date.now(),
-        company_name: name,
-        address,
-        country,
-        province,
-        city,
-        district,
-        postal_code: parseInt(postal_code),
-        phone_number,
-        fax_number,
-        website,
-        e_mail,
-        tax_document_type: type,
-        tax_document_number,
-        pic_name,
-        picEmail,
-        picMobileNumber,
-      },
-    });
+    try {
+      const { data } = await submitRegister({
+        variables: {
+          vendor_type,
+          name,
+          owner,
+          business_type,
+          register_date: Date.now(),
+          company_name: name,
+          address,
+          country,
+          province,
+          city,
+          district,
+          postal_code: parseInt(postal_code),
+          phone_number,
+          fax_number,
+          website,
+          e_mail,
+          tax_document_type: type,
+          tax_document_number,
+          pic_name,
+          picEmail,
+          picMobileNumber,
+        },
+      });
+      setAlert(true);
+      setData(data);
+      setShowSuccess(true);
+      setMessageSuccess(data && data.registerNewVendor);
+      setShowError(false);
+    } catch {
+      setShowError(true);
+      setShowSuccess(false);
+      setError("vendor code not avaiable!");
+    }
   };
-
+  
   return (
     <RegistrationProvider
       value={{
@@ -343,6 +362,9 @@ export const RegistrationController = ({ children }) => {
         error,
         showError,
         showSuccess,
+        messageSuccess,
+        alert,
+        setAlert,
         CheckboxRegister,
         handleSubmit,
         register,
