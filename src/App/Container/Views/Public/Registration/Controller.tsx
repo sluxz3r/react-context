@@ -26,7 +26,7 @@ interface InitialState {
   listClassification: Array<object>;
   countries: Array<object>;
   provinces: Array<object>;
-  Yogyakarta: Array<object>;
+  cities: Array<object>;
   Sleman: Array<object>;
   vendor_type: string;
   setVendor_type: Function;
@@ -113,7 +113,7 @@ const initialState = {
   listClassification: [],
   countries: [],
   provinces: [],
-  Yogyakarta: [],
+  cities: [],
   Sleman: [],
   vendor_type: "",
   setVendor_type: () => {},
@@ -235,8 +235,13 @@ export const RegistrationController = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   const listClassification = [{ value: "PENDIDIKAN", label: "PENDIDIKAN" }];
-
-  const Yogyakarta = [{ value: "Sleman", label: "Sleman" }];
+  const cities = [
+    { value: "Kota Yogyakarta", label: "Kota Yogyakarta" },
+    { value: "Kab. Sleman", label: "Kab. Sleman" },
+    { value: "Kab. Gunung Kidul", label: "Kab. Gunung Kidul" },
+    { value: "Kab. Bantul", label: "Kab. Bantul" },
+    { value: "Kab. Kulon Progo", label: "Kab. Kulon Progo" },
+  ];
   const Sleman = [{ value: "Ngaglik", label: "Ngaglik" }];
   const customStyles = {
     control: (base) => ({
@@ -374,7 +379,7 @@ export const RegistrationController = ({ children }) => {
         listClassification,
         countries,
         provinces,
-        Yogyakarta,
+        cities,
         Sleman,
         vendor_type,
         setVendor_type,

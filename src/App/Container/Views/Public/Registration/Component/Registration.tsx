@@ -24,7 +24,7 @@ const RegistrationComponent = () => {
     setVendor_type,
     countries,
     provinces,
-    Yogyakarta,
+    cities,
     Sleman,
     vendor_type,
     setName,
@@ -461,42 +461,88 @@ const RegistrationComponent = () => {
                   <label className="w-full">Kota/Kabupaten</label>
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                  <Select
-                    name="city"
-                    isClearable
-                    ref={register({
-                      required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
-                    })}
-                    // value={Yogyakarta.find((val) => val.value === city)}
-                    onChange={(val) => (val ? setCity(val.value) : setCity(""))}
-                    options={Yogyakarta}
-                    placeholder="Kota/Kabupaten"
-                    isDisabled={country && province ? false : true}
-                    styles={customStyles}
-                  />
-                  <ErrorMessage errors={errors} name="city">
-                    {({ messages }) => {
-                      return (
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                          <p
-                            key={type}
-                            className="px-2 py-1 text-xs text-red-500"
-                          >
-                            {message}
-                          </p>
-                        ))
-                      );
-                    }}
-                  </ErrorMessage>
+                  {province === "DI Yogyakarta" || !province ? (
+                    <div>
+                      <Select
+                        name="city"
+                        isClearable
+                        ref={register({
+                          required: "This is required",
+                          minLength: {
+                            value: 4,
+                            message: "This input is less than 4 characters",
+                          },
+                          maxLength: {
+                            value: 30,
+                            message: "This input is more than 30 characters",
+                          },
+                        })}
+                        onChange={(val) =>
+                          val ? setCity(val.value) : setCity("")
+                        }
+                        options={cities}
+                        placeholder="Kota/Kabupaten"
+                        isDisabled={country && province ? false : true}
+                        styles={customStyles}
+                      />
+                      <ErrorMessage errors={errors} name="city">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 py-1 text-xs text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                  ) : (
+                    <div>
+                      <input
+                        type="text"
+                        className={`w-full bg-white border ${
+                          !errors ? "border-red-500" : "border-gray-400"
+                        } hover:border-gray-500 rounded py-1 px-2`}
+                        placeholder="Provinsi"
+                        disabled={country ? false : true}
+                        name="district"
+                        ref={register({
+                          required: "This is required",
+                          minLength: {
+                            value: 4,
+                            message: "This input is less than 4 characters",
+                          },
+                          maxLength: {
+                            value: 30,
+                            message: "This input is more than 30 characters",
+                          },
+                        })}
+                        onChange={(val) =>
+                          val ? setDistrict(val.target.value) : setDistrict("")
+                        }
+                      />
+                      <ErrorMessage errors={errors} name="district">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 py-1 text-xs text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
@@ -504,43 +550,88 @@ const RegistrationComponent = () => {
                   <label className="w-full">Kecamatan</label>
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                  <Select
-                    name="district"
-                    isClearable
-                    ref={register({
-                      required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
-                    })}
-                    onChange={(val) =>
-                      val ? setDistrict(val.value) : setDistrict("")
-                    }
-                    options={city === "Sleman" ? Sleman : null}
-                    placeholder="Kecamatan"
-                    isDisabled={country && province && city ? false : true}
-                    styles={customStyles}
-                  />
-                  <ErrorMessage errors={errors} name="district">
-                    {({ messages }) => {
-                      return (
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                          <p
-                            key={type}
-                            className="px-2 py-1 text-xs text-red-500"
-                          >
-                            {message}
-                          </p>
-                        ))
-                      );
-                    }}
-                  </ErrorMessage>
+                  {city === "Kab. Sleman" || !city ? (
+                    <div>
+                      <Select
+                        name="district"
+                        isClearable
+                        ref={register({
+                          required: "This is required",
+                          minLength: {
+                            value: 4,
+                            message: "This input is less than 4 characters",
+                          },
+                          maxLength: {
+                            value: 30,
+                            message: "This input is more than 30 characters",
+                          },
+                        })}
+                        onChange={(val) =>
+                          val ? setDistrict(val.value) : setDistrict("")
+                        }
+                        options={city === "Kab. Sleman" ? Sleman : null}
+                        placeholder="Kecamatan"
+                        isDisabled={country && province && city ? false : true}
+                        styles={customStyles}
+                      />
+                      <ErrorMessage errors={errors} name="district">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 py-1 text-xs text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                  ) : (
+                    <div>
+                      <input
+                        type="text"
+                        className={`w-full bg-white border ${
+                          !errors ? "border-red-500" : "border-gray-400"
+                        } hover:border-gray-500 rounded py-1 px-2`}
+                        placeholder="Provinsi"
+                        disabled={country ? false : true}
+                        name="city"
+                        ref={register({
+                          required: "This is required",
+                          minLength: {
+                            value: 4,
+                            message: "This input is less than 4 characters",
+                          },
+                          maxLength: {
+                            value: 30,
+                            message: "This input is more than 30 characters",
+                          },
+                        })}
+                        onChange={(val) =>
+                          val ? setCity(val.target.value) : setCity("")
+                        }
+                      />
+                      <ErrorMessage errors={errors} name="city">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 py-1 text-xs text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">

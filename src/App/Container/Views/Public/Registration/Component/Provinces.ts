@@ -3,7 +3,7 @@ export const provinces = [
   { value: "Bali", label: "Bali" },
   { value: "Banten", label: "Banten" },
   { value: "Bengkulu", label: "Bengkulu" },
-  { value: "DKI Yogyakarta", label: "DKI Yogyakarta" },
+  { value: "DI Yogyakarta", label: "DKI Yogyakarta" },
   { value: "DKI Jakarta", label: "DKI Jakarta" },
   { value: "Gorontalo", label: "Gorontalo" },
   { value: "Jambi", label: "Jambi" },
