@@ -22,7 +22,7 @@ const RegistrationComponent = () => {
     _handleSubmitRegister,
     register,
     setVendor_type,
-    national,
+    countries,
     Indonesia,
     Yogyakarta,
     Sleman,
@@ -354,7 +354,7 @@ const RegistrationComponent = () => {
                     onChange={(val) =>
                       val ? setCountry(val.value) : setCountry("")
                     }
-                    options={national}
+                    options={countries}
                     placeholder="Negara"
                     styles={customStyles}
                   />

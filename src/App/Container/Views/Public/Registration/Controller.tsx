@@ -4,6 +4,7 @@ import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { useMutation } from "react-apollo";
 import { REGISTER_NEW_VENDOR } from "./Query";
+import { countries } from "./Component/Countries";
 
 interface InitialState {
   _handleSubmitRegister: Function;
@@ -22,7 +23,7 @@ interface InitialState {
   _onSubmit: Function;
   customStyles: object;
   listClassification: Array<object>;
-  national: Array<object>;
+  countries: Array<object>;
   Indonesia: Array<object>;
   Yogyakarta: Array<object>;
   Sleman: Array<object>;
@@ -109,7 +110,7 @@ const initialState = {
   _onSubmit: () => {},
   customStyles: {},
   listClassification: [],
-  national: [],
+  countries: [],
   Indonesia: [],
   Yogyakarta: [],
   Sleman: [],
@@ -234,7 +235,6 @@ export const RegistrationController = ({ children }) => {
 
   const listClassification = [{ value: "PENDIDIKAN", label: "PENDIDIKAN" }];
 
-  const national = [{ value: "Indonesia", label: "Indonesia" }];
   const Indonesia = [{ value: "Yogyakarta", label: "Yogyakarta" }];
   const Yogyakarta = [{ value: "Sleman", label: "Sleman" }];
   const Sleman = [{ value: "Ngaglik", label: "Ngaglik" }];
@@ -352,7 +352,7 @@ export const RegistrationController = ({ children }) => {
       setError("vendor code not avaiable!");
     }
   };
-  
+
   return (
     <RegistrationProvider
       value={{
@@ -372,7 +372,7 @@ export const RegistrationController = ({ children }) => {
         _onSubmit,
         customStyles,
         listClassification,
-        national,
+        countries,
         Indonesia,
         Yogyakarta,
         Sleman,
