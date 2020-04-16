@@ -282,6 +282,11 @@ textarea {
   height: auto;
 }
 
+input[type=number].no-arrow::-webkit-inner-spin-button, 
+input[type=number].no-arrow::-webkit-outer-spin-button { 
+-webkit-appearance: none; 
+ margin: 0; 
+}
 /**
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
