@@ -1,5 +1,4 @@
 import React, { createContext, useState, createRef } from "react";
-import { useForm } from "react-hook-form";
 import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { useMutation } from "react-apollo";
@@ -18,10 +17,8 @@ interface InitialState {
   alert: Boolean;
   setAlert: Function;
   CheckboxRegister: any;
-  handleSubmit: Function;
-  register: Function;
-  errors: object;
   _onSubmit: Function;
+  registerValidation: string[];
   customStyles: object;
   listClassification: Array<object>;
   countries: Array<object>;
@@ -105,10 +102,30 @@ const initialState = {
   alert: false,
   setAlert: () => {},
   CheckboxRegister: null,
-  handleSubmit: () => {},
-  register: () => {},
-  errors: {},
   _onSubmit: () => {},
+  registerValidation: [
+    "vendor_type",
+    "name",
+    "owner",
+    "business_type",
+    "register_date",
+    "company_name",
+    "address",
+    "country",
+    "province",
+    "city",
+    "district",
+    "postal_code",
+    "phone_number",
+    "fax_number",
+    "website",
+    "e_mail",
+    "tax_document_type: type",
+    "tax_document_number",
+    "pic_name",
+    "picEmail",
+    "picMobileNumber",
+  ],
   customStyles: {},
   listClassification: [],
   countries: [],
@@ -195,10 +212,7 @@ export const RegistrationController = ({ children }) => {
   const [messageSuccess, setMessageSuccess] = useState<string>("");
   const [showError, setShowError] = useState<boolean>(false);
   const [alert, setAlert] = useState(false);
-  const { register, handleSubmit, errors } = useForm({
-    validateCriteriaMode: "all",
-    mode: "onChange",
-  });
+  const registerValidation = initialState.registerValidation;
   const [vendor_type, setVendor_type] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [owner, setOwner] = useState<string>("");
@@ -291,7 +305,6 @@ export const RegistrationController = ({ children }) => {
   };
 
   const isBtnDissabled =
-    Object.keys(errors).length !== 0 ||
     recaptcha === false ||
     vendor_type === "" ||
     name === "" ||
@@ -371,10 +384,8 @@ export const RegistrationController = ({ children }) => {
         alert,
         setAlert,
         CheckboxRegister,
-        handleSubmit,
-        register,
-        errors,
         _onSubmit,
+        registerValidation,
         customStyles,
         listClassification,
         countries,

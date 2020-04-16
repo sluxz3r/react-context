@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { RegistrationContext } from "../Controller";
-import { ErrorMessage } from "react-hook-form";
+import { ErrorMessage, useForm } from "react-hook-form";
 import Select from "react-select";
 import InputMask from "react-input-mask";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -13,14 +13,12 @@ const RegistrationComponent = () => {
   const {
     CheckboxRegister,
     customStyles,
-    errors,
     loadingRegister,
     messageSuccess,
     alert,
     setAlert,
-    handleSubmit,
+    registerValidation,
     _handleSubmitRegister,
-    register,
     setVendor_type,
     countries,
     provinces,
@@ -65,6 +63,10 @@ const RegistrationComponent = () => {
     setOpen,
     _onSubmit,
   } = useContext(RegistrationContext);
+  const { register, handleSubmit, errors, triggerValidation } = useForm({
+    validateCriteriaMode: "all",
+    mode: "onChange",
+  });
 
   return (
     <div className="block text-xs static overflow-y-auto">
@@ -101,12 +103,18 @@ const RegistrationComponent = () => {
           </svg>
         </span>
       </div>
-      <form onSubmit={handleSubmit(_handleSubmitRegister)}>
+      <form
+        onSubmit={async () => {
+          handleSubmit(
+            _handleSubmitRegister(await triggerValidation(registerValidation))
+          );
+        }}
+      >
         <div className="flex flex-row md:flex-col lg:flex-col">
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Perusahaan Tipe</label>
                 </div>
@@ -117,7 +125,9 @@ const RegistrationComponent = () => {
                       required: "This is required",
                     })}
                     onChange={(val) => setVendor_type(val.target.value)}
-                    className="w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 rounded"
+                    className={`${
+                      errors.vendor_type ? "border-red-500" : "border-gray-400"
+                    } w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 rounded`}
                   >
                     <option value="" hidden></option>
                     <option value="Asosiasi Profesi">Asosiasi Profesi</option>
@@ -140,7 +150,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -150,7 +160,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Nama Penyedia</label>
                 </div>
@@ -162,7 +172,7 @@ const RegistrationComponent = () => {
                     <input
                       type="text"
                       className={`w-full inline-block flex-1 block bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
+                        errors.name ? "border-red-500" : "border-gray-400"
                       } hover:border-gray-500 py-1 px-2 rounded-r`}
                       placeholder="Nama Penyedia"
                       name="name"
@@ -187,7 +197,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -197,7 +207,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Direktur Utama</label>
                 </div>
@@ -205,7 +215,7 @@ const RegistrationComponent = () => {
                   <input
                     type="text"
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.owner ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="Direktur Utama"
                     name="owner"
@@ -229,7 +239,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -242,7 +252,7 @@ const RegistrationComponent = () => {
             </div>
             {/* Right */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Bidang Usaha</label>
                 </div>
@@ -275,7 +285,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -291,14 +301,14 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Alamat</label>
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <textarea
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.address ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="Alamat"
                     name="address"
@@ -322,7 +332,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -332,7 +342,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Negara</label>
                 </div>
@@ -365,7 +375,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -375,7 +385,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Provinsi</label>
                 </div>
@@ -403,7 +413,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -444,7 +454,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -456,7 +466,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Kota/Kabupaten</label>
                 </div>
@@ -492,7 +502,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -533,7 +543,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -545,7 +555,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Kecamatan</label>
                 </div>
@@ -581,7 +591,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -595,11 +605,11 @@ const RegistrationComponent = () => {
                       <input
                         type="text"
                         className={`w-full bg-white border ${
-                          !errors ? "border-red-500" : "border-gray-400"
+                          errors.district ? "border-red-500" : "border-gray-400"
                         } hover:border-gray-500 rounded py-1 px-2`}
                         placeholder="Provinsi"
                         disabled={country ? false : true}
-                        name="city"
+                        name="district"
                         ref={register({
                           required: "This is required",
                           minLength: {
@@ -622,7 +632,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -634,7 +644,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Kode Pos</label>
                 </div>
@@ -659,7 +669,7 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setPostal_code(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.postal_code ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                     placeholder="Kode Pos"
                   />
@@ -670,7 +680,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -683,7 +693,7 @@ const RegistrationComponent = () => {
             </div>
             {/* Right */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Telepon</label>
                 </div>
@@ -708,7 +718,9 @@ const RegistrationComponent = () => {
                       })}
                       onChange={(val) => setPhone_number(val.target.value)}
                       className={`w-full bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
+                        errors.phone_number
+                          ? "border-red-500"
+                          : "border-gray-400"
                       } hover:border-gray-500 rounded py-1 px-2`}
                       placeholder="+62xx-xxxxxxxxxxxx"
                     />
@@ -719,7 +731,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -743,7 +755,9 @@ const RegistrationComponent = () => {
                       })}
                       onChange={(val) => setPhone_numberExt(val.target.value)}
                       className={`w-full bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
+                        errors.phone_numberExt
+                          ? "border-red-500"
+                          : "border-gray-400"
                       } hover:border-gray-500 rounded py-1 px-2`}
                       placeholder="Ext."
                     />
@@ -754,7 +768,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -765,7 +779,7 @@ const RegistrationComponent = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Faksimile</label>
                 </div>
@@ -790,7 +804,7 @@ const RegistrationComponent = () => {
                       })}
                       onChange={(val) => setFax_number(val.target.value)}
                       className={`w-full bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
+                        errors.fax_number ? "border-red-500" : "border-gray-400"
                       } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                       placeholder="Nomor Faksimile"
                     />
@@ -801,7 +815,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -830,7 +844,9 @@ const RegistrationComponent = () => {
                       })}
                       onChange={(val) => setFax_numberExt(val.target.value)}
                       className={`w-full bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
+                        errors.fax_numberExt
+                          ? "border-red-500"
+                          : "border-gray-400"
                       } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                       placeholder="Ext."
                     />
@@ -841,7 +857,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -852,7 +868,7 @@ const RegistrationComponent = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>E-mail Perusahaan</label>
                 </div>
@@ -873,7 +889,7 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setE_mail(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.e_mail ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="me@example.com"
                   />
@@ -884,7 +900,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -894,7 +910,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Situs</label>
                 </div>
@@ -915,7 +931,7 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setWebsite(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.website ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="example.com"
                   />
@@ -926,7 +942,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -936,7 +952,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nama Lengkap PIC</label>
                 </div>
@@ -957,7 +973,7 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setPic_name(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.pic_name ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="Nama Lengkap PIC"
                   />
@@ -968,7 +984,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -978,7 +994,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Telepon Seluler PIC</label>
                 </div>
@@ -1003,7 +1019,9 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setPicMobileNumber(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.picMobileNumber
+                        ? "border-red-500"
+                        : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                     placeholder="+62xx-xxxxxxxxxxxx"
                   />
@@ -1014,7 +1032,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1024,7 +1042,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Email PIC</label>
                 </div>
@@ -1045,7 +1063,7 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setPicEmail(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.picEmail ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="sales/marketing@example.com"
                   />
@@ -1056,7 +1074,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1072,7 +1090,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Referensi Nomor Pengadaan (Jika Ada)</label>
                 </div>
@@ -1098,7 +1116,9 @@ const RegistrationComponent = () => {
                       setTenderReferenceNumber(val.target.value)
                     }
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.tenderReferenceNumber
+                        ? "border-red-500"
+                        : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                     placeholder="Referensi Nomor Pengadaan (Jika Ada)"
                   />
@@ -1109,7 +1129,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1127,7 +1147,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
                   hidden={country === "Zimbabwe" ? false : true}
@@ -1154,7 +1174,7 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setPkpNumber(val.target.value)}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.pkpNumber ? "border-red-500" : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                     placeholder="Nomor PKP"
                     hidden={country === "Zimbabwe" ? false : true}
@@ -1178,7 +1198,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
                   hidden={country === "Zimbabwe" ? false : true}
@@ -1206,7 +1226,9 @@ const RegistrationComponent = () => {
                         : handleErrFilePkp();
                     }}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.pkpAttachment
+                        ? "border-red-500"
+                        : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     hidden={country === "Zimbabwe" ? false : true}
                   />
@@ -1238,7 +1260,7 @@ const RegistrationComponent = () => {
             </div>
             {/* Right */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor NPWP</label>
                 </div>
@@ -1262,7 +1284,9 @@ const RegistrationComponent = () => {
                       setTax_document_number(val.target.value);
                     }}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.tax_document_number
+                        ? "border-red-500"
+                        : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="Nomor NPWP"
                   />
@@ -1273,7 +1297,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1283,7 +1307,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Lampiran NPWP</label>
                 </div>
@@ -1309,7 +1333,9 @@ const RegistrationComponent = () => {
                         : handleErrFileTaxId();
                     }}
                     className={`w-full bg-white border ${
-                      !errors ? "border-red-500" : "border-gray-400"
+                      errors.tax_document_type
+                        ? "border-red-500"
+                        : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                   />
                   <label className="text-gray-700 italic text-xs">
@@ -1322,7 +1348,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1332,7 +1358,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 block items-center">
                   <ReCAPTCHA
@@ -1356,7 +1382,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1386,10 +1412,24 @@ const RegistrationComponent = () => {
                         ? undefined
                         : checkbox === false
                         ? () => setOpen(true)
-                        : handleSubmit(_handleSubmitRegister)
+                        : async () => {
+                            handleSubmit(
+                              _handleSubmitRegister(
+                                await triggerValidation(registerValidation)
+                              )
+                            );
+                          }
                     }
                     onMouseEnter={
-                      isBtnDissabled ? handleSubmit(_onSubmit) : undefined
+                      isBtnDissabled
+                        ? async () => {
+                            handleSubmit(
+                              _onSubmit(
+                                await triggerValidation(registerValidation)
+                              )
+                            );
+                          }
+                        : undefined
                     }
                     title="Harap lengkapi form dan checklist!"
                   >
