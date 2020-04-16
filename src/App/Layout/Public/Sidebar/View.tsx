@@ -95,7 +95,7 @@ const Login = () => {
 export const PublicSidebar = () => {
   return (
     <LoginController>
-      <div className="lg:w-64 h-full xs:w-full">
+      <div className="lg:w-64 h-full sm:w-full">
         <table className="w-full h-full">
           <thead className="w-full border-b-2 border-r-2 bg-gray-200">
             <tr>
