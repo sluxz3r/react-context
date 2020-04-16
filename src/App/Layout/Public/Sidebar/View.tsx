@@ -21,14 +21,16 @@ const Login = () => {
         <input
           type="text"
           name="username"
-          className={`border-2 w-full px-2 py-1 text-sm block ${errors.username ? 'mb-0' : 'mb-3'}`}
+          className={`border-2 w-full px-2 py-1 text-sm block ${
+            errors.username ? "mb-0" : "mb-3"
+          }`}
           placeholder="username"
           style={{ fontSize: "12px" }}
           ref={register({ required: true, minLength: 4, maxLength: 16 })}
           autoComplete="off"
         />
         {errors.username && (
-          <p className="text-red-600 italic mb-3"  style={{ fontSize: "10px" }}>
+          <p className="text-red-600 italic mb-3" style={{ fontSize: "10px" }}>
             Username harus terdiri dari 4 karakter.
           </p>
         )}
@@ -38,14 +40,20 @@ const Login = () => {
           className="border-2 w-full px-2 py-1 text-sm block"
           placeholder="password"
           style={{ fontSize: "12px" }}
-          ref={register({ required: true, minLength: 8, maxLength: 32, pattern:{
-            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-            message:" Password harus terdiri dari 8 karakter, kombinasi Angka & Huruf."
-          } })}
+          ref={register({
+            required: true,
+            minLength: 8,
+            maxLength: 32,
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              message:
+                " Password harus terdiri dari 8 karakter, kombinasi Angka & Huruf.",
+            },
+          })}
           autoComplete="off"
         />
         {errors.password && (
-          <p className="text-red-600 italic mb-3"  style={{ fontSize: "10px" }}>
+          <p className="text-red-600 italic mb-3" style={{ fontSize: "10px" }}>
             Password harus terdiri dari 8 karakter, kombinasi Angka & Huruf.
           </p>
         )}
@@ -87,7 +95,7 @@ const Login = () => {
 export const PublicSidebar = () => {
   return (
     <LoginController>
-      <div className="w-full h-full">
+      <div className="lg:w-64 h-full xs:w-full">
         <table className="w-full h-full">
           <thead className="w-full border-b-2 border-r-2 bg-gray-200">
             <tr>
