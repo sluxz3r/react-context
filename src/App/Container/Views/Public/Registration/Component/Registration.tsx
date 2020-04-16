@@ -72,6 +72,10 @@ const RegistrationComponent = () => {
   });
   const { errors: errorsSelect } = useFormContext();
 
+  const _onSubmitT = async () => {
+    console.log("Validate");
+  };
+
   return (
     <div className="block text-xs static overflow-y-auto">
       <div
@@ -108,13 +112,7 @@ const RegistrationComponent = () => {
         </span>
       </div>
       <div className="flex flex-row md:flex-col lg:flex-col">
-        <form
-          onSubmit={async () => {
-            handleSubmit(
-              _handleSubmitRegister(await triggerValidation(registerValidation))
-            );
-          }}
-        >
+        <form onSubmit={handleSubmit(_onSubmitT)}>
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
@@ -154,7 +152,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -201,7 +199,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -243,7 +241,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -271,7 +269,7 @@ const RegistrationComponent = () => {
                     styles={customStyles}
                   />
                   {errorsSelect.business_type && (
-                    <p className="px-2 py-1 text-xs text-red-500 rounded-b">
+                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                       This is required
                     </p>
                   )}
@@ -314,7 +312,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -340,7 +338,7 @@ const RegistrationComponent = () => {
                   />
 
                   {errorsSelect.country && (
-                    <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                    <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                       <span>This is required</span>
                     </div>
                   )}
@@ -365,7 +363,7 @@ const RegistrationComponent = () => {
                       />
 
                       {errorsSelect.province && (
-                        <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                        <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                           <span>This is required</span>
                         </div>
                       )}
@@ -394,7 +392,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -425,7 +423,7 @@ const RegistrationComponent = () => {
                       />
 
                       {errorsSelect.city && (
-                        <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                        <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                           <span>This is required</span>
                         </div>
                       )}
@@ -454,7 +452,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -485,7 +483,7 @@ const RegistrationComponent = () => {
                       />
 
                       {errorsSelect.district && (
-                        <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                        <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                           <span>This is required</span>
                         </div>
                       )}
@@ -514,7 +512,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -562,7 +560,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -613,7 +611,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -650,7 +648,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -697,7 +695,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -739,7 +737,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -782,7 +780,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -824,7 +822,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -866,7 +864,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -900,11 +898,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setPicMobileNumber(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.picMobileNumber
-                        ? "border-red-500"
-                        : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="+62xx-xxxxxxxxxxxx"
                   />
                   <ErrorMessage errors={errors} name="picMobileNumber">
@@ -914,7 +908,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -956,7 +950,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -997,11 +991,7 @@ const RegistrationComponent = () => {
                     onChange={(val) =>
                       setTenderReferenceNumber(val.target.value)
                     }
-                    className={`w-full bg-white border ${
-                      errors.tenderReferenceNumber
-                        ? "border-red-500"
-                        : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="Referensi Nomor Pengadaan (Jika Ada)"
                   />
                   <ErrorMessage errors={errors} name="tenderReferenceNumber">
@@ -1011,7 +1001,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1107,11 +1097,7 @@ const RegistrationComponent = () => {
                         ? handleFilePkp(val)
                         : handleErrFilePkp();
                     }}
-                    className={`w-full bg-white border ${
-                      errors.pkpAttachment
-                        ? "border-red-500"
-                        : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     hidden={country === "Zimbabwe" ? false : true}
                   />
                   <label
@@ -1165,11 +1151,7 @@ const RegistrationComponent = () => {
                     onChange={(val) => {
                       setTax_document_number(val.target.value);
                     }}
-                    className={`w-full bg-white border ${
-                      errors.tax_document_number
-                        ? "border-red-500"
-                        : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="Nomor NPWP"
                   /> */}
                   <input
@@ -1191,11 +1173,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setTax_document_number(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.tax_document_number
-                        ? "border-red-500"
-                        : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="Nomor NPWP"
                   />
                   <ErrorMessage errors={errors} name="tax_document_number">
@@ -1205,7 +1183,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1240,11 +1218,7 @@ const RegistrationComponent = () => {
                         ? handleFileTaxId(val)
                         : handleErrFileTaxId();
                     }}
-                    className={`w-full bg-white border ${
-                      errors.tax_document_type
-                        ? "border-red-500"
-                        : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                   />
                   <label className="text-gray-700 italic text-xs">
                     File Extensi: ["pdf"].(Maks.: 2 MB)
@@ -1256,7 +1230,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1283,88 +1257,68 @@ const RegistrationComponent = () => {
                       setRecaptcha(false);
                     }}
                   />
-                  <ErrorMessage errors={errors} name="recaptcha">
-                    {({ messages }) => {
-                      return (
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                          <p
-                            key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
-                          >
-                            {message}
-                          </p>
-                        ))
-                      );
-                    }}
-                  </ErrorMessage>
                 </div>
               </div>
             </div>
+          </div>
+          <hr />
+          <div className="flex flex-row py-4">
+            {/* Left */}
+            <div className="block w-1/2">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
+                  <button
+                    type="submit"
+                    className={`${
+                      isBtnDissabled
+                        ? "bg-gray-600"
+                        : "cursor-pointer bg-blue-700"
+                    } text-white rounded text-sm pr-4`}
+                    onClick={
+                      isBtnDissabled
+                        ? async () => {
+                            _handleOnSubmitSelect();
+                            handleSubmit(
+                              _onSubmit(
+                                await triggerValidation(registerValidation)
+                              )
+                            );
+                          }
+                        : checkbox === false
+                        ? () => setOpen(true)
+                        : async () => {
+                            handleSubmit(
+                              _handleSubmitRegister(
+                                await triggerValidation(registerValidation)
+                              )
+                            );
+                          }
+                    }
+                    title="Harap lengkapi form dan checklist!"
+                  >
+                    {loadingRegister === false ? (
+                      <span>
+                        <CheckboxRegister
+                          size="small"
+                          disabled
+                          checked={checkbox}
+                        />
+                        Syarat & Ketentuan
+                      </span>
+                    ) : (
+                      <div className="w-32 text-center py-1">
+                        <CircularProgress color="inherit" size={20} />
+                      </div>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/* Right */}
+            <div className="block w-1/2"></div>
           </div>
         </form>
-
-        <hr />
-        <div className="flex flex-row py-4">
-          {/* Left */}
-          <div className="block w-1/2">
-            <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
-              <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
-              <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
-                <div
-                  className={`${
-                    isBtnDissabled
-                      ? "bg-gray-600"
-                      : "cursor-pointer bg-blue-700"
-                  } text-white rounded text-sm pr-4`}
-                  onClick={
-                    isBtnDissabled
-                      ? undefined
-                      : checkbox === false
-                      ? () => setOpen(true)
-                      : async () => {
-                          handleSubmit(
-                            _handleSubmitRegister(
-                              await triggerValidation(registerValidation)
-                            )
-                          );
-                        }
-                  }
-                  onMouseEnter={
-                    isBtnDissabled
-                      ? async () => {
-                          handleSubmit(
-                            _onSubmit(
-                              await triggerValidation(registerValidation)
-                            )
-                          );
-                          _handleOnSubmitSelect();
-                        }
-                      : undefined
-                  }
-                  title="Harap lengkapi form dan checklist!"
-                >
-                  {loadingRegister === false ? (
-                    <span>
-                      <CheckboxRegister
-                        size="small"
-                        disabled
-                        checked={checkbox}
-                      />
-                      Syarat & Ketentuan
-                    </span>
-                  ) : (
-                    <div className="w-32 text-center py-1">
-                      <CircularProgress color="inherit" size={20} />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Right */}
-          <div className="block w-1/2"></div>
-        </div>
       </div>
       <Modal
         title="SYARAT & KETENTUAN"
