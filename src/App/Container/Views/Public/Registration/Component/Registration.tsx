@@ -127,9 +127,7 @@ const RegistrationComponent = () => {
                       required: "This is required",
                     })}
                     onChange={(val) => setVendor_type(val.target.value)}
-                    className={`${
-                      errors.vendor_type ? "border-red-500" : "border-gray-400"
-                    } w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 rounded`}
+                    className="border-gray-500 w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 rounded"
                   >
                     <option value="" hidden></option>
                     <option value="Asosiasi Profesi">Asosiasi Profesi</option>
@@ -178,9 +176,7 @@ const RegistrationComponent = () => {
                     </div>
                     <input
                       type="text"
-                      className={`w-full inline-block flex-1 block bg-white border ${
-                        errors.name ? "border-red-500" : "border-gray-400"
-                      } hover:border-gray-500 py-1 px-2 rounded-r`}
+                      className="w-full inline-block flex-1 block bg-white border border-gray-500 hover:border-gray-500 py-1 px-2 rounded-r"
                       placeholder="Nama Penyedia"
                       name="name"
                       ref={register({
@@ -226,9 +222,7 @@ const RegistrationComponent = () => {
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <input
                     type="text"
-                    className={`w-full bg-white border ${
-                      errors.owner ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="Direktur Utama"
                     name="owner"
                     ref={register({
@@ -307,9 +301,7 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <textarea
-                    className={`w-full bg-white border ${
-                      errors.address ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="Alamat"
                     name="address"
                     ref={register({
@@ -387,9 +379,7 @@ const RegistrationComponent = () => {
                   ) : (
                     <input
                       type="text"
-                      className={`w-full bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                       placeholder="Provinsi"
                       disabled={country ? false : true}
                       name="province"
@@ -450,9 +440,7 @@ const RegistrationComponent = () => {
                   ) : (
                     <input
                       type="text"
-                      className={`w-full bg-white border ${
-                        !errors ? "border-red-500" : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                       placeholder="Kota/Kabupaten"
                       disabled={country && province ? false : true}
                       name="city"
@@ -513,9 +501,7 @@ const RegistrationComponent = () => {
                   ) : (
                     <input
                       type="text"
-                      className={`w-full bg-white border ${
-                        errors.district ? "border-red-500" : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                       placeholder="Kecamatan"
                       disabled={country && province && city ? false : true}
                       name="district"
@@ -581,9 +567,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setPostal_code(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.postal_code ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="Kode Pos"
                   />
                 </div>
@@ -635,11 +619,7 @@ const RegistrationComponent = () => {
                         },
                       })}
                       onChange={(val) => setPhone_number(val.target.value)}
-                      className={`w-full bg-white border ${
-                        errors.phone_number
-                          ? "border-red-500"
-                          : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                       placeholder="+62xx-xxxxxxxxxxxx"
                     />
                   </div>
@@ -661,11 +641,7 @@ const RegistrationComponent = () => {
                         },
                       })}
                       onChange={(val) => setPhone_numberExt(val.target.value)}
-                      className={`w-full bg-white border ${
-                        errors.phone_numberExt
-                          ? "border-red-500"
-                          : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                       placeholder="Ext."
                     />
                   </div>
@@ -734,9 +710,7 @@ const RegistrationComponent = () => {
                         },
                       })}
                       onChange={(val) => setFax_number(val.target.value)}
-                      className={`w-full bg-white border ${
-                        errors.fax_number ? "border-red-500" : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                       placeholder="Nomor Faksimile"
                     />
                   </div>
@@ -759,11 +733,7 @@ const RegistrationComponent = () => {
                         },
                       })}
                       onChange={(val) => setFax_numberExt(val.target.value)}
-                      className={`w-full bg-white border ${
-                        errors.fax_numberExt
-                          ? "border-red-500"
-                          : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                      className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                       placeholder="Ext."
                     />
                   </div>
@@ -828,9 +798,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setE_mail(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.e_mail ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="me@example.com"
                   />
                 </div>
@@ -875,9 +843,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setWebsite(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.website ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="example.com"
                   />
                 </div>
@@ -922,9 +888,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setPic_name(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.pic_name ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="Nama Lengkap PIC"
                   />
                 </div>
@@ -1018,9 +982,7 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setPicEmail(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.picEmail ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     placeholder="sales/marketing@example.com"
                   />
                 </div>
@@ -1112,7 +1074,7 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
-                  hidden={country === "Zimbabwe" ? false : true}
+                  hidden={country === "Indonesia" ? false : true}
                 >
                   <label>Nomor PKP</label>
                 </div>
@@ -1135,11 +1097,9 @@ const RegistrationComponent = () => {
                       },
                     })}
                     onChange={(val) => setPkpNumber(val.target.value)}
-                    className={`w-full bg-white border ${
-                      errors.pkpNumber ? "border-red-500" : "border-gray-400"
-                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="Nomor PKP"
-                    hidden={country === "Zimbabwe" ? false : true}
+                    hidden={country === "Indonesia" ? false : true}
                   />
                 </div>
               </div>
@@ -1166,7 +1126,7 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
-                  hidden={country !== "Indonesia" ? false : true}
+                  hidden={country === "Indonesia" ? false : true}
                 >
                   <label>Lampiran PKP</label>
                 </div>
@@ -1191,11 +1151,11 @@ const RegistrationComponent = () => {
                         : handleErrFilePkp();
                     }}
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
-                    hidden={country !== "Indonesia" ? false : true}
+                    hidden={country === "Indonesia" ? false : true}
                   />
                   <label
                     className="text-gray-700 italic text-xs"
-                    hidden={country !== "Indonesia" ? false : true}
+                    hidden={country === "Indonesia" ? false : true}
                   >
                     File Extensi: ["pdf"].(Maks.: 2 MB)
                   </label>
