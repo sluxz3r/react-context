@@ -14,15 +14,40 @@ import {
   TermCondition,
   UserManual,
 } from "./App/Container/Views/Public/index";
+import { VendorProfile } from "./App/Container/Views/Private/index";
 import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
+import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
+import { getToken, removeAuthCredential } from "./App/Misc/Cookies";
+
 const PublicRoute = ({ component: Component, ...rest }) => {
-  const login = null;
+  const login: any = getToken();
   return (
     <Route
       {...rest}
       render={(props) =>
         login === null ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/vendor/profile",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const login: any = getToken();
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        login !== null ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -37,17 +62,19 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   );
 };
 const Routes = () => {
+  const login: any = getToken();
   return (
     <React.Fragment>
       <PublicHeader />
       <div className="lg:flex sm:flex sm:flex-1 lg:flex-1 lg:pt-14 lg:overflow-y-auto">
         <div className="lg:w-1/5 xs:w-full sm:w-3/12">
-          <PublicSidebar />
+          {login === null ? <PublicSidebar /> : <PrivateSidebar />}
         </div>
+
         <div className="lg:w-4/5 xs:w-full sm:w-9/12">
           <Router history={history}>
             <Switch>
-              <PublicRoute exact path="/contact" component={Contact} />
+              <Route exact path="/contact" component={Contact} />
               <PublicRoute exact path="/forgot" component={Forgot} />
               <PublicRoute exact path="/" component={Home} />
               <PublicRoute
@@ -82,6 +109,11 @@ const Routes = () => {
                 component={TermCondition}
               />
               <PublicRoute exact path="/user_manual" component={UserManual} />
+              <PrivateRoute
+                exact
+                path="/vendor/profile"
+                component={VendorProfile}
+              />
             </Switch>
           </Router>
         </div>

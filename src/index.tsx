@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { ApolloClient, DefaultOptions } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
-import { userToken } from "./App/Misc/Cookies";
+import { getToken } from "./App/Misc/Cookies";
 const { createUploadLink } = require("apollo-upload-client");
 
 const defaultOptions: DefaultOptions = {
@@ -23,7 +23,7 @@ const client = new ApolloClient({
   link: createUploadLink({
     uri: process.env.REACT_APP_API + "/graphql",
     headers: {
-      Authorization: `Bearer ${userToken}`,
+      Authorization: `Bearer ${getToken()}`,
     },
   }),
   cache: new InMemoryCache(),
