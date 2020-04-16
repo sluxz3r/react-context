@@ -116,7 +116,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Perusahaan Tipe</label>
                 </div>
@@ -145,6 +145,11 @@ const RegistrationComponent = () => {
                     <option value="UD">UD</option>
                     <option value="Yayasan">Yayasan</option>
                   </select>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="vendor_type">
                     {({ messages }) => {
                       return (
@@ -162,7 +167,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Nama Penyedia</label>
                 </div>
@@ -192,6 +197,11 @@ const RegistrationComponent = () => {
                       onChange={(val) => setName(val.target.value)}
                     />
                   </div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="name">
                     {({ messages }) => {
                       return (
@@ -209,7 +219,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Direktur Utama</label>
                 </div>
@@ -234,6 +244,11 @@ const RegistrationComponent = () => {
                     })}
                     onChange={(val) => setOwner(val.target.value)}
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="owner">
                     {({ messages }) => {
                       return (
@@ -254,7 +269,7 @@ const RegistrationComponent = () => {
             </div>
             {/* Right */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Bidang Usaha</label>
                 </div>
@@ -281,7 +296,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Alamat</label>
                 </div>
@@ -322,7 +337,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Negara</label>
                 </div>
@@ -344,7 +359,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Provinsi</label>
                 </div>
@@ -404,7 +419,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Kota/Kabupaten</label>
                 </div>
@@ -464,7 +479,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Kecamatan</label>
                 </div>
@@ -524,7 +539,7 @@ const RegistrationComponent = () => {
                   )}
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Kode Pos</label>
                 </div>
@@ -553,6 +568,11 @@ const RegistrationComponent = () => {
                     } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                     placeholder="Kode Pos"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="postal_code">
                     {({ messages }) => {
                       return (
@@ -573,7 +593,7 @@ const RegistrationComponent = () => {
             </div>
             {/* Right */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Telepon</label>
                 </div>
@@ -659,7 +679,7 @@ const RegistrationComponent = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Faksimile</label>
                 </div>
@@ -748,7 +768,7 @@ const RegistrationComponent = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>E-mail Perusahaan</label>
                 </div>
@@ -773,6 +793,11 @@ const RegistrationComponent = () => {
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="me@example.com"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="e_mail">
                     {({ messages }) => {
                       return (
@@ -790,7 +815,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Situs</label>
                 </div>
@@ -815,6 +840,11 @@ const RegistrationComponent = () => {
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="example.com"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="website">
                     {({ messages }) => {
                       return (
@@ -832,7 +862,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nama Lengkap PIC</label>
                 </div>
@@ -857,6 +887,11 @@ const RegistrationComponent = () => {
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="Nama Lengkap PIC"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="pic_name">
                     {({ messages }) => {
                       return (
@@ -874,7 +909,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Telepon Seluler PIC</label>
                 </div>
@@ -901,6 +936,11 @@ const RegistrationComponent = () => {
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="+62xx-xxxxxxxxxxxx"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="picMobileNumber">
                     {({ messages }) => {
                       return (
@@ -918,7 +958,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Email PIC</label>
                 </div>
@@ -943,6 +983,11 @@ const RegistrationComponent = () => {
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="sales/marketing@example.com"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="picEmail">
                     {({ messages }) => {
                       return (
@@ -966,7 +1011,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Referensi Nomor Pengadaan (Jika Ada)</label>
                 </div>
@@ -994,6 +1039,11 @@ const RegistrationComponent = () => {
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="Referensi Nomor Pengadaan (Jika Ada)"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="tenderReferenceNumber">
                     {({ messages }) => {
                       return (
@@ -1019,7 +1069,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
                   hidden={country === "Zimbabwe" ? false : true}
@@ -1051,6 +1101,11 @@ const RegistrationComponent = () => {
                     placeholder="Nomor PKP"
                     hidden={country === "Zimbabwe" ? false : true}
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="pkpNumber">
                     {({ messages }) => {
                       return (
@@ -1058,9 +1113,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className={`${
-                              country === "Zimbabwe" ? "hidden" : ""
-                            }} px-2 py-1 text-xs text-red-500`}
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1070,10 +1123,10 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
-                  hidden={country === "Zimbabwe" ? false : true}
+                  hidden={country !== "Indonesia" ? false : true}
                 >
                   <label>Lampiran PKP</label>
                 </div>
@@ -1098,14 +1151,19 @@ const RegistrationComponent = () => {
                         : handleErrFilePkp();
                     }}
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
-                    hidden={country === "Zimbabwe" ? false : true}
+                    hidden={country !== "Indonesia" ? false : true}
                   />
                   <label
                     className="text-gray-700 italic text-xs"
-                    hidden={country === "Zimbabwe" ? false : true}
+                    hidden={country !== "Indonesia" ? false : true}
                   >
                     File Extensi: ["pdf"].(Maks.: 2 MB)
                   </label>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="pkpAttachment">
                     {({ messages }) => {
                       return (
@@ -1113,9 +1171,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className={`${
-                              country === "provinces" ? "hidden" : ""
-                            }} px-2 py-1 text-xs text-red-500`}
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1128,32 +1184,11 @@ const RegistrationComponent = () => {
             </div>
             {/* Right */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor NPWP</label>
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                  {/* <InputMask
-                    mask="99.999.999.9-999.999"
-                    maskChar="_"
-                    name="tax_document_number"
-                    ref={register({
-                      required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
-                    })}
-                    onChange={(val) => {
-                      setTax_document_number(val.target.value);
-                    }}
-                    className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
-                    placeholder="Nomor NPWP"
-                  /> */}
                   <input
                     type="number"
                     name="tax_document_number"
@@ -1176,6 +1211,11 @@ const RegistrationComponent = () => {
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2 no-arrow"
                     placeholder="Nomor NPWP"
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="tax_document_number">
                     {({ messages }) => {
                       return (
@@ -1193,7 +1233,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Lampiran NPWP</label>
                 </div>
@@ -1204,14 +1244,6 @@ const RegistrationComponent = () => {
                     accept="application/pdf"
                     ref={register({
                       required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
                     })}
                     onChange={(val: any) => {
                       val.target.files[0]
@@ -1223,6 +1255,11 @@ const RegistrationComponent = () => {
                   <label className="text-gray-700 italic text-xs">
                     File Extensi: ["pdf"].(Maks.: 2 MB)
                   </label>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
                   <ErrorMessage errors={errors} name="tax_document_type">
                     {({ messages }) => {
                       return (
@@ -1240,7 +1277,7 @@ const RegistrationComponent = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 block items-center">
                   <ReCAPTCHA
@@ -1265,7 +1302,7 @@ const RegistrationComponent = () => {
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
                   <button
