@@ -8,7 +8,7 @@ import { provinces } from "./Component/Provinces";
 import { useForm, FormContext } from "react-hook-form";
 
 interface InitialState {
-  _handleOnSubmit: Function;
+  _handleOnSubmitSelect: Function;
   _handleSubmitRegister: Function;
   loadingRegister: boolean;
   data: any;
@@ -99,7 +99,7 @@ interface InitialState {
 }
 
 const initialState = {
-  _handleOnSubmit: () => {},
+  _handleOnSubmitSelect: () => {},
   _handleSubmitRegister: () => {},
   loadingRegister: false,
   data: {},
@@ -392,7 +392,7 @@ export const RegistrationController = ({ children }) => {
 
   useEffect(() => {
     register(
-      { name: "bussiness_type" },
+      { name: "business_type" },
       {
         required: true,
         validate: (value) => {
@@ -452,8 +452,8 @@ export const RegistrationController = ({ children }) => {
 
   const _handleBussinessType = (e: any) => {
     setBusiness_type(e);
-    setValue("country", e);
-    triggerValidation("country");
+    setValue("business_type", e);
+    triggerValidation("business_type");
   };
 
   const _handleCountry = (e: any) => {
@@ -464,25 +464,25 @@ export const RegistrationController = ({ children }) => {
 
   const _handleProvince = (e: any) => {
     setProvince(e);
-    setValue("country", e);
-    triggerValidation("country");
+    setValue("province", e);
+    triggerValidation("province");
   };
 
   const _handleCity = (e: any) => {
     setCity(e);
-    setValue("country", e);
-    triggerValidation("country");
+    setValue("city", e);
+    triggerValidation("city");
   };
 
   const _handleDistrict = (e: any) => {
     setDistrict(e);
-    setValue("country", e);
-    triggerValidation("country");
+    setValue("district", e);
+    triggerValidation("district");
   };
 
   const val = ["business_type", "country", "province", "city", "district"];
 
-  const _handleOnSubmit = async () => {
+  const _handleOnSubmitSelect = async () => {
     if (await triggerValidation(val)) {
       console.log("sukses....");
     } else {
@@ -494,7 +494,7 @@ export const RegistrationController = ({ children }) => {
     <FormContext {...methods}>
       <RegistrationProvider
         value={{
-          _handleOnSubmit,
+          _handleOnSubmitSelect,
           _handleSubmitRegister,
           _handleBussinessType,
           _handleCountry,

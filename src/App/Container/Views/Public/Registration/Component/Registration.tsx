@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { RegistrationContext } from "../Controller";
-import { ErrorMessage, useFormContext } from "react-hook-form";
+import { ErrorMessage, useFormContext, useForm } from "react-hook-form";
 import Select from "react-select";
 import InputMask from "react-input-mask";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -18,6 +18,7 @@ const RegistrationComponent = () => {
     alert,
     setAlert,
     registerValidation,
+    _handleOnSubmitSelect,
     _handleSubmitRegister,
     _handleBussinessType,
     _handleCountry,
@@ -66,12 +67,11 @@ const RegistrationComponent = () => {
     setOpen,
     _onSubmit,
   } = useContext(RegistrationContext);
-  // const { register, handleSubmit, errors, triggerValidation } = useForm({
-  //   validateCriteriaMode: "all",
-  //   mode: "onChange",
-  // });
-  const form = useFormContext();
-  const { register, errors, handleSubmit, triggerValidation } = form;
+  const { register, handleSubmit, errors, triggerValidation } = useForm({
+    validateCriteriaMode: "all",
+    mode: "onChange",
+  });
+  const { errors: errorsSelect } = useFormContext();
 
   return (
     <div className="block text-xs static overflow-y-auto">
@@ -108,14 +108,14 @@ const RegistrationComponent = () => {
           </svg>
         </span>
       </div>
-      <form
-        onSubmit={async () => {
-          handleSubmit(
-            _handleSubmitRegister(await triggerValidation(registerValidation))
-          );
-        }}
-      >
-        <div className="flex flex-row md:flex-col lg:flex-col">
+      <div className="flex flex-row md:flex-col lg:flex-col">
+        <form
+          onSubmit={async () => {
+            handleSubmit(
+              _handleSubmitRegister(await triggerValidation(registerValidation))
+            );
+          }}
+        >
           <div className="flex flex-row py-4">
             {/* Left */}
             <div className="block w-1/2">
@@ -271,8 +271,8 @@ const RegistrationComponent = () => {
                     placeholder="Bidang Usaha"
                     styles={customStyles}
                   />
-                  {errors.business_type && (
-                    <p className="px-2 py-1 text-xs text-red-500 rounded-b">
+                  {errorsSelect.business_type && (
+                    <p className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
                       Bidang usaha tidak boleh kosong
                     </p>
                   )}
@@ -352,9 +352,10 @@ const RegistrationComponent = () => {
                     onChange={_handleCountry}
                     options={countries}
                     placeholder="Negara"
+                    styles={customStyles}
                   />
 
-                  {errors.country && (
+                  {errorsSelect.country && (
                     <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
                       <span>Negara tidak boleh kosong</span>
                     </div>
@@ -390,9 +391,10 @@ const RegistrationComponent = () => {
                         onChange={_handleProvince}
                         options={provinces}
                         placeholder="Provinsi"
+                        styles={customStyles}
                       />
 
-                      {errors.province && (
+                      {errorsSelect.province && (
                         <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
                           <span>Provinsi tidak boleh kosong</span>
                         </div>
@@ -471,9 +473,10 @@ const RegistrationComponent = () => {
                         onChange={_handleCity}
                         options={cities}
                         placeholder="Kota/Kabupaten"
+                        styles={customStyles}
                       />
 
-                      {errors.city && (
+                      {errorsSelect.city && (
                         <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
                           <span>Kota/Kabupaten tidak boleh kosong</span>
                         </div>
@@ -552,9 +555,10 @@ const RegistrationComponent = () => {
                         onChange={_handleDistrict}
                         options={Sleman}
                         placeholder="Kecamatan"
+                        styles={customStyles}
                       />
 
-                      {errors.district && (
+                      {errorsSelect.district && (
                         <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
                           <span>Kecamatan tidak boleh kosong</span>
                         </div>
@@ -1369,95 +1373,97 @@ const RegistrationComponent = () => {
               </div>
             </div>
           </div>
-          <hr />
-          <div className="flex flex-row py-4">
-            {/* Left */}
-            <div className="block w-1/2">
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
-                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
-                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
-                  <div
-                    className={`${
-                      isBtnDissabled
-                        ? "bg-gray-600"
-                        : "cursor-pointer bg-blue-700"
-                    } text-white rounded text-sm pr-4`}
-                    onClick={
-                      isBtnDissabled
-                        ? undefined
-                        : checkbox === false
-                        ? () => setOpen(true)
-                        : async () => {
-                            handleSubmit(
-                              _handleSubmitRegister(
-                                await triggerValidation(registerValidation)
-                              )
-                            );
-                          }
-                    }
-                    onMouseEnter={
-                      isBtnDissabled
-                        ? async () => {
-                            handleSubmit(
-                              _onSubmit(
-                                await triggerValidation(registerValidation)
-                              )
-                            );
-                          }
-                        : undefined
-                    }
-                    title="Harap lengkapi form dan checklist!"
-                  >
-                    {loadingRegister === false ? (
-                      <span>
-                        <CheckboxRegister
-                          size="small"
-                          disabled
-                          checked={checkbox}
-                        />
-                        Syarat & Ketentuan
-                      </span>
-                    ) : (
-                      <div className="w-32 text-center py-1">
-                        <CircularProgress color="inherit" size={20} />
-                      </div>
-                    )}
-                  </div>
+        </form>
+
+        <hr />
+        <div className="flex flex-row py-4">
+          {/* Left */}
+          <div className="block w-1/2">
+            <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2">
+              <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
+              <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
+                <div
+                  className={`${
+                    isBtnDissabled
+                      ? "bg-gray-600"
+                      : "cursor-pointer bg-blue-700"
+                  } text-white rounded text-sm pr-4`}
+                  onClick={
+                    isBtnDissabled
+                      ? undefined
+                      : checkbox === false
+                      ? () => setOpen(true)
+                      : async () => {
+                          handleSubmit(
+                            _handleSubmitRegister(
+                              await triggerValidation(registerValidation)
+                            )
+                          );
+                        }
+                  }
+                  onMouseEnter={
+                    isBtnDissabled
+                      ? async () => {
+                          handleSubmit(
+                            _onSubmit(
+                              await triggerValidation(registerValidation)
+                            )
+                          );
+                          _handleOnSubmitSelect();
+                        }
+                      : undefined
+                  }
+                  title="Harap lengkapi form dan checklist!"
+                >
+                  {loadingRegister === false ? (
+                    <span>
+                      <CheckboxRegister
+                        size="small"
+                        disabled
+                        checked={checkbox}
+                      />
+                      Syarat & Ketentuan
+                    </span>
+                  ) : (
+                    <div className="w-32 text-center py-1">
+                      <CircularProgress color="inherit" size={20} />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            {/* Right */}
-            <div className="block w-1/2"></div>
           </div>
+          {/* Right */}
+          <div className="block w-1/2"></div>
         </div>
-        <Modal
-          title="SYARAT & KETENTUAN"
-          actionButton2={
-            <button
-              className="bg-blue-700 hover:bg-blue-800 border border-gray-700 text-white px-4 py-1 text-sm m-2 rounded"
-              onClick={() => {
-                setCheckbox(true);
-                setOpen(false);
-              }}
-            >
-              Lanjutkan Pendaftaran
-            </button>
-          }
-          actionButton={
-            <button
-              className="bg-white hover:bg-gray-400 hover:border-gray-500 border border-gray-400 text-gray-900 px-4 py-1 text-sm m-2 rounded"
-              onClick={() => {
-                setCheckbox(false);
-                setOpen(false);
-              }}
-            >
-              Batalkan
-            </button>
-          }
-          content={<TermsAndConditions />}
-          openModal={open}
-        />
-      </form>
+      </div>
+      <Modal
+        title="SYARAT & KETENTUAN"
+        actionButton2={
+          <button
+            className="bg-blue-700 hover:bg-blue-800 border border-gray-700 text-white px-4 py-1 text-sm m-2 rounded"
+            onClick={() => {
+              setCheckbox(true);
+              setOpen(false);
+            }}
+          >
+            Lanjutkan Pendaftaran
+          </button>
+        }
+        actionButton={
+          <button
+            className="bg-white hover:bg-gray-400 hover:border-gray-500 border border-gray-400 text-gray-900 px-4 py-1 text-sm m-2 rounded"
+            onClick={() => {
+              setCheckbox(false);
+              setOpen(false);
+            }}
+          >
+            Batalkan
+          </button>
+        }
+        content={<TermsAndConditions />}
+        openModal={open}
+      />
     </div>
   );
 };
