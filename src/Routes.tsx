@@ -75,40 +75,32 @@ const Routes = () => {
           <Router history={history}>
             <Switch>
               <Route exact path="/contact" component={Contact} />
-              <PublicRoute exact path="/forgot" component={Forgot} />
-              <PublicRoute exact path="/" component={Home} />
-              <PublicRoute
-                exact
-                path="/integrity_fact"
-                component={IntegrityFact}
-              />
-              <PublicRoute exact path="/procerument" component={Procurement} />
-              <PublicRoute
+              <Route exact path="/integrity_fact" component={IntegrityFact} />
+              <Route exact path="/procerument" component={Procurement} />
+              <Route
                 exact
                 path="/qualification_requirement"
                 component={QualificationReq}
               />
+              <Route
+                exact
+                path="/registration_procedure"
+                component={RegistrationProcedure}
+              />
+              <Route
+                exact
+                path="/tender_requirement"
+                component={TenderRequirement}
+              />
+              <Route exact path="/term_condition" component={TermCondition} />
+              <Route exact path="/user_manual" component={UserManual} />
+              <PublicRoute exact path="/forgot" component={Forgot} />
+              <PublicRoute exact path="/" component={Home} />
               <PublicRoute
                 exact
                 path="/registration"
                 component={Registration}
               />
-              <PublicRoute
-                exact
-                path="/registration_procedure"
-                component={RegistrationProcedure}
-              />
-              <PublicRoute
-                exact
-                path="/tender_requirement"
-                component={TenderRequirement}
-              />
-              <PublicRoute
-                exact
-                path="/term_condition"
-                component={TermCondition}
-              />
-              <PublicRoute exact path="/user_manual" component={UserManual} />
               <PrivateRoute
                 exact
                 path="/vendor/profile"
