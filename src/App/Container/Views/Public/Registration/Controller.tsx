@@ -277,6 +277,7 @@ export const RegistrationController = ({ children }) => {
       minHeight: 32,
     }),
   };
+
   const _onSubmit = () => console.log("Validate");
 
   const CheckboxRegister = withStyles({
@@ -451,32 +452,32 @@ export const RegistrationController = ({ children }) => {
   }, [register]);
 
   const _handleBussinessType = (e: any) => {
-    setBusiness_type(e);
-    setValue("business_type", e);
+    setBusiness_type(e && e.value);
+    setValue("business_type", e && e.value);
     triggerValidation("business_type");
   };
 
   const _handleCountry = (e: any) => {
-    setCountry(e);
-    setValue("country", e);
+    setCountry(e && e.value);
+    setValue("country", e && e.value);
     triggerValidation("country");
   };
 
   const _handleProvince = (e: any) => {
-    setProvince(e);
-    setValue("province", e);
+    setProvince(e && e.value);
+    setValue("province", e && e.value);
     triggerValidation("province");
   };
 
   const _handleCity = (e: any) => {
-    setCity(e);
-    setValue("city", e);
+    setCity(e && e.value);
+    setValue("city", e && e.value);
     triggerValidation("city");
   };
 
   const _handleDistrict = (e: any) => {
-    setDistrict(e);
-    setValue("district", e);
+    setDistrict(e && e.value);
+    setValue("district", e && e.value);
     triggerValidation("district");
   };
 

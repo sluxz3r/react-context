@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { RegistrationContext } from "../Controller";
 import { ErrorMessage, useFormContext, useForm } from "react-hook-form";
 import Select from "react-select";
-import InputMask from "react-input-mask";
 import ReCAPTCHA from "react-google-recaptcha";
 import TermsAndConditions from "./Terms&Conditions";
 import { Modal } from "../../../../Components";
@@ -272,25 +271,10 @@ const RegistrationComponent = () => {
                     styles={customStyles}
                   />
                   {errorsSelect.business_type && (
-                    <p className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
-                      Bidang usaha tidak boleh kosong
+                    <p className="px-2 py-1 text-xs text-red-500 rounded-b">
+                      This is required
                     </p>
                   )}
-                  {/* <ErrorMessage errors={errors} name="business_type">
-                    {({ messages }) => {
-                      return (
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                          <p
-                            key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
-                          >
-                            {message}
-                          </p>
-                        ))
-                      );
-                    }}
-                  </ErrorMessage> */}
                 </div>
               </div>
             </div>
@@ -356,25 +340,10 @@ const RegistrationComponent = () => {
                   />
 
                   {errorsSelect.country && (
-                    <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
-                      <span>Negara tidak boleh kosong</span>
+                    <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                      <span>This is required</span>
                     </div>
                   )}
-                  {/* <ErrorMessage errors={errors} name="country">
-                    {({ messages }) => {
-                      return (
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                          <p
-                            key={type}
-                            className="px-2 py-1 text-xs text-red-500 rounded-b"
-                          >
-                            {message}
-                          </p>
-                        ))
-                      );
-                    }}
-                  </ErrorMessage> */}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
@@ -392,28 +361,14 @@ const RegistrationComponent = () => {
                         options={provinces}
                         placeholder="Provinsi"
                         styles={customStyles}
+                        isDisabled={country ? false : true}
                       />
 
                       {errorsSelect.province && (
-                        <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
-                          <span>Provinsi tidak boleh kosong</span>
+                        <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                          <span>This is required</span>
                         </div>
                       )}
-                      {/* <ErrorMessage errors={errors} name="province">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 py-1 text-xs text-red-500 rounded-b"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage> */}
                     </div>
                   ) : (
                     <div>
@@ -427,14 +382,6 @@ const RegistrationComponent = () => {
                         name="province"
                         ref={register({
                           required: "This is required",
-                          minLength: {
-                            value: 4,
-                            message: "This input is less than 4 characters",
-                          },
-                          maxLength: {
-                            value: 30,
-                            message: "This input is more than 30 characters",
-                          },
                         })}
                         onChange={(val) =>
                           val ? setProvince(val.target.value) : setProvince("")
@@ -474,28 +421,14 @@ const RegistrationComponent = () => {
                         options={cities}
                         placeholder="Kota/Kabupaten"
                         styles={customStyles}
+                        isDisabled={country && province ? false : true}
                       />
 
                       {errorsSelect.city && (
-                        <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
-                          <span>Kota/Kabupaten tidak boleh kosong</span>
+                        <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                          <span>This is required</span>
                         </div>
                       )}
-                      {/* <ErrorMessage errors={errors} name="city">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 py-1 text-xs text-red-500 rounded-b"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage> */}
                     </div>
                   ) : (
                     <div>
@@ -505,24 +438,16 @@ const RegistrationComponent = () => {
                           !errors ? "border-red-500" : "border-gray-400"
                         } hover:border-gray-500 rounded py-1 px-2`}
                         placeholder="Provinsi"
-                        disabled={country ? false : true}
+                        disabled={country && province ? false : true}
                         name="district"
                         ref={register({
                           required: "This is required",
-                          minLength: {
-                            value: 4,
-                            message: "This input is less than 4 characters",
-                          },
-                          maxLength: {
-                            value: 30,
-                            message: "This input is more than 30 characters",
-                          },
                         })}
                         onChange={(val) =>
                           val ? setDistrict(val.target.value) : setDistrict("")
                         }
                       />
-                      <ErrorMessage errors={errors} name="district">
+                      <ErrorMessage errors={errors} name="city">
                         {({ messages }) => {
                           return (
                             messages &&
@@ -556,28 +481,14 @@ const RegistrationComponent = () => {
                         options={Sleman}
                         placeholder="Kecamatan"
                         styles={customStyles}
+                        isDisabled={country && province && city ? false : true}
                       />
 
                       {errorsSelect.district && (
-                        <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
-                          <span>Kecamatan tidak boleh kosong</span>
+                        <div className="px-2 py-1 text-xs text-red-500 rounded-b">
+                          <span>This is required</span>
                         </div>
                       )}
-                      {/* <ErrorMessage errors={errors} name="district">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 py-1 text-xs text-red-500 rounded-b"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage> */}
                     </div>
                   ) : (
                     <div>
@@ -587,24 +498,16 @@ const RegistrationComponent = () => {
                           errors.district ? "border-red-500" : "border-gray-400"
                         } hover:border-gray-500 rounded py-1 px-2`}
                         placeholder="Provinsi"
-                        disabled={country ? false : true}
+                        disabled={country && province && city ? false : true}
                         name="district"
                         ref={register({
                           required: "This is required",
-                          minLength: {
-                            value: 4,
-                            message: "This input is less than 4 characters",
-                          },
-                          maxLength: {
-                            value: 30,
-                            message: "This input is more than 30 characters",
-                          },
                         })}
                         onChange={(val) =>
                           val ? setCity(val.target.value) : setCity("")
                         }
                       />
-                      <ErrorMessage errors={errors} name="city">
+                      <ErrorMessage errors={errors} name="district">
                         {({ messages }) => {
                           return (
                             messages &&
@@ -1244,7 +1147,7 @@ const RegistrationComponent = () => {
                   <label>Nomor NPWP</label>
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                  <InputMask
+                  {/* <InputMask
                     mask="99.999.999.9-999.999"
                     maskChar="_"
                     name="tax_document_number"
@@ -1268,8 +1171,34 @@ const RegistrationComponent = () => {
                         : "border-gray-400"
                     } hover:border-gray-500 rounded py-1 px-2`}
                     placeholder="Nomor NPWP"
+                  /> */}
+                  <input
+                    type="number"
+                    name="tax_document_number"
+                    ref={register({
+                      required: "This is required",
+                      minLength: {
+                        value: 15,
+                        message: "This input is less than 15 characters",
+                      },
+                      maxLength: {
+                        value: 15,
+                        message: "This input is more than 15 characters",
+                      },
+                      pattern: {
+                        value: /^\d+$/,
+                        message: "This input is number 0-9",
+                      },
+                    })}
+                    onChange={(val) => setTax_document_number(val.target.value)}
+                    className={`w-full bg-white border ${
+                      errors.tax_document_number
+                        ? "border-red-500"
+                        : "border-gray-400"
+                    } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
+                    placeholder="Nomor NPWP"
                   />
-                  <ErrorMessage errors={errors} name="vendor_type">
+                  <ErrorMessage errors={errors} name="tax_document_number">
                     {({ messages }) => {
                       return (
                         messages &&
