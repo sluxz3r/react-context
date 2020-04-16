@@ -5,6 +5,7 @@ import { grey } from "@material-ui/core/colors";
 import { useMutation } from "react-apollo";
 import { REGISTER_NEW_VENDOR } from "./Query";
 import { countries } from "./Component/Countries";
+import { provinces } from "./Component/Provinces";
 
 interface InitialState {
   _handleSubmitRegister: Function;
@@ -24,7 +25,7 @@ interface InitialState {
   customStyles: object;
   listClassification: Array<object>;
   countries: Array<object>;
-  Indonesia: Array<object>;
+  provinces: Array<object>;
   Yogyakarta: Array<object>;
   Sleman: Array<object>;
   vendor_type: string;
@@ -111,7 +112,7 @@ const initialState = {
   customStyles: {},
   listClassification: [],
   countries: [],
-  Indonesia: [],
+  provinces: [],
   Yogyakarta: [],
   Sleman: [],
   vendor_type: "",
@@ -235,7 +236,6 @@ export const RegistrationController = ({ children }) => {
 
   const listClassification = [{ value: "PENDIDIKAN", label: "PENDIDIKAN" }];
 
-  const Indonesia = [{ value: "Yogyakarta", label: "Yogyakarta" }];
   const Yogyakarta = [{ value: "Sleman", label: "Sleman" }];
   const Sleman = [{ value: "Ngaglik", label: "Ngaglik" }];
   const customStyles = {
@@ -373,7 +373,7 @@ export const RegistrationController = ({ children }) => {
         customStyles,
         listClassification,
         countries,
-        Indonesia,
+        provinces,
         Yogyakarta,
         Sleman,
         vendor_type,
