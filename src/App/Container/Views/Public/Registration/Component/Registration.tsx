@@ -283,6 +283,11 @@ const RegistrationComponent = () => {
                     placeholder="Bidang Usaha"
                     styles={customStyles}
                   />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   {errorsSelect.business_type && (
                     <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                       This is required
@@ -351,11 +356,15 @@ const RegistrationComponent = () => {
                     placeholder="Negara"
                     styles={customStyles}
                   />
-
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   {errorsSelect.country && (
-                    <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
-                      <span>This is required</span>
-                    </div>
+                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                      This is required
+                    </p>
                   )}
                 </div>
               </div>
@@ -365,57 +374,60 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   {country === "Indonesia" || !country ? (
-                    <div>
-                      <Select
-                        className="province"
-                        name="province"
-                        isClearable
-                        onChange={_handleProvince}
-                        options={provinces}
-                        placeholder="Provinsi"
-                        styles={customStyles}
-                        isDisabled={country ? false : true}
-                      />
-
-                      {errorsSelect.province && (
-                        <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
-                          <span>This is required</span>
-                        </div>
-                      )}
-                    </div>
+                    <Select
+                      className="province"
+                      name="province"
+                      isClearable
+                      onChange={_handleProvince}
+                      options={provinces}
+                      placeholder="Provinsi"
+                      styles={customStyles}
+                      isDisabled={country ? false : true}
+                    />
                   ) : (
-                    <div>
-                      <input
-                        type="text"
-                        className={`w-full bg-white border ${
-                          !errors ? "border-red-500" : "border-gray-400"
-                        } hover:border-gray-500 rounded py-1 px-2`}
-                        placeholder="Provinsi"
-                        disabled={country ? false : true}
-                        name="province"
-                        ref={register({
-                          required: "This is required",
-                        })}
-                        onChange={(val) =>
-                          val ? setProvince(val.target.value) : setProvince("")
-                        }
-                      />
-                      <ErrorMessage errors={errors} name="province">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
-                    </div>
+                    <input
+                      type="text"
+                      className={`w-full bg-white border ${
+                        !errors ? "border-red-500" : "border-gray-400"
+                      } hover:border-gray-500 rounded py-1 px-2`}
+                      placeholder="Provinsi"
+                      disabled={country ? false : true}
+                      name="province"
+                      ref={register({
+                        required: "This is required",
+                      })}
+                      onChange={(val) =>
+                        val ? setProvince(val.target.value) : setProvince("")
+                      }
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                  {country === "Indonesia" || !country ? (
+                    errorsSelect.province && (
+                      <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        <span>This is required</span>
+                      </div>
+                    )
+                  ) : (
+                    <ErrorMessage errors={errors} name="province">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p
+                              key={type}
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            >
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
                   )}
                 </div>
               </div>
@@ -425,57 +437,60 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   {province === "DI Yogyakarta" || !province ? (
-                    <div>
-                      <Select
-                        className="city"
-                        name="city"
-                        isClearable
-                        onChange={_handleCity}
-                        options={cities}
-                        placeholder="Kota/Kabupaten"
-                        styles={customStyles}
-                        isDisabled={country && province ? false : true}
-                      />
-
-                      {errorsSelect.city && (
-                        <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
-                          <span>This is required</span>
-                        </div>
-                      )}
-                    </div>
+                    <Select
+                      className="city"
+                      name="city"
+                      isClearable
+                      onChange={_handleCity}
+                      options={cities}
+                      placeholder="Kota/Kabupaten"
+                      styles={customStyles}
+                      isDisabled={country && province ? false : true}
+                    />
                   ) : (
-                    <div>
-                      <input
-                        type="text"
-                        className={`w-full bg-white border ${
-                          !errors ? "border-red-500" : "border-gray-400"
-                        } hover:border-gray-500 rounded py-1 px-2`}
-                        placeholder="Provinsi"
-                        disabled={country && province ? false : true}
-                        name="district"
-                        ref={register({
-                          required: "This is required",
-                        })}
-                        onChange={(val) =>
-                          val ? setDistrict(val.target.value) : setDistrict("")
-                        }
-                      />
-                      <ErrorMessage errors={errors} name="city">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
-                    </div>
+                    <input
+                      type="text"
+                      className={`w-full bg-white border ${
+                        !errors ? "border-red-500" : "border-gray-400"
+                      } hover:border-gray-500 rounded py-1 px-2`}
+                      placeholder="Kota/Kabupaten"
+                      disabled={country && province ? false : true}
+                      name="city"
+                      ref={register({
+                        required: "This is required",
+                      })}
+                      onChange={(val) =>
+                        val ? setCity(val.target.value) : setCity("")
+                      }
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                  {province === "DI Yogyakarta" || !province ? (
+                    errorsSelect.city && (
+                      <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        <span>This is required</span>
+                      </div>
+                    )
+                  ) : (
+                    <ErrorMessage errors={errors} name="city">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p
+                              key={type}
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            >
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
                   )}
                 </div>
               </div>
@@ -485,57 +500,60 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   {city === "Kab. Sleman" || !city ? (
-                    <div>
-                      <Select
-                        className="district"
-                        name="district"
-                        isClearable
-                        onChange={_handleDistrict}
-                        options={Sleman}
-                        placeholder="Kecamatan"
-                        styles={customStyles}
-                        isDisabled={country && province && city ? false : true}
-                      />
-
-                      {errorsSelect.district && (
-                        <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
-                          <span>This is required</span>
-                        </div>
-                      )}
-                    </div>
+                    <Select
+                      className="district"
+                      name="district"
+                      isClearable
+                      onChange={_handleDistrict}
+                      options={Sleman}
+                      placeholder="Kecamatan"
+                      styles={customStyles}
+                      isDisabled={country && province && city ? false : true}
+                    />
                   ) : (
-                    <div>
-                      <input
-                        type="text"
-                        className={`w-full bg-white border ${
-                          errors.district ? "border-red-500" : "border-gray-400"
-                        } hover:border-gray-500 rounded py-1 px-2`}
-                        placeholder="Provinsi"
-                        disabled={country && province && city ? false : true}
-                        name="district"
-                        ref={register({
-                          required: "This is required",
-                        })}
-                        onChange={(val) =>
-                          val ? setCity(val.target.value) : setCity("")
-                        }
-                      />
-                      <ErrorMessage errors={errors} name="district">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
-                    </div>
+                    <input
+                      type="text"
+                      className={`w-full bg-white border ${
+                        errors.district ? "border-red-500" : "border-gray-400"
+                      } hover:border-gray-500 rounded py-1 px-2`}
+                      placeholder="Kecamatan"
+                      disabled={country && province && city ? false : true}
+                      name="district"
+                      ref={register({
+                        required: "This is required",
+                      })}
+                      onChange={(val) =>
+                        val ? setDistrict(val.target.value) : setDistrict("")
+                      }
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                  {city === "Kab. Sleman" || !city ? (
+                    errorsSelect.district && (
+                      <div className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        <span>This is required</span>
+                      </div>
+                    )
+                  ) : (
+                    <ErrorMessage errors={errors} name="district">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p
+                              key={type}
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            >
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
                   )}
                 </div>
               </div>
@@ -624,6 +642,39 @@ const RegistrationComponent = () => {
                       } hover:border-gray-500 rounded py-1 px-2`}
                       placeholder="+62xx-xxxxxxxxxxxx"
                     />
+                  </div>
+                  <div className="w-2/5 flex-col">
+                    <input
+                      name="phone_numberExt"
+                      ref={register({
+                        minLength: {
+                          value: 4,
+                          message: "This input is less than 4 characters",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "This input is more than 30 characters",
+                        },
+                        pattern: {
+                          value: /^\d+$/,
+                          message: "This input is number 0-9",
+                        },
+                      })}
+                      onChange={(val) => setPhone_numberExt(val.target.value)}
+                      className={`w-full bg-white border ${
+                        errors.phone_numberExt
+                          ? "border-red-500"
+                          : "border-gray-400"
+                      } hover:border-gray-500 rounded py-1 px-2`}
+                      placeholder="Ext."
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
+                  <div className="w-3/5 flex-col mr-8">
                     <ErrorMessage errors={errors} name="phone_number">
                       {({ messages }) => {
                         return (
@@ -641,26 +692,6 @@ const RegistrationComponent = () => {
                     </ErrorMessage>
                   </div>
                   <div className="w-2/5 flex-col">
-                    <input
-                      name="phone_numberExt"
-                      ref={register({
-                        minLength: {
-                          value: 4,
-                          message: "This input is less than 4 characters",
-                        },
-                        maxLength: {
-                          value: 30,
-                          message: "This input is more than 30 characters",
-                        },
-                      })}
-                      onChange={(val) => setPhone_numberExt(val.target.value)}
-                      className={`w-full bg-white border ${
-                        errors.phone_numberExt
-                          ? "border-red-500"
-                          : "border-gray-400"
-                      } hover:border-gray-500 rounded py-1 px-2`}
-                      placeholder="Ext."
-                    />
                     <ErrorMessage errors={errors} name="phone_numberExt">
                       {({ messages }) => {
                         return (
@@ -708,21 +739,6 @@ const RegistrationComponent = () => {
                       } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                       placeholder="Nomor Faksimile"
                     />
-                    <ErrorMessage errors={errors} name="fax_number">
-                      {({ messages }) => {
-                        return (
-                          messages &&
-                          Object.entries(messages).map(([type, message]) => (
-                            <p
-                              key={type}
-                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
-                            >
-                              {message}
-                            </p>
-                          ))
-                        );
-                      }}
-                    </ErrorMessage>
                   </div>
                   <div className="w-2/5 flex-col">
                     <input
@@ -750,6 +766,30 @@ const RegistrationComponent = () => {
                       } hover:border-gray-500 rounded py-1 px-2 no-arrow`}
                       placeholder="Ext."
                     />
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
+                  <div className="w-3/5 flex-col mr-8">
+                    <ErrorMessage errors={errors} name="fax_number">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p
+                              key={type}
+                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            >
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
+                  </div>
+                  <div className="w-2/5 flex-col">
                     <ErrorMessage errors={errors} name="fax_numberExt">
                       {({ messages }) => {
                         return (
