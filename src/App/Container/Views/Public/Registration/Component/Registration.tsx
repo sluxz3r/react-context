@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { RegistrationContext } from "../Controller";
-import { ErrorMessage, useForm } from "react-hook-form";
+import { ErrorMessage, useFormContext } from "react-hook-form";
 import Select from "react-select";
 import InputMask from "react-input-mask";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -19,6 +19,11 @@ const RegistrationComponent = () => {
     setAlert,
     registerValidation,
     _handleSubmitRegister,
+    _handleBussinessType,
+    _handleCountry,
+    _handleProvince,
+    _handleCity,
+    _handleDistrict,
     setVendor_type,
     countries,
     provinces,
@@ -27,10 +32,8 @@ const RegistrationComponent = () => {
     vendor_type,
     setName,
     setOwner,
-    setBusiness_type,
     listClassification,
     setAddress,
-    setCountry,
     country,
     province,
     setProvince,
@@ -63,10 +66,12 @@ const RegistrationComponent = () => {
     setOpen,
     _onSubmit,
   } = useContext(RegistrationContext);
-  const { register, handleSubmit, errors, triggerValidation } = useForm({
-    validateCriteriaMode: "all",
-    mode: "onChange",
-  });
+  // const { register, handleSubmit, errors, triggerValidation } = useForm({
+  //   validateCriteriaMode: "all",
+  //   mode: "onChange",
+  // });
+  const form = useFormContext();
+  const { register, errors, handleSubmit, triggerValidation } = form;
 
   return (
     <div className="block text-xs static overflow-y-auto">
@@ -150,7 +155,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -197,7 +202,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -239,7 +244,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -258,41 +263,34 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   <Select
+                    className="business_type"
                     name="business_type"
                     isClearable
-                    ref={register({
-                      required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
-                    })}
-                    onChange={(val) =>
-                      val ? setBusiness_type(val.value) : setBusiness_type("")
-                    }
+                    onChange={_handleBussinessType}
                     options={listClassification}
                     placeholder="Bidang Usaha"
                     styles={customStyles}
                   />
-                  <ErrorMessage errors={errors} name="business_type">
+                  {errors.business_type && (
+                    <p className="px-2 py-1 text-xs text-red-500 rounded-b">
+                      Bidang usaha tidak boleh kosong
+                    </p>
+                  )}
+                  {/* <ErrorMessage errors={errors} name="business_type">
                     {({ messages }) => {
                       return (
                         messages &&
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
                         ))
                       );
                     }}
-                  </ErrorMessage>
+                  </ErrorMessage> */}
                 </div>
               </div>
             </div>
@@ -332,7 +330,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -348,41 +346,34 @@ const RegistrationComponent = () => {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
                   <Select
+                    className="country"
                     name="country"
                     isClearable
-                    ref={register({
-                      required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
-                    })}
-                    onChange={(val) =>
-                      val ? setCountry(val.value) : setCountry("")
-                    }
+                    onChange={_handleCountry}
                     options={countries}
                     placeholder="Negara"
-                    styles={customStyles}
                   />
-                  <ErrorMessage errors={errors} name="country">
+
+                  {errors.country && (
+                    <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
+                      <span>Negara tidak boleh kosong</span>
+                    </div>
+                  )}
+                  {/* <ErrorMessage errors={errors} name="country">
                     {({ messages }) => {
                       return (
                         messages &&
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
                         ))
                       );
                     }}
-                  </ErrorMessage>
+                  </ErrorMessage> */}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 align-top">
@@ -393,34 +384,34 @@ const RegistrationComponent = () => {
                   {country === "Indonesia" || !country ? (
                     <div>
                       <Select
+                        className="province"
                         name="province"
                         isClearable
-                        ref={register({
-                          required: "This is required",
-                        })}
-                        onChange={(val) =>
-                          val ? setProvince(val.value) : setProvince("")
-                        }
+                        onChange={_handleProvince}
                         options={provinces}
                         placeholder="Provinsi"
-                        isDisabled={country ? false : true}
-                        styles={customStyles}
                       />
-                      <ErrorMessage errors={errors} name="province">
+
+                      {errors.province && (
+                        <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
+                          <span>Provinsi tidak boleh kosong</span>
+                        </div>
+                      )}
+                      {/* <ErrorMessage errors={errors} name="province">
                         {({ messages }) => {
                           return (
                             messages &&
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
                             ))
                           );
                         }}
-                      </ErrorMessage>
+                      </ErrorMessage> */}
                     </div>
                   ) : (
                     <div>
@@ -454,7 +445,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -474,42 +465,34 @@ const RegistrationComponent = () => {
                   {province === "DI Yogyakarta" || !province ? (
                     <div>
                       <Select
+                        className="city"
                         name="city"
                         isClearable
-                        ref={register({
-                          required: "This is required",
-                          minLength: {
-                            value: 4,
-                            message: "This input is less than 4 characters",
-                          },
-                          maxLength: {
-                            value: 30,
-                            message: "This input is more than 30 characters",
-                          },
-                        })}
-                        onChange={(val) =>
-                          val ? setCity(val.value) : setCity("")
-                        }
+                        onChange={_handleCity}
                         options={cities}
                         placeholder="Kota/Kabupaten"
-                        isDisabled={country && province ? false : true}
-                        styles={customStyles}
                       />
-                      <ErrorMessage errors={errors} name="city">
+
+                      {errors.city && (
+                        <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
+                          <span>Kota/Kabupaten tidak boleh kosong</span>
+                        </div>
+                      )}
+                      {/* <ErrorMessage errors={errors} name="city">
                         {({ messages }) => {
                           return (
                             messages &&
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
                             ))
                           );
                         }}
-                      </ErrorMessage>
+                      </ErrorMessage> */}
                     </div>
                   ) : (
                     <div>
@@ -543,7 +526,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -563,42 +546,34 @@ const RegistrationComponent = () => {
                   {city === "Kab. Sleman" || !city ? (
                     <div>
                       <Select
+                        className="district"
                         name="district"
                         isClearable
-                        ref={register({
-                          required: "This is required",
-                          minLength: {
-                            value: 4,
-                            message: "This input is less than 4 characters",
-                          },
-                          maxLength: {
-                            value: 30,
-                            message: "This input is more than 30 characters",
-                          },
-                        })}
-                        onChange={(val) =>
-                          val ? setDistrict(val.value) : setDistrict("")
-                        }
-                        options={city === "Kab. Sleman" ? Sleman : null}
+                        onChange={_handleDistrict}
+                        options={Sleman}
                         placeholder="Kecamatan"
-                        isDisabled={country && province && city ? false : true}
-                        styles={customStyles}
                       />
-                      <ErrorMessage errors={errors} name="district">
+
+                      {errors.district && (
+                        <div className="px-2 bg-red-200 py-1 text-xs text-red-500 rounded-b">
+                          <span>Kecamatan tidak boleh kosong</span>
+                        </div>
+                      )}
+                      {/* <ErrorMessage errors={errors} name="district">
                         {({ messages }) => {
                           return (
                             messages &&
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
                             ))
                           );
                         }}
-                      </ErrorMessage>
+                      </ErrorMessage> */}
                     </div>
                   ) : (
                     <div>
@@ -632,7 +607,7 @@ const RegistrationComponent = () => {
                             Object.entries(messages).map(([type, message]) => (
                               <p
                                 key={type}
-                                className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                                className="px-2 py-1 text-xs text-red-500 rounded-b"
                               >
                                 {message}
                               </p>
@@ -680,7 +655,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -731,7 +706,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -768,7 +743,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -815,7 +790,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -857,7 +832,7 @@ const RegistrationComponent = () => {
                           Object.entries(messages).map(([type, message]) => (
                             <p
                               key={type}
-                              className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                              className="px-2 py-1 text-xs text-red-500 rounded-b"
                             >
                               {message}
                             </p>
@@ -900,7 +875,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -942,7 +917,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -984,7 +959,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1032,7 +1007,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1074,7 +1049,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1129,7 +1104,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1297,7 +1272,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1348,7 +1323,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>
@@ -1382,7 +1357,7 @@ const RegistrationComponent = () => {
                         Object.entries(messages).map(([type, message]) => (
                           <p
                             key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                            className="px-2 py-1 text-xs text-red-500 rounded-b"
                           >
                             {message}
                           </p>

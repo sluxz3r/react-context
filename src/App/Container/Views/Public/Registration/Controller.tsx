@@ -1,12 +1,14 @@
-import React, { createContext, useState, createRef } from "react";
+import React, { createContext, useState, createRef, useEffect } from "react";
 import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { useMutation } from "react-apollo";
 import { REGISTER_NEW_VENDOR } from "./Query";
 import { countries } from "./Component/Countries";
 import { provinces } from "./Component/Provinces";
+import { useForm, FormContext } from "react-hook-form";
 
 interface InitialState {
+  _handleOnSubmit: Function;
   _handleSubmitRegister: Function;
   loadingRegister: boolean;
   data: any;
@@ -37,6 +39,11 @@ interface InitialState {
   setAddress: Function;
   country: string;
   setCountry: Function;
+  _handleCountry: Function;
+  _handleProvince: Function;
+  _handleCity: Function;
+  _handleDistrict: Function;
+  _handleBussinessType: Function;
   province: string;
   setProvince: Function;
   city: string;
@@ -92,6 +99,7 @@ interface InitialState {
 }
 
 const initialState = {
+  _handleOnSubmit: () => {},
   _handleSubmitRegister: () => {},
   loadingRegister: false,
   data: {},
@@ -144,6 +152,11 @@ const initialState = {
   setAddress: () => {},
   country: "",
   setCountry: () => {},
+  _handleBussinessType: () => {},
+  _handleCountry: () => {},
+  _handleProvince: () => {},
+  _handleCity: () => {},
+  _handleDistrict: () => {},
   province: "",
   setProvince: () => {},
   city: "",
@@ -371,94 +384,208 @@ export const RegistrationController = ({ children }) => {
     }
   };
 
+  // FormContext
+  const methods = useForm({
+    mode: "onChange",
+  });
+  const { register, setValue, triggerValidation } = methods;
+
+  useEffect(() => {
+    register(
+      { name: "bussiness_type" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [register]);
+
+  useEffect(() => {
+    register(
+      { name: "country" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [register]);
+
+  useEffect(() => {
+    register(
+      { name: "province" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [register]);
+
+  useEffect(() => {
+    register(
+      { name: "city" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [register]);
+
+  useEffect(() => {
+    register(
+      { name: "district" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [register]);
+
+  const _handleBussinessType = (e: any) => {
+    setBusiness_type(e);
+    setValue("country", e);
+    triggerValidation("country");
+  };
+
+  const _handleCountry = (e: any) => {
+    setCountry(e);
+    setValue("country", e);
+    triggerValidation("country");
+  };
+
+  const _handleProvince = (e: any) => {
+    setProvince(e);
+    setValue("country", e);
+    triggerValidation("country");
+  };
+
+  const _handleCity = (e: any) => {
+    setCity(e);
+    setValue("country", e);
+    triggerValidation("country");
+  };
+
+  const _handleDistrict = (e: any) => {
+    setDistrict(e);
+    setValue("country", e);
+    triggerValidation("country");
+  };
+
+  const val = ["business_type", "country", "province", "city", "district"];
+
+  const _handleOnSubmit = async () => {
+    if (await triggerValidation(val)) {
+      console.log("sukses....");
+    } else {
+      console.log("Gagal.....");
+    }
+  };
+
   return (
-    <RegistrationProvider
-      value={{
-        _handleSubmitRegister,
-        loadingRegister,
-        data,
-        error,
-        showError,
-        showSuccess,
-        messageSuccess,
-        alert,
-        setAlert,
-        CheckboxRegister,
-        _onSubmit,
-        registerValidation,
-        customStyles,
-        listClassification,
-        countries,
-        provinces,
-        cities,
-        Sleman,
-        vendor_type,
-        setVendor_type,
-        name,
-        setName,
-        owner,
-        setOwner,
-        business_type,
-        setBusiness_type,
-        address,
-        setAddress,
-        country,
-        setCountry,
-        province,
-        setProvince,
-        city,
-        setCity,
-        district,
-        setDistrict,
-        postal_code,
-        setPostal_code,
-        phone_number,
-        setPhone_number,
-        phone_numberExt,
-        setPhone_numberExt,
-        fax_number,
-        setFax_number,
-        fax_numberExt,
-        setFax_numberExt,
-        e_mail,
-        setE_mail,
-        website,
-        setWebsite,
-        pic_name,
-        setPic_name,
-        picMobileNumber,
-        setPicMobileNumber,
-        picEmail,
-        setPicEmail,
-        tenderReferenceNumber,
-        pkpNumber,
-        setPkpNumber,
-        pkpAttachment,
-        setPkpAttachment,
-        setTenderReferenceNumber,
-        tax_document_number,
-        setTax_document_number,
-        tax_document_type,
-        setTax_document_type,
-        errPkpAttachment,
-        setErrPkpAttachment,
-        errTax_document_type,
-        setErrTax_document_type,
-        recaptcha,
-        setRecaptcha,
-        handleFilePkp,
-        handleErrFilePkp,
-        handleFileTaxId,
-        handleErrFileTaxId,
-        recaptchaRef,
-        isBtnDissabled,
-        checkbox,
-        setCheckbox,
-        open,
-        setOpen,
-      }}
-    >
-      {children}
-    </RegistrationProvider>
+    <FormContext {...methods}>
+      <RegistrationProvider
+        value={{
+          _handleOnSubmit,
+          _handleSubmitRegister,
+          _handleBussinessType,
+          _handleCountry,
+          _handleProvince,
+          _handleCity,
+          _handleDistrict,
+          loadingRegister,
+          data,
+          error,
+          showError,
+          showSuccess,
+          messageSuccess,
+          alert,
+          setAlert,
+          CheckboxRegister,
+          _onSubmit,
+          registerValidation,
+          customStyles,
+          listClassification,
+          countries,
+          provinces,
+          cities,
+          Sleman,
+          vendor_type,
+          setVendor_type,
+          name,
+          setName,
+          owner,
+          setOwner,
+          business_type,
+          setBusiness_type,
+          address,
+          setAddress,
+          country,
+          setCountry,
+          province,
+          setProvince,
+          city,
+          setCity,
+          district,
+          setDistrict,
+          postal_code,
+          setPostal_code,
+          phone_number,
+          setPhone_number,
+          phone_numberExt,
+          setPhone_numberExt,
+          fax_number,
+          setFax_number,
+          fax_numberExt,
+          setFax_numberExt,
+          e_mail,
+          setE_mail,
+          website,
+          setWebsite,
+          pic_name,
+          setPic_name,
+          picMobileNumber,
+          setPicMobileNumber,
+          picEmail,
+          setPicEmail,
+          tenderReferenceNumber,
+          pkpNumber,
+          setPkpNumber,
+          pkpAttachment,
+          setPkpAttachment,
+          setTenderReferenceNumber,
+          tax_document_number,
+          setTax_document_number,
+          tax_document_type,
+          setTax_document_type,
+          errPkpAttachment,
+          setErrPkpAttachment,
+          errTax_document_type,
+          setErrTax_document_type,
+          recaptcha,
+          setRecaptcha,
+          handleFilePkp,
+          handleErrFilePkp,
+          handleFileTaxId,
+          handleErrFileTaxId,
+          recaptchaRef,
+          isBtnDissabled,
+          checkbox,
+          setCheckbox,
+          open,
+          setOpen,
+        }}
+      >
+        {children}
+      </RegistrationProvider>
+    </FormContext>
   );
 };
