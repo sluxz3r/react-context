@@ -49,9 +49,7 @@ const RegistrationComponent = () => {
     setPicMobileNumber,
     setPicEmail,
     setTenderReferenceNumber,
-    pkpNumber,
     setPkpNumber,
-    pkpAttachment,
     handleFilePkp,
     handleErrFilePkp,
     handleFileTaxId,
@@ -68,6 +66,7 @@ const RegistrationComponent = () => {
     recaptcha,
     _onValidate,
     validate,
+    setValidate,
   } = useContext(RegistrationContext);
   const { register, handleSubmit, errors, triggerValidation } = useForm({
     validateCriteriaMode: "all",
@@ -1082,6 +1081,10 @@ const RegistrationComponent = () => {
                     type="number"
                     name="pkpNumber"
                     ref={register({
+                      required:
+                        country === "Indonesia"
+                          ? { value: true, message: "this is required" }
+                          : false,
                       minLength: {
                         value: 4,
                         message: "This input is less than 4 characters",
@@ -1105,13 +1108,6 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                  {country === "Indonesia" &&
-                    validate === true &&
-                    pkpNumber === "" && (
-                      <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
-                        This is required
-                      </p>
-                    )}
                   <ErrorMessage errors={errors} name="pkpNumber">
                     {({ messages }) => {
                       return (
@@ -1141,6 +1137,12 @@ const RegistrationComponent = () => {
                     type="file"
                     name="pkpAttachment"
                     accept="application/pdf"
+                    ref={register({
+                      required:
+                        country === "Indonesia"
+                          ? { value: true, message: "this is required" }
+                          : false,
+                    })}
                     onChange={(val: any) => {
                       val.target.files[0]
                         ? handleFilePkp(val)
@@ -1148,6 +1150,7 @@ const RegistrationComponent = () => {
                     }}
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     hidden={country === "Indonesia" ? false : true}
+                    id="pkp-file"
                   />
                   <label
                     className="text-gray-700 italic text-xs"
@@ -1155,12 +1158,26 @@ const RegistrationComponent = () => {
                   >
                     File Extensi: ["pdf"].(Maks.: 2 MB)
                   </label>
-                  {console.log("Pkp", pkpAttachment)}
-                  {country === "Indonesia" && pkpAttachment.files === null && (
-                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
-                      This is required
-                    </p>
-                  )}
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
+                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                  <ErrorMessage errors={errors} name="pkpAttachment">
+                    {({ messages }) => {
+                      return (
+                        messages &&
+                        Object.entries(messages).map(([type, message]) => (
+                          <p
+                            key={type}
+                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
+                          >
+                            {message}
+                          </p>
+                        ))
+                      );
+                    }}
+                  </ErrorMessage>
                 </div>
               </div>
             </div>
@@ -1295,12 +1312,12 @@ const RegistrationComponent = () => {
                   <button
                     type="submit"
                     className={`${
-                      isBtnDissabled
+                      isBtnDissabled || Object.keys(errors).length !== 0
                         ? "bg-gray-600"
                         : "cursor-pointer bg-blue-700"
                     } text-white rounded text-sm pr-4 items-center`}
                     onClick={
-                      isBtnDissabled
+                      isBtnDissabled || Object.keys(errors).length !== 0
                         ? async () => {
                             _handleOnSubmitSelect();
                             handleSubmit(

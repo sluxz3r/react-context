@@ -95,6 +95,7 @@ interface InitialState {
   setOpen: Function;
   _onValidate: Function;
   validate: boolean;
+  setValidate: Function;
 }
 
 const initialState = {
@@ -184,7 +185,7 @@ const initialState = {
   setTenderReferenceNumber: () => {},
   pkpNumber: "",
   setPkpNumber: () => {},
-  pkpAttachment: { files: null },
+  pkpAttachment: {},
   setPkpAttachment: () => {},
   tax_document_number: "",
   setTax_document_number: () => {},
@@ -208,6 +209,7 @@ const initialState = {
   setOpen: () => {},
   _onValidate: () => {},
   validate: false,
+  setValidate: () => {},
 };
 
 export const RegistrationContext = createContext<InitialState>(initialState);
@@ -248,7 +250,7 @@ export const RegistrationController = ({ children }) => {
     ""
   );
   const [pkpNumber, setPkpNumber] = useState<string>("");
-  const [pkpAttachment, setPkpAttachment] = useState<object>({ files: null });
+  const [pkpAttachment, setPkpAttachment] = useState<any>(null);
   const [tax_document_number, setTax_document_number] = useState<string>("");
   const [tax_document_type, setTax_document_type] = useState<object>({
     files: null,
@@ -327,7 +329,9 @@ export const RegistrationController = ({ children }) => {
     picEmail === "" ||
     tax_document_number === "" ||
     tax_document_type === null ||
-    errTax_document_type !== "";
+    errTax_document_type !== "" ||
+    (country === "Indonesia" && pkpNumber === "") ||
+    (country === "Indonesia" && pkpAttachment === null);
 
   const type = tax_document_type && "NPWP";
 
@@ -497,6 +501,7 @@ export const RegistrationController = ({ children }) => {
           _handleDistrict,
           _onValidate,
           validate,
+          setValidate,
           loadingRegister,
           data,
           error,
