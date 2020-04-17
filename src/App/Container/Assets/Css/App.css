@@ -8,10 +8,6 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
   margin: 0;
 }
 
-.w-options {
-  width: 168px;
-}
-
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -73,5 +69,29 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
 @media (min-width: 1280px) {
   .max-h-modal {
     max-height: 520px;
+  }
+}
+
+.list-lower-alpha {
+  list-style-type: lower-alpha;
+}
+
+.list-lower-roman {
+  list-style-type: lower-roman;
+}
+
+.w-options {
+  width: 168px;
+}
+
+@media (min-width: 1024px) {
+  .top-options {
+    margin-top: 56px;
+  }
+}
+@media (min-width: 1280px) {
+  .top-options {
+    margin-top: 56px;
+    position: fixed;
   }
 }

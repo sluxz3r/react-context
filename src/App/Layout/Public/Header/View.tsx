@@ -155,9 +155,6 @@ export const PublicHeader = () => {
             </span>
           </li>
           <li>
-            {/* <span className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200">
-              Panduan
-            </span> */}
             <div
               className="cursor-pointer w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white hover:bg-blue-800 lg:mt-0"
               onClick={handleOpenGuidance}
@@ -190,7 +187,7 @@ export const PublicHeader = () => {
                   )}
                 </div>
                 <div
-                  className={`flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                  className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
                     !openGuidance && "hidden"
                   }`}
                 >
