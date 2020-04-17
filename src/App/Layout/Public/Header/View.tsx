@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import history from "../../../../App/Misc/BrowserHistory";
 import { getToken, removeAuthCredential } from "../../../Misc/Cookies";
 import "../../../../App/Container/Assets/Css/App.css";
+import { LoginContext } from "../Sidebar/Controller";
+import { Modal } from "../../../Container/Components/Modal/Modal";
+import { useForm } from "react-hook-form";
 
 export const PublicHeader = () => {
   const token: any = getToken();
@@ -22,6 +25,107 @@ export const PublicHeader = () => {
 
   const handleOpenGuidance = () => {
     setOpenGuidance(!openGuidance);
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const openModalHandler = () => {
+    setOpen(true);
+  };
+
+  const closeModalHandler = () => {
+    setOpen(false);
+  };
+
+  const Login = () => {
+    const { _handleLogin } = useContext(LoginContext);
+    const { register, handleSubmit, errors } = useForm({
+      mode: "onChange",
+    });
+
+    const _handleForgotPassword = () => {
+      history.push("/forgot");
+    };
+    const _handleRegistration = () => {
+      history.push("/registration");
+    };
+    return (
+      <form
+        className="py-2"
+        onSubmit={handleSubmit((data) => _handleLogin(data))}
+      >
+        <input
+          type="text"
+          name="username"
+          className={`border-2 rounded outline-none w-full px-2 py-1 text-sm block ${
+            errors.username ? "mb-0 border-red-600" : "mb-3"
+          }`}
+          placeholder="username"
+          style={{ fontSize: "12px" }}
+          ref={register({ required: true, minLength: 4, maxLength: 16 })}
+          autoComplete="off"
+        />
+        {errors.username && (
+          <p className="text-red-600 italic mb-3" style={{ fontSize: "10px" }}>
+            Username harus terdiri dari 4 karakter.
+          </p>
+        )}
+        <input
+          type="password"
+          name="password"
+          className={`border-2 w-full px-2 py-1 rounded outline-none text-sm block ${
+            errors.password && "border-red-600"
+          }`}
+          placeholder="password"
+          style={{ fontSize: "12px" }}
+          ref={register({
+            required: true,
+            minLength: 8,
+            maxLength: 32,
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              message:
+                " Password harus terdiri dari 8 karakter, kombinasi Angka & Huruf.",
+            },
+          })}
+          autoComplete="off"
+        />
+        {errors.password && (
+          <p className="text-red-600 italic mb-3" style={{ fontSize: "10px" }}>
+            Password harus terdiri dari 8 karakter, kombinasi Angka & Huruf.
+          </p>
+        )}
+        <div className="flex mt-1 items-center mb-4">
+          <input type="checkbox" className="mr-1" />
+          <span className="w-1/2 text-gray-700" style={{ fontSize: "10px" }}>
+            Ingatkan Saya
+          </span>
+          <span
+            className="w-1/2 text-right text-blue-600 cursor-pointer"
+            style={{ fontSize: "10px" }}
+            onClick={() => _handleForgotPassword()}
+          >
+            Lupa Password ?
+          </span>
+        </div>
+        <button
+          type="submit"
+          className="w-full text-xs py-1 cursor-pointer bg-green-400 text-white font-semibold mb-3"
+        >
+          Masuk
+        </button>
+        <div className="text-center mb-5" style={{ fontSize: "10px" }}>
+          Atau,{" "}
+          <span
+            className="text-blue-600 cursor-pointer"
+            onClick={() => _handleRegistration()}
+            style={{ fontSize: "10px" }}
+          >
+            Daftar sebagai Penyedia baru
+          </span>
+        </div>
+      </form>
+    );
   };
 
   return (
@@ -149,13 +253,26 @@ export const PublicHeader = () => {
               </li>
               <li>
                 <span className="inline-block px-4 text-white text-xs">
-                  <button className="bg-blue-600 py-1 px-4 hover:bg-blue-700">
+                  <button
+                    className="bg-blue-600 py-1 px-4 hover:bg-blue-700"
+                    onClick={openModalHandler}
+                  >
                     Login
                   </button>
                 </span>
               </li>
             </React.Fragment>
           )}
+          <Modal
+            title="Login"
+            open={open}
+            onClose={closeModalHandler}
+            onActionOne={closeModalHandler}
+            textOne="Cancel"
+            width="w-1/4"
+          >
+            <Login />
+          </Modal>
           {token !== null && (
             <li>
               <span
