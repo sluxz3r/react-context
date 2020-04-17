@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import ClickAwayListener from "react-click-away-listener";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 // IMPORT UTILS FOR GET TOKEN OR SET TOKEN FROM PINDAD UTILS
 import {
@@ -19,6 +20,7 @@ import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
 import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
 import { getToken } from "./App/Misc/Cookies";
+import { HeaderContext } from "./App/Layout/Public/Header/Controller";
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const login: any = getToken();
@@ -63,53 +65,56 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 const Routes = () => {
   const login: any = getToken();
+  const { _handleClickAway } = useContext(HeaderContext);
   return (
     <React.Fragment>
-      <PublicHeader />
-      <div className="lg:flex sm:flex sm:flex-1 lg:flex-1 lg:pt-14 lg:overflow-y-auto">
-        <div className="lg:w-auto">
-          {login === null ? <PublicSidebar /> : <PrivateSidebar />}
-        </div>
+      {/* <ClickAwayListener onClickAway={_handleClickAway()}> */}
+        <PublicHeader />
+        <div className="lg:flex sm:flex sm:flex-1 lg:flex-1 lg:pt-14 lg:overflow-y-auto">
+          <div className="lg:w-auto">
+            {login === null ? <PublicSidebar /> : <PrivateSidebar />}
+          </div>
 
-        <div className="lg:w-auto">
-          <Router history={history}>
-            <Switch>
-              <Route exact path="/contact" component={Contact} />
-              <Route exact path="/integrity_fact" component={IntegrityFact} />
-              <Route exact path="/procerument" component={Procurement} />
-              <Route
-                exact
-                path="/qualification_requirement"
-                component={QualificationReq}
-              />
-              <Route
-                exact
-                path="/registration_procedure"
-                component={RegistrationProcedure}
-              />
-              <Route
-                exact
-                path="/tender_requirement"
-                component={TenderRequirement}
-              />
-              <Route exact path="/term_condition" component={TermCondition} />
-              <Route exact path="/user_manual" component={UserManual} />
-              <PublicRoute exact path="/forgot" component={Forgot} />
-              <PublicRoute exact path="/" component={Home} />
-              <PublicRoute
-                exact
-                path="/registration"
-                component={Registration}
-              />
-              <PrivateRoute
-                exact
-                path="/vendor/profile"
-                component={VendorProfile}
-              />
-            </Switch>
-          </Router>
+          <div className="lg:w-auto">
+            <Router history={history}>
+              <Switch>
+                <Route exact path="/contact" component={Contact} />
+                <Route exact path="/integrity_fact" component={IntegrityFact} />
+                <Route exact path="/procerument" component={Procurement} />
+                <Route
+                  exact
+                  path="/qualification_requirement"
+                  component={QualificationReq}
+                />
+                <Route
+                  exact
+                  path="/registration_procedure"
+                  component={RegistrationProcedure}
+                />
+                <Route
+                  exact
+                  path="/tender_requirement"
+                  component={TenderRequirement}
+                />
+                <Route exact path="/term_condition" component={TermCondition} />
+                <Route exact path="/user_manual" component={UserManual} />
+                <PublicRoute exact path="/forgot" component={Forgot} />
+                <PublicRoute exact path="/" component={Home} />
+                <PublicRoute
+                  exact
+                  path="/registration"
+                  component={Registration}
+                />
+                <PrivateRoute
+                  exact
+                  path="/vendor/profile"
+                  component={VendorProfile}
+                />
+              </Switch>
+            </Router>
+          </div>
         </div>
-      </div>
+      {/* </ClickAwayListener> */}
     </React.Fragment>
   );
 };

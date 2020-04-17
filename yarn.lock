@@ -9279,6 +9279,11 @@ react-async-script@^1.1.1:
     hoist-non-react-statics "^3.3.0"
     prop-types "^15.5.0"
 
+react-click-away-listener@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-click-away-listener/-/react-click-away-listener-1.0.0.tgz#4e546173f3f93218158aeaab82d4914699deeb59"
+  integrity sha512-mVNd51hifHqF7OGT23XXor5ex5mKpY7oownquBOAsBeBTy8UkSFiDi4ZMpZle73xS/B3iN5d2sc1MfUkC3kapA==
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
