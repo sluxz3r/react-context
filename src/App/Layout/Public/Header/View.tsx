@@ -6,6 +6,7 @@ import { LoginContext } from "../Sidebar/Controller";
 import { Modal } from "../../../Container/Components/Modal/Modal";
 import { useForm } from "react-hook-form";
 import ClickAwayListener from "react-click-away-listener";
+import logo from "../../../Container/Assets/Images/logo_pindad.png";
 
 export const PublicHeader = () => {
   const token: any = getToken();
@@ -188,8 +189,16 @@ export const PublicHeader = () => {
           >
             <ul className="list-reset lg:flex justify-start flex-2 items-center">
               <li>
-                <span className="inline-block px-8 text-white font-bold">
-                  Logo
+                <span className="inline-block pl-4 text-white font-bold">
+                  <img
+                    src={logo}
+                    width="65"
+                    alt="Logo"
+                    onClick={() => {
+                      _handleClickAway();
+                      _handleHomeMenu();
+                    }}
+                  />
                 </span>
               </li>
               <li>
