@@ -65,16 +65,15 @@ const RegistrationComponent = () => {
     open,
     setOpen,
     _onSubmit,
+    recaptcha,
+    _onValidate,
+    validate,
   } = useContext(RegistrationContext);
   const { register, handleSubmit, errors, triggerValidation } = useForm({
     validateCriteriaMode: "all",
     mode: "onChange",
   });
   const { errors: errorsSelect } = useFormContext();
-
-  const _onSubmitT = async () => {
-    console.log("Validate");
-  };
 
   return (
     <div className="block text-xs static overflow-y-auto">
@@ -112,7 +111,7 @@ const RegistrationComponent = () => {
         </span>
       </div>
       <div className="flex flex-row md:flex-col lg:flex-col">
-        <form onSubmit={handleSubmit(_onSubmitT)}>
+        <form onSubmit={handleSubmit(_onValidate())}>
           <div className="flex flex-col md:flex-row lg:flex-row py-4">
             {/* Left */}
             <div className="block w-full md:w-1/2 lg:w-1/2">
@@ -1294,6 +1293,11 @@ const RegistrationComponent = () => {
                       setRecaptcha(false);
                     }}
                   />
+                  {recaptcha === false && validate === true && (
+                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                      This is required
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -1332,7 +1336,6 @@ const RegistrationComponent = () => {
                             );
                           }
                     }
-                    // onClick={() => setOpen(true)}
                     title="Harap lengkapi form dan checklist!"
                   >
                     {loadingRegister === false ? (

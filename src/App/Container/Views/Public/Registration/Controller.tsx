@@ -96,6 +96,8 @@ interface InitialState {
   setCheckbox: Function;
   open: boolean;
   setOpen: Function;
+  _onValidate: Function;
+  validate: boolean;
 }
 
 const initialState = {
@@ -208,6 +210,8 @@ const initialState = {
   setCheckbox: () => {},
   open: false,
   setOpen: () => {},
+  _onValidate: () => {},
+  validate: false,
 };
 
 export const RegistrationContext = createContext<InitialState>(initialState);
@@ -259,6 +263,7 @@ export const RegistrationController = ({ children }) => {
   const [recaptcha, setRecaptcha] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
   const [open, setOpen] = useState(false);
+  const [validate, setValidate] = useState(false);
 
   const listClassification = [{ value: "PENDIDIKAN", label: "PENDIDIKAN" }];
   const cities = [
@@ -483,10 +488,14 @@ export const RegistrationController = ({ children }) => {
 
   const _handleOnSubmitSelect = async () => {
     if (await triggerValidation(val)) {
-      console.log("sukses....");
+      setValidate(false);
     } else {
-      console.log("Gagal.....");
+      setValidate(true);
     }
+  };
+
+  const _onValidate = async () => {
+    console.log("validation");
   };
 
   return (
@@ -500,6 +509,8 @@ export const RegistrationController = ({ children }) => {
           _handleProvince,
           _handleCity,
           _handleDistrict,
+          _onValidate,
+          validate,
           loadingRegister,
           data,
           error,
