@@ -66,6 +66,7 @@ const RegistrationComponent = () => {
     recaptcha,
     _onValidate,
     validate,
+    setValidate,
   } = useContext(RegistrationContext);
   const { register, handleSubmit, errors, triggerValidation } = useForm({
     validateCriteriaMode: "all",
@@ -1080,6 +1081,10 @@ const RegistrationComponent = () => {
                     type="number"
                     name="pkpNumber"
                     ref={register({
+                      required:
+                        country === "Indonesia"
+                          ? { value: true, message: "this is required" }
+                          : false,
                       minLength: {
                         value: 4,
                         message: "This input is less than 4 characters",
@@ -1133,14 +1138,10 @@ const RegistrationComponent = () => {
                     name="pkpAttachment"
                     accept="application/pdf"
                     ref={register({
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
+                      required:
+                        country === "Indonesia"
+                          ? { value: true, message: "this is required" }
+                          : false,
                     })}
                     onChange={(val: any) => {
                       val.target.files[0]
@@ -1149,6 +1150,7 @@ const RegistrationComponent = () => {
                     }}
                     className="w-full bg-white border border-gray-500 hover:border-gray-500 rounded py-1 px-2"
                     hidden={country === "Indonesia" ? false : true}
+                    id="pkp-file"
                   />
                   <label
                     className="text-gray-700 italic text-xs"
@@ -1310,12 +1312,12 @@ const RegistrationComponent = () => {
                   <button
                     type="submit"
                     className={`${
-                      isBtnDissabled
+                      isBtnDissabled || Object.keys(errors).length !== 0
                         ? "bg-gray-600"
                         : "cursor-pointer bg-blue-700"
                     } text-white rounded text-sm pr-4 items-center`}
                     onClick={
-                      isBtnDissabled
+                      isBtnDissabled || Object.keys(errors).length !== 0
                         ? async () => {
                             _handleOnSubmitSelect();
                             handleSubmit(
