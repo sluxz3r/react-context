@@ -1366,11 +1366,14 @@ const RegistrationComponent = () => {
           setCheckbox(false);
         }}
         onActionOne={() => {
+          setOpen(false);
+        }}
+        onActionTwo={() => {
           setCheckbox(true);
           setOpen(false);
         }}
-        textOne="Lanjutkan Pendaftaran"
-        textTwo="Batal"
+        textOne="Batal"
+        textTwo="Lanjutkan Pendaftaran"
       >
         <TermsAndConditions />
       </Modal>

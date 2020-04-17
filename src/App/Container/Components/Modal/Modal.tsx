@@ -3,9 +3,9 @@ import "../../Assets/Css/App.css";
 
 export const Modal = ({
   onActionTwo = () => {},
-  textTwo = "Cancel",
-  classNameOne = "focus:outline-none bg-blue-600 hover:bg-blue-800 text-white",
-  classNameTwo = "bg-white hover:bg-gray-300 border border-gray-400 text-gray-800",
+  textTwo = "",
+  classNameOne = "bg-white hover:bg-gray-300 border border-gray-400 text-gray-800",
+  classNameTwo = "focus:outline-none bg-blue-600 hover:bg-blue-800 text-white",
   width = "",
   open,
   title,
@@ -48,24 +48,24 @@ export const Modal = ({
           </div>
           <div className="py-2 px-4 border-t border-gray-400">
             <div className="flex justify-end py-2">
-              <button
-                onClick={onActionOne}
-                className={`${classNameOne} py-1 px-4 rounded mr-2`}
-              >
-                {textOne}
-              </button>
-              {textTwo && (
+              {textTwo !== "" && (
                 <button
                   onClick={
                     onActionTwo.toString() !== "() => {}"
                       ? onActionTwo
                       : onClose
                   }
-                  className={`${classNameTwo} py-1 px-4 rounded ml-2`}
+                  className={`${classNameTwo} py-1 px-4 rounded mr-2`}
                 >
                   {textTwo}
                 </button>
               )}
+              <button
+                onClick={onActionOne}
+                className={`${classNameOne} py-1 px-4 rounded ml-2`}
+              >
+                {textOne}
+              </button>
             </div>
           </div>
         </div>
