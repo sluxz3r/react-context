@@ -1,6 +1,4 @@
 import React, { createContext, useState, createRef, useEffect } from "react";
-import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
 import { useMutation } from "react-apollo";
 import { REGISTER_NEW_VENDOR } from "./Query";
 import { countries } from "./Component/Countries";
@@ -18,7 +16,6 @@ interface InitialState {
   messageSuccess: string;
   alert: Boolean;
   setAlert: Function;
-  CheckboxRegister: any;
   _onSubmit: Function;
   registerValidation: string[];
   customStyles: object;
@@ -96,6 +93,8 @@ interface InitialState {
   setCheckbox: Function;
   open: boolean;
   setOpen: Function;
+  _onValidate: Function;
+  validate: boolean;
 }
 
 const initialState = {
@@ -109,7 +108,6 @@ const initialState = {
   messageSuccess: "",
   alert: false,
   setAlert: () => {},
-  CheckboxRegister: null,
   _onSubmit: () => {},
   registerValidation: [
     "vendor_type",
@@ -208,6 +206,8 @@ const initialState = {
   setCheckbox: () => {},
   open: false,
   setOpen: () => {},
+  _onValidate: () => {},
+  validate: false,
 };
 
 export const RegistrationContext = createContext<InitialState>(initialState);
@@ -259,6 +259,7 @@ export const RegistrationController = ({ children }) => {
   const [recaptcha, setRecaptcha] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
   const [open, setOpen] = useState(false);
+  const [validate, setValidate] = useState(false);
 
   const listClassification = [{ value: "PENDIDIKAN", label: "PENDIDIKAN" }];
   const cities = [
@@ -278,16 +279,6 @@ export const RegistrationController = ({ children }) => {
   };
 
   const _onSubmit = () => console.log("Validate");
-
-  const CheckboxRegister = withStyles({
-    root: {
-      color: grey[300],
-      "&$checked": {
-        color: grey[200],
-      },
-    },
-    checked: {},
-  })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
   const handleFilePkp = (val) => {
     if (val.target.files[0].size > 2097152) {
@@ -483,10 +474,14 @@ export const RegistrationController = ({ children }) => {
 
   const _handleOnSubmitSelect = async () => {
     if (await triggerValidation(val)) {
-      console.log("sukses....");
+      setValidate(false);
     } else {
-      console.log("Gagal.....");
+      setValidate(true);
     }
+  };
+
+  const _onValidate = async () => {
+    console.log("validation");
   };
 
   return (
@@ -500,6 +495,8 @@ export const RegistrationController = ({ children }) => {
           _handleProvince,
           _handleCity,
           _handleDistrict,
+          _onValidate,
+          validate,
           loadingRegister,
           data,
           error,
@@ -508,7 +505,6 @@ export const RegistrationController = ({ children }) => {
           messageSuccess,
           alert,
           setAlert,
-          CheckboxRegister,
           _onSubmit,
           registerValidation,
           customStyles,
