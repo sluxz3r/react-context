@@ -70,6 +70,7 @@ export const PublicHeader = () => {
 
   const openModalHandler = () => {
     setOpen(true);
+    _handleClickAway();
   };
 
   const closeModalHandler = () => {
