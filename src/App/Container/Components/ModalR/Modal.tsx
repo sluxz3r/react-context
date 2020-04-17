@@ -1,72 +1,86 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../Assets/Css/App.css";
 
-const ModalR = () => {
-  const [open, setOpen] = useState(false);
-  let modal = document.getElementById("modal-id");
+interface ModalInterface {
+  open: boolean;
+  title: string;
+  onClose: () => void;
+  onActionLeft: () => void;
+  onActionRight?: () => void;
+  textLeft: string;
+  textRight?: string;
+  width?: string;
+  classNameLeft?: string;
+  classNameRight?: string;
+  children: any;
+}
 
-  const _handleOpen = () => {
-    modal && modal.classList.remove("fadeOut");
-    modal && modal.classList.add("fadeIn");
-    setOpen(true);
-  };
-
-  const _handleClose = () => {
-    modal && modal.classList.remove("fadeIn");
-    modal && modal.classList.add("fadeOut");
-    setOpen(false);
-  };
-
+const ModalR = ({
+  onActionRight = () => {},
+  textRight = "Cancel",
+  classNameLeft = "focus:outline-none bg-blue-600 hover:bg-blue-800 text-white",
+  classNameRight = "bg-white hover:bg-gray-300 border border-gray-400 text-gray-800",
+  width = "",
+  open,
+  title,
+  onClose,
+  onActionLeft,
+  textLeft,
+  children,
+}) => {
+  console.log("CEK", onActionRight.toString() === "() => {}");
   return (
     <div>
-      <div>
-        <button
-          onClick={_handleOpen}
-          className="bg-blue-500 text-white p-2 rounded text-2xl font-bold hover:bg-blue-700"
-        >
-          Open Modal
-        </button>
-      </div>
-
       <div
         id="modal-id"
         className={`${
           open === false ? "hidden" : ""
-        } main-modal flex bg-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster`}
+        } text-xs flex bg-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster`}
       >
-        <div className="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-          <div className="modal-content py-4 text-left px-6">
-            <div className="flex justify-between items-center pb-3">
-              <p className="text-2xl font-bold">Header</p>
-              <div onClick={_handleClose} className="cursor-pointer z-50">
-                <svg
-                  className="fill-current text-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                >
-                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-                </svg>
-              </div>
-            </div>
-            <div className="my-5">
-              <p>
-                Inliberali Persius Multi iustitia pronuntiaret expeteretur sanos
-                didicisset laus angusti ferrentur arbitrium arbitramur huic
-                desiderent.?
-              </p>
-            </div>
-            <div className="flex justify-end pt-2">
-              <button
-                onClick={_handleClose}
-                className="focus:outline-none px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+        <div
+          className={`${width} md:max-w-md lg:max-w-5xl border border-teal-500 shadow-lg bg-white mx-auto rounded shadow-lg z-50`}
+        >
+          <div className="py-2 px-4 border-b border-gray-400 bg-primary flex justify-between items-center">
+            <p className="text-xl font-bold text-white">{title}</p>
+            <div
+              title="Close"
+              onClick={onClose}
+              className="cursor-pointer z-50 text-gray-600 hover:text-gray-800"
+            >
+              <svg
+                className="fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
               >
-                Cancel
+                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+              </svg>
+            </div>
+          </div>
+          <div className="py-2 px-4 overflow-y-auto h-auto max-h-modal">
+            {children}
+          </div>
+          <div className="py-2 px-4 border-t border-gray-400">
+            <div className="flex justify-end py-2">
+              <button
+                onClick={onActionLeft}
+                className={`${classNameLeft} py-1 px-4 rounded mr-2`}
+              >
+                {textLeft}
               </button>
-              <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-                Confirm
-              </button>
+              {textRight && (
+                <button
+                  onClick={
+                    onActionRight.toString() !== "() => {}"
+                      ? onActionRight
+                      : onClose
+                  }
+                  className={`${classNameRight} py-1 px-4 rounded ml-2`}
+                >
+                  {textRight}
+                </button>
+              )}
             </div>
           </div>
         </div>

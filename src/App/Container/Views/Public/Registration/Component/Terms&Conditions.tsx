@@ -1,10 +1,11 @@
 import React from "react";
+import "../../../../Assets/Css/main.css";
 
 const TermsAndConditions = () => {
   return (
     <div>
       <div className="flex flex-col">
-        <div className="block bg-white py-8 px-4">
+        <div className="block bg-white py-4 px-4">
           <div className="py-1">
             <text className="text-gray-900 text-2xl">Syarat & Ketentuan</text>
           </div>
