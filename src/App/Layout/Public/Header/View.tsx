@@ -193,7 +193,10 @@ export const PublicHeader = () => {
               </li>
               <li>
                 <span
-                  onClick={() => _handleHomeMenu()}
+                  onClick={() => {
+                    _handleClickAway();
+                    _handleHomeMenu();
+                  }}
                   className="inline-block p-4 text-white font-bold hover:bg-bluepindad-200"
                 >
                   e-Procurement
@@ -201,7 +204,10 @@ export const PublicHeader = () => {
               </li>
               <li>
                 <span
-                  onClick={() => _handleHomeMenu()}
+                  onClick={() => {
+                    _handleClickAway();
+                    _handleHomeMenu();
+                  }}
                   className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
                 >
                   Beranda
@@ -376,7 +382,10 @@ export const PublicHeader = () => {
               </li>
               <li>
                 <span
-                  onClick={() => _handleContact()}
+                  onClick={() => {
+                    _handleClickAway();
+                    _handleContact();
+                  }}
                   className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
                 >
                   Kontak
@@ -416,32 +425,35 @@ export const PublicHeader = () => {
                         </svg>
                       )}
                     </div>
+                    <div
+                      className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left text-white lg:text-black left-language rounded ${
+                        !openLanguage && "hidden"
+                      }`}
+                    >
+                      <div
+                        className="cursor-pointer border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
+                        onClick={() => history.push("/")}
+                      >
+                        English
+                      </div>
+                      <div
+                        className="cursor-pointer hover:bg-gray-400 py-2 px-4"
+                        onClick={() => history.push("/")}
+                      >
+                        Bahasa
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
-              <div
-                className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black left-language rounded ${
-                  !openLanguage && "hidden"
-                }`}
-              >
-                <div
-                  className="cursor-pointer border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
-                  onClick={() => history.push("/")}
-                >
-                  English
-                </div>
-                <div
-                  className="cursor-pointer hover:bg-gray-400 py-2 px-4"
-                  onClick={() => history.push("/")}
-                >
-                  Bahasa
-                </div>
-              </div>
               {token === null && (
                 <React.Fragment>
                   <li>
                     <span
-                      onClick={() => _handleRegistration()}
+                      onClick={() => {
+                        _handleClickAway();
+                        _handleRegistration();
+                      }}
                       className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
                     >
                       Registrasi
@@ -496,30 +508,6 @@ export const PublicHeader = () => {
                       </div>
                     </div>
                   </li>
-                  <div
-                    className={`w-40 border border-gray-300 shadow-lg flex flex-col lg:bg-white text-left static md:static lg:absolute text-white lg:text-black border border-gray-300 rounded left-options ${
-                      !openOptions ? "hidden" : ""
-                    }`}
-                  >
-                    <div
-                      className="cursor-pointer font-bold hover:bg-gray-400 py-2 px-4"
-                      onClick={() => history.push("/")}
-                    >
-                      Username
-                    </div>
-                    <div
-                      className="cursor-pointer border-t border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
-                      onClick={() => history.push("/")}
-                    >
-                      Ganti Password
-                    </div>
-                    <div
-                      className="cursor-pointer hover:bg-gray-400 py-2 px-4"
-                      onClick={() => _handleLogout()}
-                    >
-                      Keluar
-                    </div>
-                  </div>
                 </React.Fragment>
               )}
               <Modal
@@ -533,6 +521,34 @@ export const PublicHeader = () => {
                 <Login />
               </Modal>
             </ul>
+
+            <div
+              className={`w-40 border border-gray-300 shadow-lg flex flex-col lg:bg-white text-left static md:static lg:absolute text-white lg:text-black border border-gray-300 rounded left-options ${
+                !openOptions ? "hidden" : ""
+              }`}
+            >
+              <div
+                className="cursor-pointer font-bold hover:bg-gray-400 py-2 px-4"
+                onClick={() => history.push("/")}
+              >
+                Username
+              </div>
+              <div
+                className="cursor-pointer border-t border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
+                onClick={() => history.push("/")}
+              >
+                Ganti Password
+              </div>
+              <div
+                className="cursor-pointer hover:bg-gray-400 py-2 px-4"
+                onClick={() => {
+                  _handleClickAway();
+                  _handleLogout();
+                }}
+              >
+                Keluar
+              </div>
+            </div>
           </div>
         </div>
       </ClickAwayListener>
