@@ -113,9 +113,9 @@ const RegistrationComponent = () => {
       </div>
       <div className="flex flex-row md:flex-col lg:flex-col">
         <form onSubmit={handleSubmit(_onSubmitT)}>
-          <div className="flex flex-row py-4">
+          <div className="flex flex-col md:flex-row lg:flex-row py-4">
             {/* Left */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Perusahaan Tipe</label>
@@ -262,7 +262,7 @@ const RegistrationComponent = () => {
               </div>
             </div>
             {/* Right */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label className="w-full">Bidang Usaha</label>
@@ -292,9 +292,9 @@ const RegistrationComponent = () => {
             </div>
           </div>
           <hr />
-          <div className="flex flex-row py-4">
+          <div className="flex flex-col md:flex-row lg:flex-row py-4">
             {/* Left */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Alamat</label>
@@ -594,7 +594,7 @@ const RegistrationComponent = () => {
               </div>
             </div>
             {/* Right */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor Telepon</label>
@@ -1010,9 +1010,9 @@ const RegistrationComponent = () => {
             </div>
           </div>
           <hr />
-          <div className="flex flex-row py-4">
+          <div className="flex flex-col md:flex-row lg:flex-row py-4">
             {/* Left */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Referensi Nomor Pengadaan (Jika Ada)</label>
@@ -1065,12 +1065,12 @@ const RegistrationComponent = () => {
               </div>
             </div>
             {/* Right */}
-            <div className="block w-1/2"></div>
+            <div className="block w-full md:w-1/2 lg:w-1/2"></div>
           </div>
           <hr />
-          <div className="flex flex-row py-4">
+          <div className="flex flex-col md:flex-row lg:flex-row py-4">
             {/* Left */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div
                   className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"
@@ -1183,7 +1183,7 @@ const RegistrationComponent = () => {
               </div>
             </div>
             {/* Right */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right">
                   <label>Nomor NPWP</label>
@@ -1299,9 +1299,9 @@ const RegistrationComponent = () => {
             </div>
           </div>
           <hr />
-          <div className="flex flex-row py-4">
+          <div className="flex flex-col md:flex-row lg:flex-row py-4">
             {/* Left */}
-            <div className="block w-1/2">
+            <div className="block w-full md:w-1/2 lg:w-1/2">
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-auto xl:w-auto mx-4">
@@ -1353,7 +1353,7 @@ const RegistrationComponent = () => {
               </div>
             </div>
             {/* Right */}
-            <div className="block w-1/2"></div>
+            <div className="block w-full md:w-1/2 lg:w-1/2"></div>
           </div>
         </form>
       </div>
