@@ -18,7 +18,7 @@ import { VendorProfile } from "./App/Container/Views/Private/index";
 import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
 import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
-import { getToken, removeAuthCredential } from "./App/Misc/Cookies";
+import { getToken } from "./App/Misc/Cookies";
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const login: any = getToken();
