@@ -247,7 +247,7 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                      className={`border border-gray-300 text-sm shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
                         !openGuidance && "hidden"
                       }`}
                     >
@@ -306,7 +306,7 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                      className={`border border-gray-300 text-sm shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options rounded ${
                         !openProcedure && "hidden"
                       }`}
                     >
@@ -367,7 +367,7 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                      className={`border border-gray-300 text-sm shadow-lg flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
                         !openAnnouncement && "hidden"
                       }`}
                     >
@@ -427,7 +427,7 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`border border-gray-300 shadow-lg flex flex-col w-options lg:bg-white text-left text-white lg:text-black left-language rounded ${
+                      className={`border border-gray-300 text-sm shadow-lg flex flex-col w-options lg:bg-white text-left text-white lg:text-black left-language rounded ${
                         !openLanguage && "hidden"
                       }`}
                     >
