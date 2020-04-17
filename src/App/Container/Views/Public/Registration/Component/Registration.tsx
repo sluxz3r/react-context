@@ -49,7 +49,9 @@ const RegistrationComponent = () => {
     setPicMobileNumber,
     setPicEmail,
     setTenderReferenceNumber,
+    pkpNumber,
     setPkpNumber,
+    pkpAttachment,
     handleFilePkp,
     handleErrFilePkp,
     handleFileTaxId,
@@ -1103,6 +1105,13 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                  {country === "Indonesia" &&
+                    validate === true &&
+                    pkpNumber === "" && (
+                      <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        This is required
+                      </p>
+                    )}
                   <ErrorMessage errors={errors} name="pkpNumber">
                     {({ messages }) => {
                       return (
@@ -1132,16 +1141,6 @@ const RegistrationComponent = () => {
                     type="file"
                     name="pkpAttachment"
                     accept="application/pdf"
-                    ref={register({
-                      minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
-                      },
-                      maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
-                      },
-                    })}
                     onChange={(val: any) => {
                       val.target.files[0]
                         ? handleFilePkp(val)
@@ -1156,26 +1155,12 @@ const RegistrationComponent = () => {
                   >
                     File Extensi: ["pdf"].(Maks.: 2 MB)
                   </label>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
-                <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
-                <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                  <ErrorMessage errors={errors} name="pkpAttachment">
-                    {({ messages }) => {
-                      return (
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                          <p
-                            key={type}
-                            className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b"
-                          >
-                            {message}
-                          </p>
-                        ))
-                      );
-                    }}
-                  </ErrorMessage>
+                  {console.log("Pkp", pkpAttachment)}
+                  {country === "Indonesia" && pkpAttachment.files === null && (
+                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                      This is required
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

@@ -248,7 +248,7 @@ export const RegistrationController = ({ children }) => {
     ""
   );
   const [pkpNumber, setPkpNumber] = useState<string>("");
-  const [pkpAttachment, setPkpAttachment] = useState<object>({ files: "" });
+  const [pkpAttachment, setPkpAttachment] = useState<object>({ files: null });
   const [tax_document_number, setTax_document_number] = useState<string>("");
   const [tax_document_type, setTax_document_type] = useState<object>({
     files: null,
