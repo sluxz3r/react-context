@@ -380,16 +380,8 @@ export const PublicHeader = () => {
                   Kontak
                 </span>
               </li>
-              <li>
-                <span className="inline-block px-4 text-white text-xs">
-                  <button
-                    className="bg-blue-600 py-1 px-4 hover:bg-blue-700"
-                    onClick={openModalHandler}
-                  >
-                    Login
-                  </button>
-                </span>
-              </li>
+            </ul>
+            <ul className="list-reset lg:flex justify-start flex-2 items-center">
               <li>
                 <div
                   className="cursor-pointer w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white  hover:bg-blue-800 lg:mt-0"
@@ -455,14 +447,17 @@ export const PublicHeader = () => {
                   </li>
                   <li>
                     <span className="inline-block px-4 text-white text-xs">
-                      <button className="bg-blue-600 py-1 px-4 hover:bg-blue-700">
+                      <button
+                        onClick={openModalHandler}
+                        className="bg-blue-600 py-1 px-4 hover:bg-blue-700"
+                      >
                         Login
                       </button>
                     </span>
                   </li>
                 </React.Fragment>
               )}
-              {token === null && (
+              {token !== null && (
                 <React.Fragment>
                   <li>
                     <div
