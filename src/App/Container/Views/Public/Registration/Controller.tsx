@@ -1,6 +1,4 @@
 import React, { createContext, useState, createRef, useEffect } from "react";
-import { Checkbox, withStyles, CheckboxProps } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
 import { useMutation } from "react-apollo";
 import { REGISTER_NEW_VENDOR } from "./Query";
 import { countries } from "./Component/Countries";
@@ -18,7 +16,6 @@ interface InitialState {
   messageSuccess: string;
   alert: Boolean;
   setAlert: Function;
-  CheckboxRegister: any;
   _onSubmit: Function;
   registerValidation: string[];
   customStyles: object;
@@ -111,7 +108,6 @@ const initialState = {
   messageSuccess: "",
   alert: false,
   setAlert: () => {},
-  CheckboxRegister: null,
   _onSubmit: () => {},
   registerValidation: [
     "vendor_type",
@@ -283,16 +279,6 @@ export const RegistrationController = ({ children }) => {
   };
 
   const _onSubmit = () => console.log("Validate");
-
-  const CheckboxRegister = withStyles({
-    root: {
-      color: grey[300],
-      "&$checked": {
-        color: grey[200],
-      },
-    },
-    checked: {},
-  })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
   const handleFilePkp = (val) => {
     if (val.target.files[0].size > 2097152) {
@@ -519,7 +505,6 @@ export const RegistrationController = ({ children }) => {
           messageSuccess,
           alert,
           setAlert,
-          CheckboxRegister,
           _onSubmit,
           registerValidation,
           customStyles,
