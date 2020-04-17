@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMutation } from "react-apollo";
 import { LOGIN } from "./Query";
 import { getToken, setCredential } from "../../../../App/Misc/Cookies";
-import history from '../../../Misc/BrowserHistory'
 interface InitialState {
   _handleLogin: Function;
 }
@@ -21,7 +20,7 @@ export const {
 export const LoginController = ({ children }) => {
   console.log(getToken());
 
-  const [login, { loading: loadingLogin }] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN);
 
   const _handleLogin = async (user) => {
     try {
@@ -32,7 +31,7 @@ export const LoginController = ({ children }) => {
         },
       });
       setCredential({ token: data.LoginUser, expired: "" });
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.log("my error", error.graphQLErrors[0].message);
     }
