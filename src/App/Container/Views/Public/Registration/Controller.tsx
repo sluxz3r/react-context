@@ -331,7 +331,8 @@ export const RegistrationController = ({ children }) => {
     tax_document_type === null ||
     errTax_document_type !== "" ||
     (country === "Indonesia" && pkpNumber === "") ||
-    (country === "Indonesia" && pkpAttachment === null);
+    (country === "Indonesia" && pkpAttachment === null) ||
+    (country === "Indonesia" && errPkpAttachment !== "");
 
   const type = tax_document_type && "NPWP";
 
