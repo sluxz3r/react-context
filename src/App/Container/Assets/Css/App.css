@@ -95,3 +95,31 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
     position: fixed;
   }
 }
+
+@media (min-width: 1024px) {
+  .left-language {
+    margin-left: -69px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .left-language {
+    margin-top: 66px;
+    margin-left: -274px;
+    position: fixed;
+  }
+}
+
+@media (min-width: 1024px) {
+  .left-options {
+    margin-left: -38px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .left-options {
+    margin-top: 85px;
+    margin-left: 0px;
+    position: fixed;
+  }
+}
