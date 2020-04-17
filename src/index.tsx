@@ -8,6 +8,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 import { getToken } from "./App/Misc/Cookies";
 const { createUploadLink } = require("apollo-upload-client");
+require("dotenv").config();
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
