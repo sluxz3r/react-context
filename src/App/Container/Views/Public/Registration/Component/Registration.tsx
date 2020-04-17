@@ -6,7 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import TermsAndConditions from "./Terms&Conditions";
 import "../../../../Assets/Css/App.css";
 import { CircularProgress } from "@material-ui/core";
-import ModalR from "../../../../Components/ModalR/Modal";
+import { Modal } from "../../../../Components";
 
 const RegistrationComponent = () => {
   const {
@@ -1312,27 +1312,27 @@ const RegistrationComponent = () => {
                         ? "bg-gray-600"
                         : "cursor-pointer bg-blue-700"
                     } text-white rounded text-sm pr-4`}
-                    // onClick={
-                    //   isBtnDissabled
-                    //     ? async () => {
-                    //         _handleOnSubmitSelect();
-                    //         handleSubmit(
-                    //           _onSubmit(
-                    //             await triggerValidation(registerValidation)
-                    //           )
-                    //         );
-                    //       }
-                    //     : checkbox === false
-                    //     ? () => setOpen(true)
-                    //     : async () => {
-                    //         handleSubmit(
-                    //           _handleSubmitRegister(
-                    //             await triggerValidation(registerValidation)
-                    //           )
-                    //         );
-                    //       }
-                    // }
-                    onClick={() => setOpen(true)}
+                    onClick={
+                      isBtnDissabled
+                        ? async () => {
+                            _handleOnSubmitSelect();
+                            handleSubmit(
+                              _onSubmit(
+                                await triggerValidation(registerValidation)
+                              )
+                            );
+                          }
+                        : checkbox === false
+                        ? () => setOpen(true)
+                        : async () => {
+                            handleSubmit(
+                              _handleSubmitRegister(
+                                await triggerValidation(registerValidation)
+                              )
+                            );
+                          }
+                    }
+                    // onClick={() => setOpen(true)}
                     title="Harap lengkapi form dan checklist!"
                   >
                     {loadingRegister === false ? (
@@ -1358,22 +1358,22 @@ const RegistrationComponent = () => {
           </div>
         </form>
       </div>
-      <ModalR
+      <Modal
         title="Syarat & Ketentuan"
         open={open}
         onClose={() => {
           setOpen(false);
           setCheckbox(false);
         }}
-        onActionLeft={() => {
+        onActionOne={() => {
           setCheckbox(true);
           setOpen(false);
         }}
-        textLeft="Lanjutkan Pendaftaran"
-        textRight="Batal"
+        textOne="Lanjutkan Pendaftaran"
+        textTwo="Batal"
       >
         <TermsAndConditions />
-      </ModalR>
+      </Modal>
     </div>
   );
 };

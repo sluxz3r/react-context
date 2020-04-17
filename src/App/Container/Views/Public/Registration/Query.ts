@@ -5,7 +5,6 @@ export const REGISTER_NEW_VENDOR = gql`
     $name: String
     $owner: String
     $business_type: String
-    $register_date: Date
     $vendor_type: String
     $company_name: String
     $address: String
@@ -29,7 +28,6 @@ export const REGISTER_NEW_VENDOR = gql`
         name: $name
         owner: $owner
         business_type: $business_type
-        register_date: $register_date
         vendor_type: $vendor_type
         contacts: [
           {
