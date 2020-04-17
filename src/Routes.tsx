@@ -66,7 +66,7 @@ const Routes = () => {
   return (
     <React.Fragment>
       <PublicHeader />
-      <div className="lg:flex sm:flex sm:flex-1 lg:flex-1 lg:pt-14 lg:overflow-y-auto">
+      <div className="lg:flex sm:flex sm:flex-1 lg:flex-1 lg:pt-16 lg:overflow-y-auto">
         <div className="lg:w-auto">
           {login === null ? <PublicSidebar /> : <PrivateSidebar />}
         </div>
