@@ -1,0 +1,77 @@
+.bg-primary {
+  background-color: #eaba3a;
+}
+
+input[type="number"].no-arrow::-webkit-inner-spin-button,
+input[type="number"].no-arrow::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.w-options {
+  width: 168px;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.faster {
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.bg-modal {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+@media (min-width: 768px) {
+  .h-modal {
+    height: inherit;
+  }
+}
+
+@media (min-width: 1024px) {
+  .h-modal {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .max-h-modal {
+    max-height: 520px;
+  }
+}
