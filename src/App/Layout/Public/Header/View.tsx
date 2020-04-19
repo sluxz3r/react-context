@@ -519,7 +519,7 @@ export const PublicHeader = () => {
                   >
                     Registrasi
                   </div>
-                  <div className="cursor block xl:px-0 px-2 lg:px-4 mx-2 lg:inline-block text-sm rounded lg:border lg:border-gray-700 leading-none text-white lg:mt-0">
+                  <div className="cursor block xl:px-0 px-2 lg:px-4 mb-4 lg:mb-0 mx-2 lg:inline-block text-sm rounded lg:border lg:border-gray-700 leading-none text-white lg:mt-0">
                     <button
                       onClick={_openModalHandler}
                       className="bg-blue-600 py-2 px-4 hover:bg-blue-700"
