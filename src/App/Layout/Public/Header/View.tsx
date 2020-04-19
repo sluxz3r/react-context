@@ -68,11 +68,14 @@ export const PublicHeader = () => {
   };
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+  const [openHamburger, setOpenHamburger] = useState(false);
+  const _handleOpenHamburger = () => setOpenHamburger(!openHamburger);
+  const _handleCloseHamburger = () => setOpenHamburger(false);
 
   const openModalHandler = () => {
     setOpen(true);
     _handleClickAway();
+    _handleCloseHamburger();
   };
 
   const closeModalHandler = () => {
@@ -167,7 +170,7 @@ export const PublicHeader = () => {
           Masuk
         </button>
         <div className="text-center mb-5" style={{ fontSize: "10px" }}>
-          Atau,{" "}
+          Atau,
           <span
             className="text-blue-600 cursor-pointer"
             onClick={() => _handleRegistration()}
@@ -184,11 +187,12 @@ export const PublicHeader = () => {
     return (
       <nav className="bg-bluepindad-100 w-full items-center justify-between border-b-6 border-yellowpindad-100 fixed overflow-hidden z-10 top-0 left-0 right-0">
         <ClickAwayListener onClickAway={_handleClickAway}>
-          <div className="w-full flex flex-wrap">
+          <div className="w-full flex flex-wrap justify-between">
             <div className="flex">
               <span
                 onClick={() => {
                   _handleClickAway();
+                  _handleCloseHamburger();
                   _handleHomeMenu();
                 }}
                 className="cursor-pointer inline-block flex flex-row px-4"
@@ -202,6 +206,7 @@ export const PublicHeader = () => {
                 <span
                   onClick={() => {
                     _handleClickAway();
+                    _handleCloseHamburger();
                     _handleHomeMenu();
                   }}
                   className="font-bold text-lg sm:text-sm tracking-tight"
@@ -210,12 +215,12 @@ export const PublicHeader = () => {
                 </span>
               </div>
             </div>
-            <div className="block lg:hidden p-4">
+            <div className="block lg:hidden p-2">
               <div
-                onClick={handleOpen}
+                onClick={_handleOpenHamburger}
                 className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
               >
-                {!open ? (
+                {!openHamburger ? (
                   <svg
                     className="fill-current h-4 w-4"
                     viewBox="0 0 20 20"
@@ -240,7 +245,7 @@ export const PublicHeader = () => {
             </div>
             <div
               className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
-                !open ? "hidden" : ""
+                !openHamburger ? "hidden" : ""
               }`}
             >
               <div className="text-sm lg:flex-grow">
@@ -248,6 +253,7 @@ export const PublicHeader = () => {
                   className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
                   onClick={() => {
                     _handleClickAway();
+                    _handleCloseHamburger();
                     history.push("/");
                   }}
                 >
@@ -311,7 +317,7 @@ export const PublicHeader = () => {
                   </div>
                 </div>
                 <div
-                  className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
+                  className="cursor-pointer hover:bg-bluepindad-200 focus:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
                   onClick={handleOpenProcedure}
                 >
                   <div className="flex flex-col">
@@ -418,6 +424,7 @@ export const PublicHeader = () => {
                   className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
                   onClick={() => {
                     _handleClickAway();
+                    _handleCloseHamburger();
                     history.push("/contact");
                   }}
                 >
@@ -482,6 +489,7 @@ export const PublicHeader = () => {
                       className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
                       onClick={() => {
                         _handleClickAway();
+                        _handleCloseHamburger();
                         history.push("/registration");
                       }}
                     >
@@ -570,7 +578,7 @@ export const PublicHeader = () => {
             onClose={closeModalHandler}
             onActionOne={closeModalHandler}
             textOne="Cancel"
-            width="w-1/4"
+            width="w-4/5 lg:w-1/4"
           >
             <Login />
           </Modal>
@@ -597,6 +605,7 @@ export const PublicHeader = () => {
                     alt="Logo"
                     onClick={() => {
                       _handleClickAway();
+                      _handleCloseHamburger()
                       _handleHomeMenu();
                     }}
                   />
@@ -605,6 +614,7 @@ export const PublicHeader = () => {
                   <span
                     onClick={() => {
                       _handleClickAway();
+                      _handleCloseHamburger()
                       _handleHomeMenu();
                     }}
                     className="w-full cursor-pointer inline-block flex flex-row text-sm px-4 py-5 leading-none text-white hover:bg-bluepindad-200 lg:mt-0"
@@ -616,6 +626,7 @@ export const PublicHeader = () => {
                   <span
                     onClick={() => {
                       _handleClickAway();
+                      _handleCloseHamburger()
                       _handleHomeMenu();
                     }}
                     className="inline-block p-4 text-white hover:bg-bluepindad-200"
@@ -796,6 +807,7 @@ export const PublicHeader = () => {
                   <span
                     onClick={() => {
                       _handleClickAway();
+                      _handleCloseHamburger()
                       _handleContact();
                     }}
                     className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
@@ -864,6 +876,7 @@ export const PublicHeader = () => {
                       <span
                         onClick={() => {
                           _handleClickAway();
+                          _handleCloseHamburger()
                           _handleRegistration();
                         }}
                         className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
@@ -933,7 +946,7 @@ export const PublicHeader = () => {
                   <Login />
                 </Modal>
               </ul>
-              <div className="block lg:hidden p-4">
+              2
                 <div
                   onClick={handleOpen}
                   className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
@@ -982,6 +995,7 @@ export const PublicHeader = () => {
                   className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
                   onClick={() => {
                     _handleClickAway();
+                    _handleCloseHamburger()
                     _handleLogout();
                   }}
                 >

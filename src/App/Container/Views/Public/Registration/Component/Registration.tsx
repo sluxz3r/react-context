@@ -75,8 +75,6 @@ const RegistrationComponent = () => {
   });
   const { errors: errorsSelect } = useFormContext();
 
-  console.log("cek file err");
-
   return (
     <div className="block text-xs static overflow-y-auto">
       <div
