@@ -80,8 +80,10 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
   list-style-type: lower-roman;
 }
 
-.w-options {
-  width: 168px;
+@media (min-width: 1280px) {
+  .w-options {
+    width: 168px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -89,6 +91,7 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
     margin-top: 56px;
   }
 }
+
 @media (min-width: 1280px) {
   .top-options {
     margin-top: 56px;
@@ -103,22 +106,9 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
 }
 
 @media (min-width: 1280px) {
-  .left-language {
-    margin-top: 56px;
-    position: fixed;
-  }
-}
-
-@media (min-width: 1024px) {
-  .left-options {
-    margin-left: -38px;
-  }
-}
-
-@media (min-width: 1280px) {
   .left-options {
     margin-top: 85px;
-    margin-left: 1159px;
+    margin-left: 960px;
     position: fixed;
   }
 }

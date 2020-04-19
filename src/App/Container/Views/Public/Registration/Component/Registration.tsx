@@ -66,7 +66,8 @@ const RegistrationComponent = () => {
     recaptcha,
     _onValidate,
     validate,
-    setValidate,
+    errPkpAttachment,
+    errTax_document_type,
   } = useContext(RegistrationContext);
   const { register, handleSubmit, errors, triggerValidation } = useForm({
     validateCriteriaMode: "all",
@@ -1163,6 +1164,11 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                  {errPkpAttachment !== "" && (
+                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                      File size is too large
+                    </p>
+                  )}
                   <ErrorMessage errors={errors} name="pkpAttachment">
                     {({ messages }) => {
                       return (
@@ -1259,6 +1265,11 @@ const RegistrationComponent = () => {
               <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                 <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right"></div>
                 <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                  {errTax_document_type !== "" && (
+                    <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                      File size is too large
+                    </p>
+                  )}
                   <ErrorMessage errors={errors} name="tax_document_type">
                     {({ messages }) => {
                       return (
