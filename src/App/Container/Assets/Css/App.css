@@ -118,7 +118,7 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
 @media (min-width: 1280px) {
   .left-options {
     margin-top: 85px;
-    margin-left: 1159px;
+    margin-left: 960px;
     position: fixed;
   }
 }

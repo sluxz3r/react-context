@@ -184,24 +184,28 @@ export const PublicHeader = () => {
     return (
       <nav className="bg-bluepindad-100 w-full items-center justify-between border-b-6 border-yellowpindad-100 fixed overflow-hidden z-10 top-0 left-0 right-0">
         <ClickAwayListener onClickAway={_handleClickAway}>
-          <div className="flex flex-wrap">
+          <div className="w-full flex flex-wrap">
             <div className="flex">
-              <span className="inline-block flex flex-row px-4 bg-gray-500">
-                <img
-                  src={logo}
-                  width="60"
-                  alt="Logo"
-                  onClick={() => {
-                    _handleClickAway();
-                    _handleHomeMenu();
-                  }}
-                />
+              <span
+                onClick={() => {
+                  _handleClickAway();
+                  _handleHomeMenu();
+                }}
+                className="cursor-pointer inline-block flex flex-row px-4"
+              >
+                <img src={logo} width="60" alt="Logo" className="py-2" />
               </span>
               <div
                 className="cursor-pointer hover:bg-bluepindad-200 flex items-center flex-shrink-0 text-white px-4"
                 onClick={() => history.push("/")}
               >
-                <span className="font-bold text-lg sm:text-sm tracking-tight">
+                <span
+                  onClick={() => {
+                    _handleClickAway();
+                    _handleHomeMenu();
+                  }}
+                  className="font-bold text-lg sm:text-sm tracking-tight"
+                >
                   e-Procurements
                 </span>
               </div>
@@ -242,7 +246,10 @@ export const PublicHeader = () => {
               <div className="text-sm lg:flex-grow">
                 <div
                   className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
-                  onClick={() => history.push("/")}
+                  onClick={() => {
+                    _handleClickAway();
+                    history.push("/");
+                  }}
                 >
                   Beranda
                 </div>
@@ -278,24 +285,24 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                      className={`flex flex-col text-sm shadow-lg border border-gray-300 w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
                         !openGuidance && "hidden"
                       }`}
                     >
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 sm:hover:bg-gray-400 md:hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/user_manual")}
                       >
                         User Manual
                       </div>
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/integrity_pact")}
                       >
                         Integrity Pack
                       </div>
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/term_condition")}
                       >
                         Syarat Ketentuan
@@ -335,18 +342,18 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                      className={`flex flex-col text-sm shadow-lg border border-gray-300 w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
                         !openProcedure && "hidden"
                       }`}
                     >
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/registration_procedure")}
                       >
                         Prosedur Registrasi
                       </div>
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() =>
                           history.push("/qualification_requirement")
                         }
@@ -354,7 +361,7 @@ export const PublicHeader = () => {
                         Persyaratan Kualifikasi
                       </div>
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/tender_requirement")}
                       >
                         Persyaratan Pembelian
@@ -394,12 +401,12 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
+                      className={`flex flex-col text-sm shadow-lg border border-gray-300 w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options  rounded ${
                         !openAnnouncement && "hidden"
                       }`}
                     >
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/procurements")}
                       >
                         Lelang
@@ -409,7 +416,10 @@ export const PublicHeader = () => {
                 </div>
                 <div
                   className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
-                  onClick={() => history.push("/contact")}
+                  onClick={() => {
+                    _handleClickAway();
+                    history.push("/contact");
+                  }}
                 >
                   Kontak
                 </div>
@@ -447,18 +457,18 @@ export const PublicHeader = () => {
                       )}
                     </div>
                     <div
-                      className={`flex flex-col w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options left-language  rounded ${
+                      className={`flex flex-col text-sm shadow-lg border border-gray-300 w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options left-language rounded ${
                         !openLanguage && "hidden"
                       }`}
                     >
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/")}
                       >
                         English
                       </div>
                       <div
-                        className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
+                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                         onClick={() => history.push("/")}
                       >
                         Bahasa
@@ -466,15 +476,36 @@ export const PublicHeader = () => {
                     </div>
                   </div>
                 </div>
-                {token !== null ? (
-                  <>
+                {token === null && (
+                  <Fragment>
+                    <div
+                      className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
+                      onClick={() => {
+                        _handleClickAway();
+                        history.push("/registration");
+                      }}
+                    >
+                      Registrasi
+                    </div>
+                    <div className="cursor block xl:px-0 px-4 mx-2 lg:inline-block text-sm rounded border border-gray-700 leading-none text-white lg:mt-0">
+                      <button
+                        onClick={openModalHandler}
+                        className="bg-blue-600 py-2 px-4 hover:bg-blue-700"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </Fragment>
+                )}
+                {token === null && (
+                  <Fragment>
                     <div
                       className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
                       onClick={handleOpenOptions}
                     >
                       <div className="flex flex-col">
                         <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                          <span>PINDAD JAYA</span>
+                          <span>User Tes</span>
                           {!openOptions ? (
                             <svg
                               className="fill-current h-4 w-4 mr-2 ml-2"
@@ -499,55 +530,50 @@ export const PublicHeader = () => {
                             </svg>
                           )}
                         </div>
-                        <div
-                          className={`flex flex-col  lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options border border-gray-300 rounded ${
-                            !openOptions ? "hidden" : ""
-                          }`}
-                        >
-                          <div
-                            className="cursor-pointer hover:bg-bluepindad-200 font-bold hover:bg-gray-400 py-2 px-4"
-                            onClick={() => history.push("/")}
-                          >
-                            Username
-                          </div>
-                          <div
-                            className="cursor-pointer hover:bg-bluepindad-200 border-t border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
-                            onClick={() => history.push("/")}
-                          >
-                            Ganti Password
-                          </div>
-                          <div
-                            className="cursor-pointer hover:bg-bluepindad-200 hover:bg-gray-400 py-2 px-4"
-                            onClick={() => {
-                              removeAuthCredential();
-                              history.push("/");
-                            }}
-                          >
-                            Keluar
-                          </div>
-                        </div>
                       </div>
                     </div>
-                    {/*  */}
-                  </>
-                ) : (
-                  <>
-                    <div
-                      className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
-                      onClick={() => history.push("/registration")}
-                    >
-                      Registrasi
-                    </div>
-                    <div className="cursor block xl:px-0 px-4 lg:inline-block text-sm   rounded border border-gray-700 leading-none text-white lg:mt-0">
-                      <button className="bg-blue-600border-1 border-teal-900  text-white text-xs py-2 px-3 ">
-                        Login
-                      </button>
-                    </div>
-                  </>
+                  </Fragment>
                 )}
+              </div>
+              <div
+                className={`flex flex-col text-sm shadow-lg border border-gray-300 w-options lg:bg-white text-left static md:static lg:absolute text-white lg:text-black top-options left-options rounded ${
+                  !openOptions ? "hidden" : ""
+                }`}
+              >
+                <div
+                  className="cursor-pointer font-bold hover:bg-gray-300 py-2 px-4"
+                  onClick={() => history.push("/")}
+                >
+                  Username
+                </div>
+                <div
+                  className="cursor-pointer border-t border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
+                  onClick={() => history.push("/")}
+                >
+                  Ganti Password
+                </div>
+                <div
+                  className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                  onClick={() => {
+                    removeAuthCredential();
+                    history.push("/");
+                  }}
+                >
+                  Keluar
+                </div>
               </div>
             </div>
           </div>
+          <Modal
+            title="Login"
+            open={open}
+            onClose={closeModalHandler}
+            onActionOne={closeModalHandler}
+            textOne="Cancel"
+            width="w-1/4"
+          >
+            <Login />
+          </Modal>
         </ClickAwayListener>
       </nav>
     );
