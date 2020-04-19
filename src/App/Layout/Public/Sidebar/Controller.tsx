@@ -44,7 +44,7 @@ export const LoginController = ({ children }) => {
         },
       });
       setCredential({ token: data.LoginUser, expired: "" });
-      window.location.reload();
+      window.location.href = '/';
     } catch (error) {
       setShowError(true)
       setErrorMessage(error.graphQLErrors[0].message)

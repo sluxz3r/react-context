@@ -12,7 +12,7 @@ export const PublicHeader = () => {
   const token: any = getToken();
   const _handleLogout = () => {
     removeAuthCredential();
-    window.location.reload();
+    window.location.href = '/';
   };
   const _handleHomeMenu = () => {
     history.push("/");
@@ -290,7 +290,7 @@ export const PublicHeader = () => {
                     )}
                   </div>
                   <div
-                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
+                    className={`flex flex-col text-xs shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
                       !openGuidance && "hidden"
                     }`}
                   >
@@ -356,7 +356,7 @@ export const PublicHeader = () => {
                     )}
                   </div>
                   <div
-                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
+                    className={`flex flex-col text-xs shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
                       !openProcedure && "hidden"
                     }`}
                   >
@@ -422,7 +422,7 @@ export const PublicHeader = () => {
                     )}
                   </div>
                   <div
-                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
+                    className={`flex flex-col text-xs shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
                       !openAnnouncement && "hidden"
                     }`}
                   >
@@ -482,7 +482,7 @@ export const PublicHeader = () => {
                     )}
                   </div>
                   <div
-                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options left-language rounded ${
+                    className={`flex flex-col text-xs shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options left-language rounded ${
                       !openLanguage && "hidden"
                     }`}
                   >
