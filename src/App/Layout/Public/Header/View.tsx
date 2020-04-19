@@ -72,13 +72,13 @@ export const PublicHeader = () => {
   const _handleOpenHamburger = () => setOpenHamburger(!openHamburger);
   const _handleCloseHamburger = () => setOpenHamburger(false);
 
-  const openModalHandler = () => {
+  const _openModalHandler = () => {
     setOpen(true);
     _handleClickAway();
     _handleCloseHamburger();
   };
 
-  const closeModalHandler = () => {
+  const _closeModalHandler = () => {
     setOpen(false);
   };
 
@@ -297,19 +297,28 @@ export const PublicHeader = () => {
                     >
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/user_manual")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/user_manual");
+                        }}
                       >
                         User Manual
                       </div>
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/integrity_pact")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/integrity_pact");
+                        }}
                       >
                         Integrity Pack
                       </div>
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/term_condition")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/term_condition");
+                        }}
                       >
                         Syarat Ketentuan
                       </div>
@@ -354,21 +363,28 @@ export const PublicHeader = () => {
                     >
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/registration_procedure")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/registration_procedure");
+                        }}
                       >
                         Prosedur Registrasi
                       </div>
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() =>
-                          history.push("/qualification_requirement")
-                        }
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/qualification_requirement");
+                        }}
                       >
                         Persyaratan Kualifikasi
                       </div>
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/tender_requirement")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/tender_requirement");
+                        }}
                       >
                         Persyaratan Pembelian
                       </div>
@@ -413,7 +429,10 @@ export const PublicHeader = () => {
                     >
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/procurements")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/procurements");
+                        }}
                       >
                         Lelang
                       </div>
@@ -425,7 +444,7 @@ export const PublicHeader = () => {
                   onClick={() => {
                     _handleClickAway();
                     _handleCloseHamburger();
-                    history.push("/contact");
+                    _handleContact();
                   }}
                 >
                   Kontak
@@ -470,13 +489,19 @@ export const PublicHeader = () => {
                     >
                       <div
                         className="cursor-pointer border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/");
+                        }}
                       >
                         English
                       </div>
                       <div
                         className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => history.push("/")}
+                        onClick={() => {
+                          _handleCloseHamburger();
+                          history.push("/");
+                        }}
                       >
                         Bahasa
                       </div>
@@ -490,14 +515,14 @@ export const PublicHeader = () => {
                       onClick={() => {
                         _handleClickAway();
                         _handleCloseHamburger();
-                        history.push("/registration");
+                        _handleRegistration();
                       }}
                     >
                       Registrasi
                     </div>
                     <div className="cursor block xl:px-0 px-4 mx-2 lg:inline-block text-sm rounded border border-gray-700 leading-none text-white lg:mt-0">
                       <button
-                        onClick={openModalHandler}
+                        onClick={_openModalHandler}
                         className="bg-blue-600 py-2 px-4 hover:bg-blue-700"
                       >
                         Login
@@ -550,21 +575,27 @@ export const PublicHeader = () => {
               >
                 <div
                   className="cursor-pointer font-bold hover:bg-gray-300 py-2 px-4"
-                  onClick={() => history.push("/")}
+                  onClick={() => {
+                    _handleCloseHamburger();
+                    history.push("/");
+                  }}
                 >
                   Username
                 </div>
                 <div
                   className="cursor-pointer border-t border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
-                  onClick={() => history.push("/")}
+                  onClick={() => {
+                    _handleCloseHamburger();
+                    history.push("/");
+                  }}
                 >
                   Ganti Password
                 </div>
                 <div
                   className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                   onClick={() => {
-                    removeAuthCredential();
-                    history.push("/");
+                    _handleCloseHamburger();
+                    _handleLogout();
                   }}
                 >
                   Keluar
@@ -575,8 +606,8 @@ export const PublicHeader = () => {
           <Modal
             title="Login"
             open={open}
-            onClose={closeModalHandler}
-            onActionOne={closeModalHandler}
+            onClose={_closeModalHandler}
+            onActionOne={_closeModalHandler}
             textOne="Cancel"
             width="w-4/5 lg:w-1/4"
           >
@@ -887,7 +918,7 @@ export const PublicHeader = () => {
                     <li>
                       <span className="inline-block px-4 text-white text-xs">
                         <button
-                          onClick={openModalHandler}
+                          onClick={_openModalHandler}
                           className="bg-blue-600 py-1 px-4 hover:bg-blue-700"
                         >
                           Login
@@ -938,8 +969,8 @@ export const PublicHeader = () => {
                 <Modal
                   title="Login"
                   open={open}
-                  onClose={closeModalHandler}
-                  onActionOne={closeModalHandler}
+                  onClose={_closeModalHandler}
+                  onActionOne={_closeModalHandler}
                   textOne="Cancel"
                   width="w-1/4"
                 >
