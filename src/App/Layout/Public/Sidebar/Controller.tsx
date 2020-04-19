@@ -26,8 +26,10 @@ export const LoginController = ({ children }) => {
     try {
       const { data } = await login({
         variables: {
-          username: user.username,
-          password: user.password,
+          data: {
+            username: user.username,
+            password: user.password,
+          },
         },
       });
       setCredential({ token: data.LoginUser, expired: "" });

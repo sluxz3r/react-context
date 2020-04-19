@@ -41,7 +41,9 @@ export const ForgotController = ({ children }) => {
     try {
       const { data } = await requetForgotPassword({
         variables: {
-          username: user.username,
+          data: {
+            vendor_code: user.username,
+          }
         },
       });
       setData(data);
