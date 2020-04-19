@@ -183,863 +183,439 @@ export const PublicHeader = () => {
     );
   };
 
-  const Contoh = () => {
-    return (
-      <nav className="bg-bluepindad-100 w-full items-center justify-between border-b-6 border-yellowpindad-100 fixed overflow-hidden z-10 top-0 left-0 right-0">
-        <ClickAwayListener onClickAway={_handleClickAway}>
-          <div className="w-full flex flex-wrap justify-between">
-            <div className="flex">
+  return (
+    <nav className="bg-bluepindad-100 w-full items-center justify-between border-b-6 border-yellowpindad-100 fixed overflow-hidden z-10 top-0 left-0 right-0">
+      <ClickAwayListener onClickAway={_handleClickAway}>
+        <div className="w-full flex flex-wrap justify-between">
+          <div className="flex">
+            <span
+              onClick={() => {
+                _handleClickAway();
+                _handleCloseHamburger();
+                _handleHomeMenu();
+              }}
+              className="cursor-pointer inline-block flex flex-row px-4"
+            >
+              <img src={logo} width="60" alt="Logo" className="py-2" />
+            </span>
+            <div
+              className="cursor-pointer hover:bg-bluepindad-200 flex items-center flex-shrink-0 text-white px-4"
+              onClick={() => history.push("/")}
+            >
               <span
                 onClick={() => {
                   _handleClickAway();
                   _handleCloseHamburger();
                   _handleHomeMenu();
                 }}
-                className="cursor-pointer inline-block flex flex-row px-4"
+                className="font-bold text-lg sm:text-sm tracking-tight"
               >
-                <img src={logo} width="60" alt="Logo" className="py-2" />
+                e-Procurements
               </span>
-              <div
-                className="cursor-pointer hover:bg-bluepindad-200 flex items-center flex-shrink-0 text-white px-4"
-                onClick={() => history.push("/")}
-              >
-                <span
-                  onClick={() => {
-                    _handleClickAway();
-                    _handleCloseHamburger();
-                    _handleHomeMenu();
-                  }}
-                  className="font-bold text-lg sm:text-sm tracking-tight"
-                >
-                  e-Procurements
-                </span>
-              </div>
             </div>
-            <div className="block lg:hidden p-2">
-              <div
-                onClick={_handleOpenHamburger}
-                className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
-              >
-                {!openHamburger ? (
-                  <svg
-                    className="fill-current h-4 w-4"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <title>Menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                  </svg>
-                ) : (
-                  <svg
-                    className="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 352 512"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                    ></path>
-                  </svg>
-                )}
-              </div>
-            </div>
+          </div>
+          <div className="block lg:hidden p-2">
             <div
-              className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
-                !openHamburger ? "hidden" : ""
-              }`}
+              onClick={_handleOpenHamburger}
+              className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
             >
-              <div className="text-sm lg:flex-grow">
-                <div
-                  className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
-                  onClick={() => {
-                    _handleClickAway();
-                    _handleCloseHamburger();
-                    history.push("/");
-                  }}
+              {!openHamburger ? (
+                <svg
+                  className="fill-current h-4 w-4"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Beranda
-                </div>
-                <div
-                  className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
-                  onClick={handleOpenGuidance}
+                  <title>Menu</title>
+                  <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                </svg>
+              ) : (
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 352 512"
                 >
-                  <div className="flex flex-col">
-                    <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                      <span>Panduan</span>
-                      {!openGuidance ? (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                          ></path>
-                        </svg>
-                      ) : (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                          ></path>
-                        </svg>
-                      )}
-                    </div>
-                    <div
-                      className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
-                        !openGuidance && "hidden"
-                      }`}
-                    >
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/user_manual");
-                        }}
-                      >
-                        User Manual
-                      </div>
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/integrity_pact");
-                        }}
-                      >
-                        Integrity Pack
-                      </div>
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/term_condition");
-                        }}
-                      >
-                        Syarat Ketentuan
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="cursor-pointer hover:bg-bluepindad-200 focus:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
-                  onClick={handleOpenProcedure}
-                >
-                  <div className="flex flex-col">
-                    <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                      <span>Prosedur</span>
-                      {!openProcedure ? (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                          ></path>
-                        </svg>
-                      ) : (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                          ></path>
-                        </svg>
-                      )}
-                    </div>
-                    <div
-                      className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
-                        !openProcedure && "hidden"
-                      }`}
-                    >
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/registration_procedure");
-                        }}
-                      >
-                        Prosedur Registrasi
-                      </div>
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/qualification_requirement");
-                        }}
-                      >
-                        Persyaratan Kualifikasi
-                      </div>
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/tender_requirement");
-                        }}
-                      >
-                        Persyaratan Pembelian
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
-                  onClick={handleOpenAnnouncement}
-                >
-                  <div className="flex flex-col">
-                    <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                      <span>Pengumuman</span>
-                      {!openAnnouncement ? (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                          ></path>
-                        </svg>
-                      ) : (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                          ></path>
-                        </svg>
-                      )}
-                    </div>
-                    <div
-                      className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
-                        !openAnnouncement && "hidden"
-                      }`}
-                    >
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/procurements");
-                        }}
-                      >
-                        Lelang
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
-                  onClick={() => {
-                    _handleClickAway();
-                    _handleCloseHamburger();
-                    _handleContact();
-                  }}
-                >
-                  Kontak
-                </div>
+                  <path
+                    fill="currentColor"
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                  ></path>
+                </svg>
+              )}
+            </div>
+          </div>
+          <div
+            className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
+              !openHamburger ? "hidden" : ""
+            }`}
+          >
+            <div className="text-sm lg:flex-grow">
+              <div
+                className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
+                onClick={() => {
+                  _handleClickAway();
+                  _handleCloseHamburger();
+                  history.push("/");
+                }}
+              >
+                Beranda
               </div>
-              <div className="md:mr-6 lg:mr-6">
-                <div
-                  className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
-                  onClick={handleOpenLanguage}
-                >
-                  <div className="flex flex-col">
-                    <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                      <span>Bahasa</span>
-                      {!openLanguage ? (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                          ></path>
-                        </svg>
-                      ) : (
-                        <svg
-                          className="fill-current h-4 w-4 mr-2 ml-2"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 320 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                          ></path>
-                        </svg>
-                      )}
-                    </div>
-                    <div
-                      className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options left-language rounded ${
-                        !openLanguage && "hidden"
-                      }`}
-                    >
-                      <div
-                        className="cursor-pointer border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/");
-                        }}
+              <div
+                className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
+                onClick={handleOpenGuidance}
+              >
+                <div className="flex flex-col">
+                  <div className="flex flex-row items-center pl-4 pr-2 py-5">
+                    <span>Panduan</span>
+                    {!openGuidance ? (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
                       >
-                        English
-                      </div>
-                      <div
-                        className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                        onClick={() => {
-                          _handleCloseHamburger();
-                          history.push("/");
-                        }}
+                        <path
+                          fill="currentColor"
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
                       >
-                        Bahasa
-                      </div>
-                    </div>
+                        <path
+                          fill="currentColor"
+                          d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
+                        ></path>
+                      </svg>
+                    )}
                   </div>
-                </div>
-                {token === null && (
-                  <Fragment>
+                  <div
+                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
+                      !openGuidance && "hidden"
+                    }`}
+                  >
                     <div
-                      className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
                       onClick={() => {
-                        _handleClickAway();
                         _handleCloseHamburger();
-                        _handleRegistration();
+                        history.push("/user_manual");
                       }}
                     >
-                      Registrasi
+                      User Manual
                     </div>
-                    <div className="cursor block xl:px-0 px-2 lg:px-4 mx-2 lg:inline-block text-sm rounded lg:border lg:border-gray-700 leading-none text-white lg:mt-0">
-                      <button
-                        onClick={_openModalHandler}
-                        className="bg-blue-600 py-2 px-4 hover:bg-blue-700"
-                      >
-                        Login
-                      </button>
-                    </div>
-                  </Fragment>
-                )}
-                {token === null && (
-                  <Fragment>
                     <div
-                      className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
-                      onClick={handleOpenOptions}
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/integrity_pact");
+                      }}
                     >
-                      <div className="flex flex-col">
-                        <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                          <span>User Tes</span>
-                          {!openOptions ? (
-                            <svg
-                              className="fill-current h-4 w-4 mr-2 ml-2"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 320 512"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                              ></path>
-                            </svg>
-                          ) : (
-                            <svg
-                              className="fill-current h-4 w-4 mr-2 ml-2"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 320 512"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                              ></path>
-                            </svg>
-                          )}
-                        </div>
-                      </div>
+                      Integrity Pack
                     </div>
-                  </Fragment>
-                )}
+                    <div
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/term_condition");
+                      }}
+                    >
+                      Syarat Ketentuan
+                    </div>
+                  </div>
+                </div>
               </div>
               <div
-                className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options left-options rounded ${
-                  !openOptions ? "hidden" : ""
-                }`}
+                className="cursor-pointer hover:bg-bluepindad-200 focus:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
+                onClick={handleOpenProcedure}
               >
-                <div
-                  className="cursor-pointer font-bold hover:bg-gray-300 py-2 px-4"
-                  onClick={() => {
-                    _handleCloseHamburger();
-                    _handleClickAway();
-                    history.push("/");
-                  }}
-                >
-                  Username
-                </div>
-                <div
-                  className="cursor-pointer border-t border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
-                  onClick={() => {
-                    _handleCloseHamburger();
-                    _handleClickAway();
-                    history.push("/");
-                  }}
-                >
-                  Ganti Password
-                </div>
-                <div
-                  className="cursor-pointer hover:bg-gray-300 py-2 px-4"
-                  onClick={() => {
-                    _handleCloseHamburger();
-                    _handleClickAway();
-                    _handleLogout();
-                  }}
-                >
-                  Keluar
+                <div className="flex flex-col">
+                  <div className="flex flex-row items-center pl-4 pr-2 py-5">
+                    <span>Prosedur</span>
+                    {!openProcedure ? (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
+                        ></path>
+                      </svg>
+                    )}
+                  </div>
+                  <div
+                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
+                      !openProcedure && "hidden"
+                    }`}
+                  >
+                    <div
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/registration_procedure");
+                      }}
+                    >
+                      Prosedur Registrasi
+                    </div>
+                    <div
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/qualification_requirement");
+                      }}
+                    >
+                      Persyaratan Kualifikasi
+                    </div>
+                    <div
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/tender_requirement");
+                      }}
+                    >
+                      Persyaratan Pembelian
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div
+                className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
+                onClick={handleOpenAnnouncement}
+              >
+                <div className="flex flex-col">
+                  <div className="flex flex-row items-center pl-4 pr-2 py-5">
+                    <span>Pengumuman</span>
+                    {!openAnnouncement ? (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
+                        ></path>
+                      </svg>
+                    )}
+                  </div>
+                  <div
+                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
+                      !openAnnouncement && "hidden"
+                    }`}
+                  >
+                    <div
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/procurements");
+                      }}
+                    >
+                      Lelang
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
+                onClick={() => {
+                  _handleClickAway();
+                  _handleCloseHamburger();
+                  _handleContact();
+                }}
+              >
+                Kontak
+              </div>
             </div>
-          </div>
-          <Modal
-            title="Login"
-            open={open}
-            onClose={_closeModalHandler}
-            onActionOne={_closeModalHandler}
-            textOne="Cancel"
-            width="w-4/5 lg:w-1/4"
-          >
-            <Login />
-          </Modal>
-        </ClickAwayListener>
-      </nav>
-    );
-  };
-
-  return (
-    <Fragment>
-      <Contoh />
-      {/* <nav className="flex items-center justify-between flex-wrap bg-bluepindad-100 border-b-6 border-yellowpindad-100 py-0 fixed w-full z-10 top-0 left-0 right-0 overflow-hidden">
-        <ClickAwayListener onClickAway={_handleClickAway}>
-          <div className="w-screen px-0 lg:px-6 py-2 lg:py-0">
+            <div className="md:mr-6 lg:mr-6">
+              <div
+                className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
+                onClick={handleOpenLanguage}
+              >
+                <div className="flex flex-col">
+                  <div className="flex flex-row items-center pl-4 pr-2 py-5">
+                    <span>Bahasa</span>
+                    {!openLanguage ? (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                        ></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="fill-current h-4 w-4 mr-2 ml-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
+                        ></path>
+                      </svg>
+                    )}
+                  </div>
+                  <div
+                    className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options left-language rounded ${
+                      !openLanguage && "hidden"
+                    }`}
+                  >
+                    <div
+                      className="cursor-pointer border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/");
+                      }}
+                    >
+                      English
+                    </div>
+                    <div
+                      className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                      onClick={() => {
+                        _handleCloseHamburger();
+                        history.push("/");
+                      }}
+                    >
+                      Bahasa
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {token === null && (
+                <Fragment>
+                  <div
+                    className="cursor-pointer hover:bg-bluepindad-200 block lg:inline-block text-sm px-4 py-5 leading-none text-white lg:mt-0"
+                    onClick={() => {
+                      _handleClickAway();
+                      _handleCloseHamburger();
+                      _handleRegistration();
+                    }}
+                  >
+                    Registrasi
+                  </div>
+                  <div className="cursor block xl:px-0 px-2 lg:px-4 mx-2 lg:inline-block text-sm rounded lg:border lg:border-gray-700 leading-none text-white lg:mt-0">
+                    <button
+                      onClick={_openModalHandler}
+                      className="bg-blue-600 py-2 px-4 hover:bg-blue-700"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </Fragment>
+              )}
+              {token !== null && (
+                <Fragment>
+                  <div
+                    className="cursor-pointer hover:bg-bluepindad-200 w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white lg:mt-0"
+                    onClick={handleOpenOptions}
+                  >
+                    <div className="flex flex-col">
+                      <div className="flex flex-row items-center pl-4 pr-2 py-5">
+                        <span>User Tes</span>
+                        {!openOptions ? (
+                          <svg
+                            className="fill-current h-4 w-4 mr-2 ml-2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                            ></path>
+                          </svg>
+                        ) : (
+                          <svg
+                            className="fill-current h-4 w-4 mr-2 ml-2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
+                            ></path>
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Fragment>
+              )}
+            </div>
             <div
-              className="w-full justify-between flex-row lg:flex lg:items-center lg:w-auto lg:block text-sm lg:pt-0 cursor-pointer"
-              id="nav-content"
+              className={`flex flex-col text-sm shadow-lg lg:border lg:border-gray-300 w-options bg-white text-left static md:static lg:absolute text-black top-options left-options rounded ${
+                !openOptions ? "hidden" : ""
+              }`}
             >
-              <ul className="list-reset lg:flex justify-start flex-2 items-center">
-                <span className="inline-block flex flex-row px-4 bg-gray-500">
-                  <img
-                    src={logo}
-                    width="60"
-                    alt="Logo"
-                    onClick={() => {
-                      _handleClickAway();
-                      _handleCloseHamburger()
-                      _handleHomeMenu();
-                    }}
-                  />
-                </span>
-                <li>
-                  <span
-                    onClick={() => {
-                      _handleClickAway();
-                      _handleCloseHamburger()
-                      _handleHomeMenu();
-                    }}
-                    className="w-full cursor-pointer inline-block flex flex-row text-sm px-4 py-5 leading-none text-white hover:bg-bluepindad-200 lg:mt-0"
-                  >
-                    e-Procurement
-                  </span>
-                </li>
-                <li>
-                  <span
-                    onClick={() => {
-                      _handleClickAway();
-                      _handleCloseHamburger()
-                      _handleHomeMenu();
-                    }}
-                    className="inline-block p-4 text-white hover:bg-bluepindad-200"
-                  >
-                    Beranda
-                  </span>
-                </li>
-                <li>
-                  <div
-                    className="w-full cursor-pointer hidden w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white hover:bg-bluepindad-200 lg:mt-0"
-                    onClick={handleOpenGuidance}
-                  >
-                    <div className="flex flex-col">
-                      <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                        <span>Panduan</span>
-                        {!openGuidance ? (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                            ></path>
-                          </svg>
-                        ) : (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                            ></path>
-                          </svg>
-                        )}
-                      </div>
-                      <div
-                        className={`border border-gray-300 text-sm shadowlg:-llg:g flex flex-col w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
-                          !openGuidance && "hidden"
-                        }`}
-                      >
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 sm:hover:bg-gray-400 md:hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/user_manual")}
-                        >
-                          User Manual
-                        </div>
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/integrity_fact")}
-                        >
-                          Integrity Pack
-                        </div>
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/term_condition")}
-                        >
-                          Syarat Ketentuan
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    className="w-full cursor-pointer hidden w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white  hover:bg-bluepindad-200 lg:mt-0"
-                    onClick={handleOpenProcedure}
-                  >
-                    <div className="flex flex-col">
-                      <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                        <span>Prosedur</span>
-                        {!openProcedure ? (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                            ></path>
-                          </svg>
-                        ) : (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                            ></path>
-                          </svg>
-                        )}
-                      </div>
-                      <div
-                        className={`border border-gray-300 text-sm shadowlg:-llg:g flex flex-col w-options bg-white text-left static md:static lg:absolute text-black top-options rounded ${
-                          !openProcedure && "hidden"
-                        }`}
-                      >
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() =>
-                            history.push("/registration_procedure")
-                          }
-                        >
-                          Prosedur Registrasi
-                        </div>
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() =>
-                            history.push("/qualification_requirement")
-                          }
-                        >
-                          Persyaratan Kualifikasi
-                        </div>
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/tender_requirement")}
-                        >
-                          Persyaratan Pembelian
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    className="w-full cursor-pointer hidden w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white  hover:bg-bluepindad-200 lg:mt-0"
-                    onClick={handleOpenAnnouncement}
-                  >
-                    <div className="flex flex-col">
-                      <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                        <span>Pengumuman</span>
-                        {!openAnnouncement ? (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                            ></path>
-                          </svg>
-                        ) : (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                            ></path>
-                          </svg>
-                        )}
-                      </div>
-                      <div
-                        className={`border border-gray-300 text-sm shadowlg:-llg:g flex flex-col w-options bg-white text-left static md:static lg:absolute text-black top-options  rounded ${
-                          !openAnnouncement && "hidden"
-                        }`}
-                      >
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/procurements")}
-                        >
-                          Lelang
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <span
-                    onClick={() => {
-                      _handleClickAway();
-                      _handleCloseHamburger()
-                      _handleContact();
-                    }}
-                    className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
-                  >
-                    Kontak
-                  </span>
-                </li>
-              </ul>
-              <ul className="list-reset lg:flex justify-start flex-2 items-center">
-                <li>
-                  <div
-                    className="w-full cursor-pointer hidden w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white  hover:bg-bluepindad-200 lg:mt-0"
-                    onClick={handleOpenLanguage}
-                  >
-                    <div className="flex flex-col">
-                      <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                        <span>Bahasa</span>
-                        {!openLanguage ? (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                            ></path>
-                          </svg>
-                        ) : (
-                          <svg
-                            className="fill-current h-4 w-4 mr-2 ml-2"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                            ></path>
-                          </svg>
-                        )}
-                      </div>
-                      <div
-                        className={`border border-gray-300 text-sm shadowlg:-llg:g flex flex-cw-options lg:bg-white text-left text-black left-language rounded ${
-                          !openLanguage && "hidden"
-                        }`}
-                      >
-                        <div
-                          className="w-full cursor-pointer hidden border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/")}
-                        >
-                          English
-                        </div>
-                        <div
-                          className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                          onClick={() => history.push("/")}
-                        >
-                          Bahasa
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                {token === null && (
-                  <React.Fragment>
-                    <li>
-                      <span
-                        onClick={() => {
-                          _handleClickAway();
-                          _handleCloseHamburger()
-                          _handleRegistration();
-                        }}
-                        className="inline-block p-4 text-white text-xs hover:bg-bluepindad-200"
-                      >
-                        Registrasi
-                      </span>
-                    </li>
-                    <li>
-                      <span className="inline-block px-4 text-white text-xs">
-                        <button
-                          onClick={_openModalHandler}
-                          className="bg-blue-600 py-1 px-4 hover:bg-blue-700"
-                        >
-                          Login
-                        </button>
-                      </span>
-                    </li>
-                  </React.Fragment>
-                )}
-                {token !== null && (
-                  <React.Fragment>
-                    <li>
-                      <div
-                        className="w-full cursor-pointer hidden w-full md:w-full lg:w-auto block lg:inline-block border-none text-sm leading-none text-white  hover:bg-bluepindad-200 lg:mt-0"
-                        onClick={handleOpenOptions}
-                      >
-                        <div className="flex flex-col">
-                          <div className="flex flex-row items-center pl-4 pr-2 py-5">
-                            <span>User Tes</span>
-                            {!openOptions ? (
-                              <svg
-                                className="fill-current h-4 w-4 mr-2 ml-2"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 320 512"
-                              >
-                                <path
-                                  fill="currentColor"
-                                  d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                                ></path>
-                              </svg>
-                            ) : (
-                              <svg
-                                className="fill-current h-4 w-4 mr-2 ml-2"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 320 512"
-                              >
-                                <path
-                                  fill="currentColor"
-                                  d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"
-                                ></path>
-                              </svg>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </React.Fragment>
-                )}
-                <Modal
-                  title="Login"
-                  open={open}
-                  onClose={_closeModalHandler}
-                  onActionOne={_closeModalHandler}
-                  textOne="Cancel"
-                  width="w-1/4"
-                >
-                  <Login />
-                </Modal>
-              </ul>
-              2
-                <div
-                  onClick={handleOpen}
-                  className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
-                >
-                  {!open ? (
-                    <svg
-                      className="fill-current h-4 w-4"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <title>Menu</title>
-                      <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 352 512"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                      ></path>
-                    </svg>
-                  )}
-                </div>
+              <div
+                className="cursor-pointer font-bold hover:bg-gray-300 py-2 px-4"
+                onClick={() => {
+                  _handleCloseHamburger();
+                  _handleClickAway();
+                  history.push("/");
+                }}
+              >
+                Username
               </div>
               <div
-                className={`w-40 border border-gray-300 shadow-lg flex flex-col bg-white text-left static md:static lg:absolute text-black border border-gray-300 rounded left-options ${
-                  !openOptions ? "hidden" : ""
-                }`}
+                className="cursor-pointer border-t border-b border-gray-300 hover:bg-gray-300 py-2 px-4"
+                onClick={() => {
+                  _handleCloseHamburger();
+                  _handleClickAway();
+                  history.push("/");
+                }}
               >
-                <div
-                  className="w-full cursor-pointer hidden font-bold hover:bg-gray-400 py-2 px-4"
-                  onClick={() => history.push("/")}
-                >
-                  Username
-                </div>
-                <div
-                  className="w-full cursor-pointer hidden border-t border-b border-gray-300 hover:bg-gray-400 py-2 px-4"
-                  onClick={() => history.push("/")}
-                >
-                  Ganti Password
-                </div>
-                <div
-                  className="w-full cursor-pointer hidden hover:bg-gray-400 py-2 px-4"
-                  onClick={() => {
-                    _handleClickAway();
-                    _handleCloseHamburger()
-                    _handleLogout();
-                  }}
-                >
-                  Keluar
-                </div>
+                Ganti Password
+              </div>
+              <div
+                className="cursor-pointer hover:bg-gray-300 py-2 px-4"
+                onClick={() => {
+                  _handleCloseHamburger();
+                  _handleClickAway();
+                  _handleLogout();
+                }}
+              >
+                Keluar
               </div>
             </div>
           </div>
-        </ClickAwayListener>
-      </nav> */}
-    </Fragment>
+        </div>
+        <Modal
+          title="Login"
+          open={open}
+          onClose={_closeModalHandler}
+          onActionOne={_closeModalHandler}
+          textOne="Cancel"
+          width="w-4/5 lg:w-1/4"
+        >
+          <Login />
+        </Modal>
+      </ClickAwayListener>
+    </nav>
   );
 };
