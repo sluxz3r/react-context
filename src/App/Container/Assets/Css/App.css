@@ -80,8 +80,10 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
   list-style-type: lower-roman;
 }
 
-.w-options {
-  width: 168px;
+@media (min-width: 1280px) {
+  .w-options {
+    width: 168px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -89,6 +91,7 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
     margin-top: 56px;
   }
 }
+
 @media (min-width: 1280px) {
   .top-options {
     margin-top: 56px;
@@ -99,19 +102,6 @@ input[type="number"].no-arrow::-webkit-outer-spin-button {
 @media (min-width: 1024px) {
   .left-language {
     margin-left: -69px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .left-language {
-    margin-top: 56px;
-    position: fixed;
-  }
-}
-
-@media (min-width: 1024px) {
-  .left-options {
-    margin-left: -38px;
   }
 }
 
