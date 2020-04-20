@@ -7,7 +7,6 @@ interface InitialState {
   _isLogin: string | null;
   open: boolean;
   setOpen: Function;
-  registerSelect: Function;
   _onSubmit: Function;
   optionsCompanyType: Array<object>;
   Indonesia: Array<object>;
@@ -42,10 +41,8 @@ interface InitialState {
   _handleCity: Function;
   _onValidate: Function;
   _handleDistrict: Function;
-  _handleOnSubmitSelect: Function;
+  _handleSubmit: Function;
   register: Function;
-  handleSubmit: Function;
-  errors: object;
 }
 
 const initialState = {
@@ -53,7 +50,7 @@ const initialState = {
   _isLogin: null,
   open: false,
   setOpen: () => {},
-  registerSelect: () => {},
+  register: () => {},
   _onSubmit: () => {},
   optionsCompanyType: [{}],
   Indonesia: [{}],
@@ -88,10 +85,7 @@ const initialState = {
   _handleCity: () => {},
   _handleDistrict: () => {},
   _onValidate: () => {},
-  _handleOnSubmitSelect: () => {},
-  register: () => {},
-  handleSubmit: () => {},
-  errors: {},
+  _handleSubmit: () => {},
 };
 
 export const GeneralContext = createContext<InitialState>(initialState);
@@ -136,18 +130,14 @@ export const GeneralController = ({ children }) => {
     }),
   };
 
-  const { register, handleSubmit, errors } = useForm({
-    validateCriteriaMode: "all",
-    mode: "onChange",
-  });
   // FormContext
   const methods = useForm({
     mode: "onChange",
   });
-  const { register: registerSelect, setValue, triggerValidation } = methods;
+  const { register, setValue, triggerValidation } = methods;
 
   useEffect(() => {
-    registerSelect(
+    register(
       { name: "business_type" },
       {
         required: true,
@@ -156,10 +146,10 @@ export const GeneralController = ({ children }) => {
         },
       }
     );
-  }, [registerSelect]);
+  }, [register]);
 
   useEffect(() => {
-    registerSelect(
+    register(
       { name: "country" },
       {
         required: true,
@@ -168,10 +158,10 @@ export const GeneralController = ({ children }) => {
         },
       }
     );
-  }, [registerSelect]);
+  }, [register]);
 
   useEffect(() => {
-    registerSelect(
+    register(
       { name: "province" },
       {
         required: true,
@@ -180,10 +170,10 @@ export const GeneralController = ({ children }) => {
         },
       }
     );
-  }, [registerSelect]);
+  }, [register]);
 
   useEffect(() => {
-    registerSelect(
+    register(
       { name: "city" },
       {
         required: true,
@@ -192,10 +182,10 @@ export const GeneralController = ({ children }) => {
         },
       }
     );
-  }, [registerSelect]);
+  }, [register]);
 
   useEffect(() => {
-    registerSelect(
+    register(
       { name: "district" },
       {
         required: true,
@@ -204,7 +194,7 @@ export const GeneralController = ({ children }) => {
         },
       }
     );
-  }, [registerSelect]);
+  }, [register]);
 
   const _handleCountry = (e: any) => {
     setCountry(e && e.value);
@@ -245,7 +235,7 @@ export const GeneralController = ({ children }) => {
     "companyEmail",
   ];
 
-  const _handleOnSubmitSelect = async () => {
+  const _handleSubmit = async () => {
     if (await triggerValidation(val)) {
       console.log("Sukses");
     } else {
@@ -265,7 +255,6 @@ export const GeneralController = ({ children }) => {
           _isLogin,
           open,
           setOpen,
-          registerSelect,
           _onSubmit,
           optionsCompanyType,
           Indonesia,
@@ -300,10 +289,8 @@ export const GeneralController = ({ children }) => {
           _handleCity,
           _handleDistrict,
           _onValidate,
-          _handleOnSubmitSelect,
+          _handleSubmit,
           register,
-          handleSubmit,
-          errors,
         }}
       >
         {children}
