@@ -6,9 +6,7 @@ import { MainApp } from "../../../../../../Components";
 import ModalComponent from "./Modal";
 
 const GeneralComponent = () => {
-  const { open, setOpen, _handleOnSubmitSelect, handleSubmit } = useContext(
-    GeneralContext
-  );
+  const { open, setOpen, _handleSubmit } = useContext(GeneralContext);
 
   return (
     <MainApp
@@ -39,11 +37,7 @@ const GeneralComponent = () => {
           onActionOne={() => {
             setOpen(false);
           }}
-          onActionTwo={async () => {
-            _handleOnSubmitSelect();
-            // handleSubmit();
-          }}
-          // onActionTwo={handleSubmit()}
+          onActionTwo={async () => _handleSubmit()}
           textOne="Batal"
           textTwo="Simpan"
         >
