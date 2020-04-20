@@ -15,7 +15,7 @@ import {
   TermCondition,
   UserManual,
 } from "./App/Container/Views/Public/index";
-import { VendorProfile,ChangePassword,Beranda } from "./App/Container/Views/Private/index";
+import { ChangePassword, Beranda } from "./App/Container/Views/Private/index";
 import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
 import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
@@ -103,12 +103,8 @@ const Routes = () => {
                 path="/registration"
                 component={Registration}
               />
+              <PrivateRoute exact path="/vendor" component={Beranda} />
               <PrivateRoute
-                exact
-                path="/vendor"
-                component={Beranda}
-              />
-               <PrivateRoute
                 exact
                 path="/vendor/password_updates"
                 component={ChangePassword}

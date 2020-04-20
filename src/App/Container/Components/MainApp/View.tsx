@@ -1,6 +1,6 @@
 import React from "react";
 
-export const MainApp = ({ title, children, button = {} }) => {
+export const MainApp = ({ title, children, button = "" }) => {
   return (
     <div className="w-full h-full">
       <div className="w-full">
