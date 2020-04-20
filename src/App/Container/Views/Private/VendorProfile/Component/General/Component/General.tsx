@@ -32,17 +32,18 @@ const GeneralComponent = () => {
         <Modal
           title="Perusahaan"
           open={open}
-          width="w-3/4"
+          width="w-4/5"
           onClose={() => {
             setOpen(false);
           }}
           onActionOne={() => {
             setOpen(false);
           }}
-          onActionTwo={async () => {
-            _handleOnSubmitSelect();
-            handleSubmit();
-          }}
+          // onActionTwo={async () => {
+          //   _handleOnSubmitSelect();
+          //   // handleSubmit();
+          // }}
+          onActionTwo={handleSubmit()}
           textOne="Batal"
           textTwo="Simpan"
         >

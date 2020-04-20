@@ -240,7 +240,9 @@ export const GeneralController = ({ children }) => {
     }
   };
 
-  const _onValidate = async () => console.log("validation");
+  const _onValidate = async () => {
+    console.log("validation");
+  };
 
   return (
     <FormContext {...methods}>
