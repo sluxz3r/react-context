@@ -48,7 +48,7 @@ const ModalComponent = () => {
                     <input
                       type="text"
                       name="branchName"
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -84,7 +84,7 @@ const ModalComponent = () => {
                       className="w-full bg-white border border-gray-400 rounded hover:border-gray-500 py-1 px-2"
                       placeholder="Alamat"
                       name="address"
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -147,7 +147,7 @@ const ModalComponent = () => {
                       className="province"
                       name="province"
                       isClearable
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -187,7 +187,7 @@ const ModalComponent = () => {
                       className="city"
                       name="city"
                       isClearable
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -228,7 +228,7 @@ const ModalComponent = () => {
                       className="district"
                       name="district"
                       isClearable
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -266,7 +266,7 @@ const ModalComponent = () => {
                     <input
                       type="number"
                       name="postalCode"
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 5,
@@ -308,7 +308,7 @@ const ModalComponent = () => {
                     <div className="w-3/5 flex-col mr-8">
                       <input
                         name="phoneNumber"
-                        ref={registerSelect({
+                        ref={register({
                           required: "This is required",
                           minLength: {
                             value: 4,
@@ -331,7 +331,7 @@ const ModalComponent = () => {
                     <div className="w-2/5 flex-col">
                       <input
                         name="phoneNumberExt"
-                        ref={registerSelect({
+                        ref={register({
                           minLength: {
                             value: 4,
                             message: "This input is less than 4 characters",
@@ -381,7 +381,7 @@ const ModalComponent = () => {
                       <input
                         type="number"
                         name="faxNumber"
-                        ref={registerSelect({
+                        ref={register({
                           minLength: {
                             value: 4,
                             message: "This input is less than 4 characters",
@@ -404,7 +404,7 @@ const ModalComponent = () => {
                       <input
                         type="number"
                         name="faxNumberExt"
-                        ref={registerSelect({
+                        ref={register({
                           minLength: {
                             value: 4,
                             message: "This input is less than 4 characters",
@@ -487,7 +487,7 @@ const ModalComponent = () => {
                     <input
                       type="text"
                       name="companyEmail"
-                      ref={registerSelect({
+                      ref={register({
                         required: "This is required",
                         minLength: {
                           value: 8,
