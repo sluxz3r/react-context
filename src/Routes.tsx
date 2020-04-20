@@ -15,7 +15,7 @@ import {
   TermCondition,
   UserManual,
 } from "./App/Container/Views/Public/index";
-import { VendorProfile,ChangePassword } from "./App/Container/Views/Private/index";
+import { VendorProfile,ChangePassword,Beranda } from "./App/Container/Views/Private/index";
 import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
 import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
@@ -33,7 +33,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/vendor/profile",
+              pathname: "/vendor",
               state: { from: props.location },
             }}
           />
@@ -68,7 +68,7 @@ const Routes = () => {
   return (
     <React.Fragment>
       <PublicHeader />
-      <div className="lg:flex sm:flex sm:flex-col lg:flex-row pt-16 lg:overflow-y-auto">
+      <div className="lg:flex sm:flex sm:flex-col lg:flex-row pt-16 overflow-y-hidden">
         <div className="lg:w-auto">
           {login === null ? <PublicSidebar /> : <PrivateSidebar />}
         </div>
@@ -105,8 +105,8 @@ const Routes = () => {
               />
               <PrivateRoute
                 exact
-                path="/vendor/profile"
-                component={VendorProfile}
+                path="/vendor"
+                component={Beranda}
               />
                <PrivateRoute
                 exact

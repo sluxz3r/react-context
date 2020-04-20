@@ -141,7 +141,13 @@ const Login = () => {
             </span>
           </div>
           <hr className="border" />
-          <div></div>
+          <div className="w-full text-center text-gray-700 py-5" style={{ fontSize: "10px" }}>
+            <p className="font-semibold">Supported Browser</p>
+            <p>
+              Chrome, Firefox, IE9, Opera, Safari, dan mobile browser terkini
+              Dengan resolusi minimal: 1024 × 768
+            </p>
+          </div>
         </form>
       </div>
     </div>
