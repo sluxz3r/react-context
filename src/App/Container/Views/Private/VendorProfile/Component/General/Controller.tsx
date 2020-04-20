@@ -1,13 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useForm, FormContext } from "react-hook-form";
 import { getToken } from "../../../../../../Misc/Cookies";
+import { INSERT_VENDOR_CONTACT } from "./Query";
+import { useMutation } from "react-apollo";
 
 interface InitialState {
   customStyles: object;
   _isLogin: string | null;
   open: boolean;
   setOpen: Function;
-  _onSubmit: Function;
   optionsCompanyType: Array<object>;
   Indonesia: Array<object>;
   Yogya: Array<object>;
@@ -23,6 +24,7 @@ interface InitialState {
   phoneNumberExt: string;
   faxNumber: string;
   faxNumberExt: string;
+  website: string;
   companyEmail: string;
   setBranchName: Function;
   setAddress: Function;
@@ -36,10 +38,10 @@ interface InitialState {
   setFaxNumber: Function;
   setFaxNumberExt: Function;
   setCompanyEmail: Function;
+  setWebsite: Function;
   _handleCountry: Function;
   _handleProvince: Function;
   _handleCity: Function;
-  _onValidate: Function;
   _handleDistrict: Function;
   _handleSubmit: Function;
   register: Function;
@@ -51,7 +53,6 @@ const initialState = {
   open: false,
   setOpen: () => {},
   register: () => {},
-  _onSubmit: () => {},
   optionsCompanyType: [{}],
   Indonesia: [{}],
   Yogya: [{}],
@@ -80,11 +81,12 @@ const initialState = {
   setFaxNumberExt: () => {},
   companyEmail: "",
   setCompanyEmail: () => {},
+  website: "",
+  setWebsite: () => {},
   _handleCountry: () => {},
   _handleProvince: () => {},
   _handleCity: () => {},
   _handleDistrict: () => {},
-  _onValidate: () => {},
   _handleSubmit: () => {},
 };
 
@@ -109,9 +111,9 @@ export const GeneralController = ({ children }) => {
   const [phoneNumberExt, setPhoneNumberExt] = useState("");
   const [faxNumber, setFaxNumber] = useState("");
   const [faxNumberExt, setFaxNumberExt] = useState("");
+  const [website, setWebsite] = useState("");
   const [companyEmail, setCompanyEmail] = useState("");
 
-  const _onSubmit = (value) => console.log("Validate", value);
   const optionsCompanyType = [
     {
       label: "10 dari 255 (harap ketik untuk memfilter)",
@@ -223,28 +225,45 @@ export const GeneralController = ({ children }) => {
   const val = [
     "branchName",
     "address",
-    "postalCode",
     "country",
     "province",
     "city",
     "district",
+    "postalCode",
     "phoneNumber",
     "phoneNumberExt",
     "faxNumber",
     "faxNumberExt",
+    "website",
     "companyEmail",
   ];
 
+  // Add
+  const [submitAdd] = useMutation(INSERT_VENDOR_CONTACT, {
+    errorPolicy: "all",
+  });
+
   const _handleSubmit = async () => {
     if (await triggerValidation(val)) {
-      console.log("Sukses");
+      try {
+        await submitAdd({
+          variables: {
+            company_name: branchName,
+            address,
+            country,
+            province,
+            city,
+            district,
+            postal_code: postalCode,
+            phone_number: phoneNumber,
+            website,
+            e_mail: companyEmail,
+          },
+        });
+      } catch (error) {}
     } else {
       console.log("Gagal");
     }
-  };
-
-  const _onValidate = async () => {
-    console.log("validation");
   };
 
   return (
@@ -255,7 +274,6 @@ export const GeneralController = ({ children }) => {
           _isLogin,
           open,
           setOpen,
-          _onSubmit,
           optionsCompanyType,
           Indonesia,
           Yogya,
@@ -271,6 +289,7 @@ export const GeneralController = ({ children }) => {
           phoneNumberExt,
           faxNumber,
           faxNumberExt,
+          website,
           companyEmail,
           setBranchName,
           setAddress,
@@ -284,11 +303,11 @@ export const GeneralController = ({ children }) => {
           setFaxNumber,
           setFaxNumberExt,
           setCompanyEmail,
+          setWebsite,
           _handleCountry,
           _handleProvince,
           _handleCity,
           _handleDistrict,
-          _onValidate,
           _handleSubmit,
           register,
         }}
