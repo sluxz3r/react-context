@@ -7,21 +7,21 @@ const TermsAndConditions = () => {
       <div className="flex flex-col">
         <div className="block bg-white py-4 px-4">
           <div className="py-1">
-            <text className="text-gray-900 text-2xl">Syarat & Ketentuan</text>
+            <span className="text-gray-900 text-2xl">Syarat & Ketentuan</span>
           </div>
           <div className="py-1">
-            <text className="text-gray-900 text-2xl">
+            <span className="text-gray-900 text-2xl">
               Penggunaan eProcurement PT. PINDAD (Persero)
-            </text>
+            </span>
           </div>
           <div className="py-1">
-            <text className="text-gray-900 text-sm">
+            <span className="text-gray-900 text-sm">
               Syarat dan ketentuan penggunaan eProcurement PT. PINDAD (Persero)
               dimaksudkan untuk menginformasikan ketentuan yang berlaku dalam
               situs eProcurement PT. PINDAD (Persero) dan harus disepakati oleh
               pihak mitra kerja untuk dapar menjadi Penyedia di lingkungan PT
               Pindad (Persero), sebagaimana diatur di bawah ini:
-            </text>
+            </span>
           </div>
           <div className="py-1 ml-4 sm:ml-4 md:ml-8 lg:ml-8 xl:ml-8">
             <ol className="list-decimal">
@@ -283,10 +283,10 @@ const TermsAndConditions = () => {
             </ol>
           </div>
           <div className="py-1">
-            <text className="text-gray-900 text-lg uppercase font-bold">
+            <span className="text-gray-900 text-lg uppercase font-bold">
               DENGAN INI KAMI TELAH MEMBACA MEMAHAMI DAN SETUJU UNTUK MEMATUHI
               SEGALA ATURAN DAN PERSYARATAN DIATAS.
-            </text>
+            </span>
           </div>
         </div>
       </div>
