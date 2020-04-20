@@ -20,6 +20,7 @@ import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
 import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
 import { getToken } from "./App/Misc/Cookies";
+import General from "./App/Container/Views/Private/VendorProfile/Component/General/View";
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const login: any = getToken();
@@ -106,6 +107,11 @@ const Routes = () => {
                 exact
                 path="/vendor/profile"
                 component={VendorProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/vendor/profile/organizations"
+                component={General}
               />
             </Switch>
           </Router>
