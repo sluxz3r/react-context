@@ -1050,8 +1050,20 @@ video {
   background-color: #162f42;
 }
 
+.bg-bluepindad-300 {
+  background-color: #0078a9
+}
+
 .bg-yellowpindad-100 {
   background-color: #D4AF37;
+}
+
+.bg-orangepindad-100 {
+  background-color: #EC971F
+}
+
+.bg-greenpindad-100 {
+  background-color: #449D44
 }
 
 .hover\:bg-transparent:hover {
