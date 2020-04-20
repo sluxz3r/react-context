@@ -25,13 +25,11 @@ const ModalComponent = () => {
     Indonesia,
     Yogya,
     Sleman,
-    _onValidate,
-    register,
-    handleSubmit,
-    errors,
-    _handleOnSubmitSelect,
+    registerSelect,
+    // errors,
   } = useContext(GeneralContext);
-  const { errors: errorsSelect } = useFormContext();
+  // const { errors: errorsSelect } = useFormContext();
+  const { errors } = useFormContext();
 
   return (
     <div className="bg-white">
@@ -51,7 +49,7 @@ const ModalComponent = () => {
                     <input
                       type="text"
                       name="branchName"
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -71,21 +69,11 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                    <ErrorMessage errors={errors} name="branchName">
-                      {({ messages }) => {
-                        return (
-                          messages &&
-                          Object.entries(messages).map(([type, message]) => (
-                            <p
-                              key={type}
-                              className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                            >
-                              {message}
-                            </p>
-                          ))
-                        );
-                      }}
-                    </ErrorMessage>
+                    {errors.branchName && (
+                      <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                        {errors.branchName && errors.branchName.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
@@ -97,7 +85,7 @@ const ModalComponent = () => {
                       className="w-full bg-white border border-gray-400 rounded hover:border-gray-500 py-1 px-2"
                       placeholder="Alamat"
                       name="address"
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -115,21 +103,11 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                    <ErrorMessage errors={errors} name="address">
-                      {({ messages }) => {
-                        return (
-                          messages &&
-                          Object.entries(messages).map(([type, message]) => (
-                            <p
-                              key={type}
-                              className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                            >
-                              {message}
-                            </p>
-                          ))
-                        );
-                      }}
-                    </ErrorMessage>
+                    {errors.address && (
+                      <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                        {errors.address && errors.address.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
@@ -153,7 +131,7 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                    {errorsSelect.country && (
+                    {errors.country && (
                       <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                         This is required
                       </p>
@@ -170,7 +148,7 @@ const ModalComponent = () => {
                       className="province"
                       name="province"
                       isClearable
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -193,7 +171,7 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                    {errorsSelect.country && (
+                    {errors.country && (
                       <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                         This is required
                       </p>
@@ -210,7 +188,7 @@ const ModalComponent = () => {
                       className="city"
                       name="city"
                       isClearable
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -234,7 +212,7 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                    {errorsSelect.country && (
+                    {errors.country && (
                       <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                         This is required
                       </p>
@@ -251,7 +229,7 @@ const ModalComponent = () => {
                       className="district"
                       name="district"
                       isClearable
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -274,7 +252,7 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
-                    {errorsSelect.country && (
+                    {errors.country && (
                       <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
                         This is required
                       </p>
@@ -289,7 +267,7 @@ const ModalComponent = () => {
                     <input
                       type="number"
                       name="postalCode"
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 5,
@@ -313,21 +291,11 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                    <ErrorMessage errors={errors} name="postalCode">
-                      {({ messages }) => {
-                        return (
-                          messages &&
-                          Object.entries(messages).map(([type, message]) => (
-                            <p
-                              key={type}
-                              className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                            >
-                              {message}
-                            </p>
-                          ))
-                        );
-                      }}
-                    </ErrorMessage>
+                    {errors.postalCode && (
+                      <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                        {errors.postalCode && errors.postalCode.message}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -341,7 +309,7 @@ const ModalComponent = () => {
                     <div className="w-3/5 flex-col mr-8">
                       <input
                         name="phoneNumber"
-                        ref={register({
+                        ref={registerSelect({
                           required: "This is required",
                           minLength: {
                             value: 4,
@@ -364,7 +332,7 @@ const ModalComponent = () => {
                     <div className="w-2/5 flex-col">
                       <input
                         name="phoneNumberExt"
-                        ref={register({
+                        ref={registerSelect({
                           minLength: {
                             value: 4,
                             message: "This input is less than 4 characters",
@@ -389,38 +357,19 @@ const ModalComponent = () => {
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
                     <div className="w-3/5 flex-col mr-8">
-                      <ErrorMessage errors={errors} name="phoneNumber">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
+                      {errors.phoneNumber && (
+                        <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                          {errors.phoneNumber && errors.phoneNumber.message}
+                        </p>
+                      )}
                     </div>
                     <div className="w-2/5 flex-col">
-                      <ErrorMessage errors={errors} name="phoneNumberExt">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
+                      {errors.phoneNumberExt && (
+                        <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                          {errors.phoneNumberExt &&
+                            errors.phoneNumberExt.message}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -433,7 +382,7 @@ const ModalComponent = () => {
                       <input
                         type="number"
                         name="faxNumber"
-                        ref={register({
+                        ref={registerSelect({
                           minLength: {
                             value: 4,
                             message: "This input is less than 4 characters",
@@ -456,7 +405,7 @@ const ModalComponent = () => {
                       <input
                         type="number"
                         name="faxNumberExt"
-                        ref={register({
+                        ref={registerSelect({
                           minLength: {
                             value: 4,
                             message: "This input is less than 4 characters",
@@ -481,38 +430,18 @@ const ModalComponent = () => {
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
                     <div className="w-3/5 flex-col mr-8">
-                      <ErrorMessage errors={errors} name="faxNumber">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
+                      {errors.faxNumber && (
+                        <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                          {errors.faxNumber && errors.faxNumber.message}
+                        </p>
+                      )}
                     </div>
                     <div className="w-2/5 flex-col">
-                      <ErrorMessage errors={errors} name="faxNumberExt">
-                        {({ messages }) => {
-                          return (
-                            messages &&
-                            Object.entries(messages).map(([type, message]) => (
-                              <p
-                                key={type}
-                                className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                              >
-                                {message}
-                              </p>
-                            ))
-                          );
-                        }}
-                      </ErrorMessage>
+                      {errors.faxNumberExt && (
+                        <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                          {errors.faxNumberExt && errors.faxNumberExt.message}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -524,7 +453,7 @@ const ModalComponent = () => {
                     <input
                       type="text"
                       name="companyEmail"
-                      ref={register({
+                      ref={registerSelect({
                         required: "This is required",
                         minLength: {
                           value: 8,
@@ -544,21 +473,11 @@ const ModalComponent = () => {
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
-                    <ErrorMessage errors={errors} name="companyEmail">
-                      {({ messages }) => {
-                        return (
-                          messages &&
-                          Object.entries(messages).map(([type, message]) => (
-                            <p
-                              key={type}
-                              className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500"
-                            >
-                              {message}
-                            </p>
-                          ))
-                        );
-                      }}
-                    </ErrorMessage>
+                    {errors.companyEmail && (
+                      <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                        {errors.companyEmail && errors.companyEmail.message}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

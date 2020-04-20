@@ -39,11 +39,11 @@ const GeneralComponent = () => {
           onActionOne={() => {
             setOpen(false);
           }}
-          // onActionTwo={async () => {
-          //   _handleOnSubmitSelect();
-          //   // handleSubmit();
-          // }}
-          onActionTwo={handleSubmit()}
+          onActionTwo={async () => {
+            _handleOnSubmitSelect();
+            // handleSubmit();
+          }}
+          // onActionTwo={handleSubmit()}
           textOne="Batal"
           textTwo="Simpan"
         >
