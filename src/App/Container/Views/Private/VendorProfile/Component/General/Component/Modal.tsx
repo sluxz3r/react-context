@@ -20,15 +20,14 @@ const ModalComponent = () => {
     setPhoneNumberExt,
     setFaxNumber,
     setFaxNumberExt,
+    setWebsite,
     setCompanyEmail,
     optionsCompanyType,
     Indonesia,
     Yogya,
     Sleman,
     register,
-    // errors,
   } = useContext(GeneralContext);
-  // const { errors: errorsSelect } = useFormContext();
   const { errors } = useFormContext();
 
   return (
@@ -443,6 +442,41 @@ const ModalComponent = () => {
                         </p>
                       )}
                     </div>
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold">
+                    <label>Situs</label>
+                  </div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                    <input
+                      type="text"
+                      name="website"
+                      ref={register({
+                        required: "This is required",
+                        minLength: {
+                          value: 8,
+                          message: "This inpus is less than 8 characters",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "This inpus is more than 30 characters",
+                        },
+                      })}
+                      onChange={(val) => setWebsite(val.target.value)}
+                      className="w-full bg-white border border-gray-400 rounded hover:border-gray-500 py-1 px-2"
+                      placeholder="example.com"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                    {errors.website && (
+                      <p className="px-2 bg-red-200 rounded-b text-xs py-1 text-red-500">
+                        {errors.website && errors.website.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
