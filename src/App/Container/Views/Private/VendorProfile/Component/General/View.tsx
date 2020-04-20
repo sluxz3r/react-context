@@ -1,12 +1,12 @@
 import React from "react";
-import { MainApp } from "../../../../../Components";
 import GeneralComponent from "./Component/General";
+import { GeneralController } from "./Controller";
 
 const General = () => {
   return (
-    <MainApp title="PROFIL PERUSAHAAN">
+    <GeneralController>
       <GeneralComponent />
-    </MainApp>
+    </GeneralController>
   );
 };
 

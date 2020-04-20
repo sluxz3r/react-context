@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../../../../../Assets/Css/App.css";
+import { HomeContext } from "../../../Controller";
 
 const Table = () => {
+  const { generalList } = useContext(HomeContext);
+  console.log("CEK", generalList);
+
   return (
     <div>
       <table className="w-full">
@@ -28,17 +32,22 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
+          {/* {generalList &&
+            generalList.map((e: any, i: any) => (
+              <Fragment key={i}> */}
           <tr className="hover:bg-gray-200">
             <td
               className="border border-gray-400 py-1 px-4 text-center align-top bg-white"
               rowSpan={13}
             >
-              1.
+              {/* {i + 1} */}1
             </td>
             <td className="border border-gray-400 py-1 px-4">
               Nama Perusahaan
             </td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.companyName} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4">Dipersiapkan</td>
             <td
@@ -66,49 +75,65 @@ const Table = () => {
             <td className="border border-gray-400 py-1 px-4">
               Kategori Lokasi
             </td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.address} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Negara</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.county} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Provinsi</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.province} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Kota</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.city} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Kecamatan</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.district} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Kode Pos</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.postalCode} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">alamat</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.address} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Nomor Telepon</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.phoneNumber} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
@@ -116,13 +141,17 @@ const Table = () => {
             <td className="border border-gray-400 py-1 px-4">
               Nomor Faksimile
             </td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.faxNumber} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
           <tr className="hover:bg-gray-200">
             <td className="border border-gray-400 py-1 px-4">Situs</td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.website} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
@@ -130,7 +159,9 @@ const Table = () => {
             <td className="border border-gray-400 py-1 px-4">
               E-mail Perusahaan
             </td>
-            <td className="border border-gray-400 py-1 px-4"></td>
+            <td className="border border-gray-400 py-1 px-4">
+              {/* {e.eMail} */}
+            </td>
             <td className="border border-gray-400 py-1 px-4"></td>
             <td className="border border-gray-400 py-1 px-4"></td>
           </tr>
