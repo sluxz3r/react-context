@@ -15,7 +15,7 @@ import {
   TermCondition,
   UserManual,
 } from "./App/Container/Views/Public/index";
-import { VendorProfile } from "./App/Container/Views/Private/index";
+import { VendorProfile,ChangePassword } from "./App/Container/Views/Private/index";
 import { PublicHeader, PublicSidebar } from "./App/Layout/Public/index";
 import { PrivateSidebar } from "./App/Layout/Private/index";
 import history from "./App/Misc/BrowserHistory";
@@ -107,6 +107,11 @@ const Routes = () => {
                 exact
                 path="/vendor/profile"
                 component={VendorProfile}
+              />
+               <PrivateRoute
+                exact
+                path="/vendor/password_updates"
+                component={ChangePassword}
               />
               <PrivateRoute
                 exact

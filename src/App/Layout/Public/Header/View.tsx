@@ -646,7 +646,7 @@ export const PublicHeader = () => {
                   onClick={() => {
                     _handleCloseHamburger();
                     _handleClickAway();
-                    history.push("/");
+                    history.push("/vendor/password_updates");
                   }}
                 >
                   Ganti Password
