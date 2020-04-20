@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
 import "../../../../../../Assets/Css/App.css";
+import { HomeContext } from "../../../Controller";
 
 const Table = () => {
+  const { generalList } = useContext(HomeContext);
+  console.log("CEK", generalList);
+
   return (
     <div>
       <table className="w-full">
