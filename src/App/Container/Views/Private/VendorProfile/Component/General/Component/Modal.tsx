@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
+<<<<<<< HEAD
 import { useFormContext } from "react-hook-form";
+=======
+import { ErrorMessage, useFormContext } from "react-hook-form";
+>>>>>>> validate select
 import Select from "react-select";
 import { GeneralContext } from "../Controller";
 
@@ -26,9 +30,18 @@ const ModalComponent = () => {
     Indonesia,
     Yogya,
     Sleman,
+<<<<<<< HEAD
     register,
   } = useContext(GeneralContext);
   const { errors } = useFormContext();
+=======
+    _onValidate,
+    register,
+    handleSubmit,
+    errors,
+  } = useContext(GeneralContext);
+  const { errors: errorsSelect } = useFormContext();
+>>>>>>> validate select
 
   return (
     <div className="bg-white">
@@ -36,7 +49,7 @@ const ModalComponent = () => {
         <div className="py-1 px-4 mt-6">
           <span className="text-gray-900 text-2xl">Use as Branch Office</span>
         </div>
-        <form>
+        <form onSubmit={handleSubmit(_onValidate())}>
           <div className="w-full">
             <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row">
               <div className="w-full py-4">
@@ -63,6 +76,26 @@ const ModalComponent = () => {
                       className="w-full bg-white border border-gray-400 rounded hover:border-gray-500 py-1 px-2"
                       placeholder="Nama Cabang/Lokasi Cabang"
                     />
+<<<<<<< HEAD
+=======
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                    <ErrorMessage errors={errors} name="branchName">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p key={type} className="px-2 text-sm text-red-500">
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
+>>>>>>> validate select
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
@@ -97,6 +130,26 @@ const ModalComponent = () => {
                       })}
                       onChange={(val) => setAddress(val.target.value)}
                     />
+<<<<<<< HEAD
+=======
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                    <ErrorMessage errors={errors} name="address">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p key={type} className="px-2 text-sm text-red-500">
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
+>>>>>>> validate select
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
@@ -125,6 +178,19 @@ const ModalComponent = () => {
                       options={optionsCompanyType}
                       placeholder="Negara"
                     />
+<<<<<<< HEAD
+=======
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                    {errorsSelect.country && (
+                      <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        This is required
+                      </p>
+                    )}
+>>>>>>> validate select
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
@@ -165,6 +231,19 @@ const ModalComponent = () => {
                       placeholder="Provinsi"
                       isDisabled={country ? false : true}
                     />
+<<<<<<< HEAD
+=======
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                    {errorsSelect.country && (
+                      <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        This is required
+                      </p>
+                    )}
+>>>>>>> validate select
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
@@ -206,6 +285,19 @@ const ModalComponent = () => {
                       placeholder="Kota/Kabupaten"
                       isDisabled={country && province ? false : true}
                     />
+<<<<<<< HEAD
+=======
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                    {errorsSelect.country && (
+                      <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        This is required
+                      </p>
+                    )}
+>>>>>>> validate select
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
@@ -246,6 +338,19 @@ const ModalComponent = () => {
                       placeholder="Kecamatan"
                       isDisabled={country && province && city ? false : true}
                     />
+<<<<<<< HEAD
+=======
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 justify-start">
+                    {errorsSelect.country && (
+                      <p className="bg-red-200 px-2 py-1 text-xs text-red-500 rounded-b">
+                        This is required
+                      </p>
+                    )}
+>>>>>>> validate select
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
@@ -287,6 +392,7 @@ const ModalComponent = () => {
                     />
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
@@ -295,6 +401,23 @@ const ModalComponent = () => {
                         {errors.postalCode && errors.postalCode.message}
                       </p>
                     )}
+=======
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                    <ErrorMessage errors={errors} name="postalCode">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p key={type} className="px-2 text-sm text-red-500">
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
+>>>>>>> validate select
                   </div>
                 </div>
               </div>
@@ -327,6 +450,7 @@ const ModalComponent = () => {
                         className="w-full bg-white border border-gray-400 rounded hover:border-gray-500 py-1 px-2"
                         placeholder="+62xx-xxxxxxxxxxxx"
                       />
+<<<<<<< HEAD
                     </div>
                     <div className="w-2/5 flex-col">
                       <input
@@ -349,6 +473,71 @@ const ModalComponent = () => {
                         className="w-full bg-white border border-gray-400 rounded hover:border-gray-500 py-1 px-2"
                         placeholder="Ext."
                       />
+=======
+                    </div>
+                    <div className="w-2/5 flex-col">
+                      <input
+                        name="phoneNumberExt"
+                        ref={register({
+                          minLength: {
+                            value: 4,
+                            message: "This input is less than 4 characters",
+                          },
+                          maxLength: {
+                            value: 30,
+                            message: "This input is more than 30 characters",
+                          },
+                          pattern: {
+                            value: /^\d+$/,
+                            message: "This input is number 0-9",
+                          },
+                        })}
+                        onChange={(val) => setPhoneNumberExt(val.target.value)}
+                        className="w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2"
+                        placeholder="Ext."
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold">
+                    <label>Nomor Telepon</label>
+                  </div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
+                    <div className="w-3/5 flex-col mr-8">
+                      <ErrorMessage errors={errors} name="phoneNumber">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 text-sm text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                    <div className="w-2/5 flex-col">
+                      <ErrorMessage errors={errors} name="phoneNumberExt">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 text-sm text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+>>>>>>> validate select
                     </div>
                   </div>
                 </div>
@@ -425,6 +614,7 @@ const ModalComponent = () => {
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
@@ -480,6 +670,48 @@ const ModalComponent = () => {
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pt-2 items-center">
+=======
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex justify-start">
+                    <div className="w-3/5 flex-col mr-8">
+                      <ErrorMessage errors={errors} name="faxNumber">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 text-sm text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                    <div className="w-2/5 flex-col">
+                      <ErrorMessage errors={errors} name="faxNumberExt">
+                        {({ messages }) => {
+                          return (
+                            messages &&
+                            Object.entries(messages).map(([type, message]) => (
+                              <p
+                                key={type}
+                                className="px-2 text-sm text-red-500"
+                              >
+                                {message}
+                              </p>
+                            ))
+                          );
+                        }}
+                      </ErrorMessage>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+>>>>>>> validate select
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold">
                     <label>E-mail Perusahaan</label>
                   </div>
@@ -504,6 +736,7 @@ const ModalComponent = () => {
                     />
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row pb-2 items-center">
                   <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
                   <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
@@ -512,6 +745,23 @@ const ModalComponent = () => {
                         {errors.companyEmail && errors.companyEmail.message}
                       </p>
                     )}
+=======
+                <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row py-2 items-center">
+                  <div className="w-full sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mx-4 text-left sm:text-right md:text-right lg:text-right xl:text-right font-bold"></div>
+                  <div className="w-full sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-2/3 mx-4 flex flex-col justify-start">
+                    <ErrorMessage errors={errors} name="companyEmail">
+                      {({ messages }) => {
+                        return (
+                          messages &&
+                          Object.entries(messages).map(([type, message]) => (
+                            <p key={type} className="px-2 text-sm text-red-500">
+                              {message}
+                            </p>
+                          ))
+                        );
+                      }}
+                    </ErrorMessage>
+>>>>>>> validate select
                   </div>
                 </div>
               </div>
