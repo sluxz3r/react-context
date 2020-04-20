@@ -36,7 +36,7 @@ const ModalComponent = () => {
         <div className="py-1 px-4 mt-6">
           <span className="text-gray-900 text-2xl">Use as Branch Office</span>
         </div>
-        <form>
+        <form onSubmit={handleSubmit(_onValidate())}>
           <div className="w-full">
             <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row">
               <div className="w-full py-4">
