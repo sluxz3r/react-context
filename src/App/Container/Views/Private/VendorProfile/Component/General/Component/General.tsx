@@ -6,7 +6,9 @@ import { MainApp } from "../../../../../../Components";
 import ModalComponent from "./Modal";
 
 const GeneralComponent = () => {
-  const { open, setOpen } = useContext(GeneralContext);
+  const { open, setOpen, _handleOnSubmitSelect, handleSubmit } = useContext(
+    GeneralContext
+  );
 
   return (
     <MainApp
@@ -30,12 +32,16 @@ const GeneralComponent = () => {
         <Modal
           title="Perusahaan"
           open={open}
-          width="w-3/5"
+          width="w-3/4"
           onClose={() => {
             setOpen(false);
           }}
           onActionOne={() => {
             setOpen(false);
+          }}
+          onActionTwo={async () => {
+            _handleOnSubmitSelect();
+            handleSubmit();
           }}
           textOne="Batal"
           textTwo="Simpan"
