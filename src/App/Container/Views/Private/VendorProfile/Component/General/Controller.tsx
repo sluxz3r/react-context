@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { createContext, useState, useEffect } from "react";
+import { useForm, FormContext } from "react-hook-form";
 import { getToken } from "../../../../../../Misc/Cookies";
 
 interface InitialState {
@@ -7,21 +7,18 @@ interface InitialState {
   _isLogin: string | null;
   open: boolean;
   setOpen: Function;
-  register: Function;
-  handleSubmit: Function;
-  errors: object;
+  registerSelect: Function;
   _onSubmit: Function;
   optionsCompanyType: Array<object>;
   Indonesia: Array<object>;
   Yogya: Array<object>;
   Sleman: Array<object>;
-  columns: Array<object>;
   branchName: string;
   address: string;
   country: string;
   province: string;
   city: string;
-  subDistrict: string;
+  district: string;
   postalCode: string;
   phoneNumber: string;
   phoneNumberExt: string;
@@ -33,13 +30,22 @@ interface InitialState {
   setCountry: Function;
   setProvince: Function;
   setCity: Function;
-  setSubDistrict: Function;
+  setDistrict: Function;
   setPostalCode: Function;
   setPhoneNumber: Function;
   setPhoneNumberExt: Function;
   setFaxNumber: Function;
   setFaxNumberExt: Function;
   setCompanyEmail: Function;
+  _handleCountry: Function;
+  _handleProvince: Function;
+  _handleCity: Function;
+  _onValidate: Function;
+  _handleDistrict: Function;
+  _handleOnSubmitSelect: Function;
+  register: Function;
+  handleSubmit: Function;
+  errors: object;
 }
 
 const initialState = {
@@ -47,15 +53,12 @@ const initialState = {
   _isLogin: null,
   open: false,
   setOpen: () => {},
-  register: () => {},
-  handleSubmit: () => {},
-  errors: {},
+  registerSelect: () => {},
   _onSubmit: () => {},
   optionsCompanyType: [{}],
   Indonesia: [{}],
   Yogya: [{}],
   Sleman: [{}],
-  columns: [{}],
   branchName: "",
   setBranchName: () => {},
   address: "",
@@ -66,8 +69,8 @@ const initialState = {
   setProvince: () => {},
   city: "",
   setCity: () => {},
-  subDistrict: "",
-  setSubDistrict: () => {},
+  district: "",
+  setDistrict: () => {},
   postalCode: "",
   setPostalCode: () => {},
   phoneNumber: "",
@@ -80,6 +83,15 @@ const initialState = {
   setFaxNumberExt: () => {},
   companyEmail: "",
   setCompanyEmail: () => {},
+  _handleCountry: () => {},
+  _handleProvince: () => {},
+  _handleCity: () => {},
+  _handleDistrict: () => {},
+  _onValidate: () => {},
+  _handleOnSubmitSelect: () => {},
+  register: () => {},
+  handleSubmit: () => {},
+  errors: {},
 };
 
 export const GeneralContext = createContext<InitialState>(initialState);
@@ -92,22 +104,19 @@ export const {
 export const GeneralController = ({ children }) => {
   const _isLogin = getToken();
   const [open, setOpen] = useState(false);
-  const { register, handleSubmit, errors } = useForm({
-    validateCriteriaMode: "all",
-    mode: "onChange",
-  });
   const [branchName, setBranchName] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
   const [province, setProvince] = useState("");
   const [city, setCity] = useState("");
-  const [subDistrict, setSubDistrict] = useState("");
+  const [district, setDistrict] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberExt, setPhoneNumberExt] = useState("");
   const [faxNumber, setFaxNumber] = useState("");
   const [faxNumberExt, setFaxNumberExt] = useState("");
   const [companyEmail, setCompanyEmail] = useState("");
+
   const _onSubmit = (value) => console.log("Validate", value);
   const optionsCompanyType = [
     {
@@ -126,88 +135,164 @@ export const GeneralController = ({ children }) => {
       minHeight: 32,
     }),
   };
-  const columns = [
-    {
-      label: "No",
-      accessor: "no",
-      width: "w-auto",
-      align: "text-center",
-    },
-    {
-      label: "Detail",
-      accessor: "detail",
-      width: "w-2/5",
-      align: "text-left",
-    },
-    {
-      label: "Data Saat Ini",
-      accessor: "oldData",
-      width: "w-1/5",
-      align: "text-left",
-    },
-    {
-      label: "Data Baru",
-      accessor: "newData",
-      width: "w-1/5",
-      align: "text-left",
-    },
-    {
-      label: "Status",
-      accessor: "status",
-      width: "w-1/5",
-      align: "text-left",
-    },
-    {
-      label: "Aksi",
-      accessor: "aksi",
-      width: "w-auto",
-      align: "text-left",
-    },
-  ];
+
+  const { register, handleSubmit, errors } = useForm({
+    validateCriteriaMode: "all",
+    mode: "onChange",
+  });
+  // FormContext
+  const methods = useForm({
+    mode: "onChange",
+  });
+  const { register: registerSelect, setValue, triggerValidation } = methods;
+
+  useEffect(() => {
+    registerSelect(
+      { name: "business_type" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [registerSelect]);
+
+  useEffect(() => {
+    registerSelect(
+      { name: "country" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [registerSelect]);
+
+  useEffect(() => {
+    registerSelect(
+      { name: "province" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [registerSelect]);
+
+  useEffect(() => {
+    registerSelect(
+      { name: "city" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [registerSelect]);
+
+  useEffect(() => {
+    registerSelect(
+      { name: "district" },
+      {
+        required: true,
+        validate: (value) => {
+          return Array.isArray(value) ? value.length > 0 : !!value;
+        },
+      }
+    );
+  }, [registerSelect]);
+
+  const _handleCountry = (e: any) => {
+    setCountry(e && e.value);
+    setValue("country", e && e.value);
+    triggerValidation("country");
+  };
+
+  const _handleProvince = (e: any) => {
+    setProvince(e && e.value);
+    setValue("province", e && e.value);
+    triggerValidation("province");
+  };
+
+  const _handleCity = (e: any) => {
+    setCity(e && e.value);
+    setValue("city", e && e.value);
+    triggerValidation("city");
+  };
+
+  const _handleDistrict = (e: any) => {
+    setDistrict(e && e.value);
+    setValue("district", e && e.value);
+    triggerValidation("district");
+  };
+
+  const val = ["business_type", "country", "province", "city", "district"];
+
+  const _handleOnSubmitSelect = async () => {
+    if (await triggerValidation(val)) {
+      console.log("Sukses");
+    } else {
+      console.log("Gagal");
+    }
+  };
+
+  const _onValidate = async () => console.log("validation");
 
   return (
-    <GeneralProvider
-      value={{
-        customStyles,
-        _isLogin,
-        open,
-        setOpen,
-        register,
-        handleSubmit,
-        errors,
-        _onSubmit,
-        optionsCompanyType,
-        Indonesia,
-        Yogya,
-        Sleman,
-        columns,
-        branchName,
-        address,
-        country,
-        province,
-        city,
-        subDistrict,
-        postalCode,
-        phoneNumber,
-        phoneNumberExt,
-        faxNumber,
-        faxNumberExt,
-        companyEmail,
-        setBranchName,
-        setAddress,
-        setCountry,
-        setProvince,
-        setCity,
-        setSubDistrict,
-        setPostalCode,
-        setPhoneNumber,
-        setPhoneNumberExt,
-        setFaxNumber,
-        setFaxNumberExt,
-        setCompanyEmail,
-      }}
-    >
-      {children}
-    </GeneralProvider>
+    <FormContext {...methods}>
+      <GeneralProvider
+        value={{
+          customStyles,
+          _isLogin,
+          open,
+          setOpen,
+          registerSelect,
+          _onSubmit,
+          optionsCompanyType,
+          Indonesia,
+          Yogya,
+          Sleman,
+          branchName,
+          address,
+          country,
+          province,
+          city,
+          district,
+          postalCode,
+          phoneNumber,
+          phoneNumberExt,
+          faxNumber,
+          faxNumberExt,
+          companyEmail,
+          setBranchName,
+          setAddress,
+          setCountry,
+          setProvince,
+          setCity,
+          setDistrict,
+          setPostalCode,
+          setPhoneNumber,
+          setPhoneNumberExt,
+          setFaxNumber,
+          setFaxNumberExt,
+          setCompanyEmail,
+          _handleCountry,
+          _handleProvince,
+          _handleCity,
+          _handleDistrict,
+          _onValidate,
+          _handleOnSubmitSelect,
+          register,
+          handleSubmit,
+          errors,
+        }}
+      >
+        {children}
+      </GeneralProvider>
+    </FormContext>
   );
 };
