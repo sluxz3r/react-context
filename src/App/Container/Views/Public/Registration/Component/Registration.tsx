@@ -553,12 +553,12 @@ const RegistrationComponent = () => {
                     ref={register({
                       required: "This is required",
                       minLength: {
-                        value: 4,
-                        message: "This input is less than 4 characters",
+                        value: 5,
+                        message: "This input is less than 5 characters",
                       },
                       maxLength: {
-                        value: 30,
-                        message: "This input is more than 30 characters",
+                        value: 5,
+                        message: "This input is more than 5 characters",
                       },
                       pattern: {
                         value: /^\d+$/,
