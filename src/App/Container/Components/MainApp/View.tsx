@@ -1,6 +1,15 @@
 import React from "react";
 
-export const MainApp = ({ title, children }) => {
+export const MainApp = ({
+  title,
+  children,
+  textDone = "",
+  textNew = "",
+  classNameDone = "bg-white hover:bg-gray-300 border border-gray-400 text-gray-800",
+  classNameNew = "focus:outline-none bg-blue-600 hover:bg-blue-800 text-white",
+  onActionOne = () => {},
+  onActionTwo = () => {},
+}) => {
   return (
     <div className="w-full h-full overflow-y-auto">
       <div className="w-full border-b-2 bg-gray-200">
