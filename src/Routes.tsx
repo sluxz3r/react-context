@@ -77,7 +77,7 @@ const Routes = () => {
             <Switch>
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/integrity_pact" component={IntegrityFact} />
-              <Route exact path="/procerument" component={Procurement} />
+              <Route exact path="/procurements" component={Procurement} />
               <Route
                 exact
                 path="/qualification_requirement"
