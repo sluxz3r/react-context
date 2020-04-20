@@ -72,6 +72,10 @@ export const PrivateSidebar = () => {
   const [sidebarStatus, setSidebarStatus] = useState<boolean>(true);
   const [childrenList, setChildrenList] = useState<any>(urlList);
 
+  const _clickSidebar = (e) => {
+      setSidebarStatus(e)
+      setChildrenList(urlList)
+  }
   const _handleSidebar = (path, hasChildren, index, value) => {
     if (!hasChildren) {
       history.push(path);
@@ -99,7 +103,7 @@ export const PrivateSidebar = () => {
       } h-full bg-gray-800 overflow-y-auto`}
     >
       <div
-        onClick={() => setSidebarStatus(!sidebarStatus)}
+        onClick={() => _clickSidebar(!sidebarStatus)}
         className={`w-full border-b-2 border-gray-200 bg-gray-700 cursor-pointer flex mb-3 ${
           sidebarStatus && "flex-row-reverse"
         }`}
