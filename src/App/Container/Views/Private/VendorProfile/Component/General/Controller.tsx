@@ -230,7 +230,20 @@ export const GeneralController = ({ children }) => {
     triggerValidation("district");
   };
 
-  const val = ["business_type", "country", "province", "city", "district"];
+  const val = [
+    "branchName",
+    "address",
+    "postalCode",
+    "country",
+    "province",
+    "city",
+    "district",
+    "phoneNumber",
+    "phoneNumberExt",
+    "faxNumber",
+    "faxNumberExt",
+    "companyEmail",
+  ];
 
   const _handleOnSubmitSelect = async () => {
     if (await triggerValidation(val)) {
